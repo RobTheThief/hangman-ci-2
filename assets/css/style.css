@@ -1,0 +1,26 @@
+body {
+  background: url("../images/blackboard.webp") no-repeat;
+  height: 100%;
+  width: 100%;
+  color: white;
+}
+
+h1 {
+  float: left;
+}
+
+.margin-left-2rem {
+  margin: 0 0 0 2rem;
+}
+
+.game-controls {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.nav-button-container {
+  float: right;
+  margin: 0.5rem 2rem 0 0;
+}

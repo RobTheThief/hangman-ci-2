@@ -13,19 +13,21 @@
     </head>
     <body>
         <nav>
-            <h1>Hangman</h1>
-            <a class="help">Help</a>
-            <a class="contact">Contact</a>
+            <h1 class="margin-left-2rem" >Hangman</h1>
+            <div class="nav-button-container">
+                <a class="help">Help</a>
+                <a class="contact">Contact</a>
+            </div>
         </nav>
         <section class="game-body">
 
         </section>
-        <section class="game-controls">
+        <section class="game-controls margin-left-2rem">
             <form action="" method="POST">
                 <input title="Check Letter" value="Check Letter" id="check-letter" name="check-letter" type="button" class="check-letter">
                 <input title="Insert letter to be checked here." id="letter-input" type="text" maxlength="1" required>
             </form>
-            <input value="New Word" type="button" class="new-word">
+            <input title="Reset game and get new word" value="New Word" type="button" class="new-word">
         </section>
     </body>
 </html>
