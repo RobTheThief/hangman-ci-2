@@ -99,13 +99,16 @@ h1 {
 }
 
 .letterdash {
-  top: 40rem;
   width: 90%;
+}
+
+.letter-span {
+  font-size: 30px;
 }
 
 .word-container {
   position: relative;
-  top: 35rem;
+  top: 33rem;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -117,6 +120,7 @@ h1 {
   align-items: center;
   flex-direction: column;
   width: 10%;
+  max-width: 72px;
   margin: 0 0.5% 0 0.5%;
 }
 
