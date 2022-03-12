@@ -153,6 +153,9 @@ h1 {
   .hangman-gallows-container {
     right: 2rem;
   }
+  .word-container {
+    width: 95%;
+  }
 }
 
 @media only screen and (max-width: 385px) {
@@ -166,9 +169,9 @@ h1 {
 
 @media only screen and (max-width: 350px) {
   .nav-button-container {
-    right: 0.5rem;
+    right: 1rem;
   }
   .hangman-gallows-container {
-    right: -1.5rem;
+    right: -0.7rem;
   }
 }
