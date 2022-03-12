@@ -10,6 +10,7 @@ body {
 
 h1 {
   float: left;
+  font-family: "comic sans";
 }
 
 .game-body {
@@ -34,5 +35,8 @@ h1 {
 
 .nav-button-container {
   float: right;
-  margin: 0.5rem 2rem 0 0;
+  position: relative;
+  right: 2rem;
+  top: -0.4rem;
+  font-size: 25px;
 }
