@@ -52,56 +52,66 @@ h1 {
 }
 
 /* STICKMAN GALLOWS ELEMENTS */
-.game-drawings {
+.hangman-gallows-wrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.hangman-gallows-container {
   position: absolute;
+  width: 320px;
+}
+
+.game-drawings {
+  position: relative;
 }
 
 .gallows {
   height: 25rem;
-  right: 3rem;
+  left: 5rem;
   top: 5rem;
 }
 
 .noose {
   height: 10rem;
-  right: 14rem;
-  top: 5rem;
+  right: 12rem;
+  bottom: 10rem;
 }
 
 .stickman-head {
   height: 6rem;
-  right: 12.5rem;
-  top: 12.5rem;
+  left: 1rem;
+  bottom: 14rem;
 }
 
 .stickman-body {
   height: 7rem;
-  right: 15.5rem;
-  top: 18rem;
+  right: 3.5rem;
+  bottom: 7.5rem;
 }
 
 .stickman-rarm {
   height: 1.2rem;
-  right: 16rem;
-  top: 19.5rem;
+  right: 9.5rem;
+  bottom: 12rem;
 }
 
 .stickman-larm {
   height: 1.2rem;
-  right: 11rem;
-  top: 19.5rem;
+  left: 4.5rem;
+  bottom: 16.7rem;
 }
 
 .stickman-rleg {
   height: 4rem;
-  right: 15.7rem;
-  top: 23.7rem;
+  right: 8.5rem;
+  bottom: 9rem;
 }
 
 .stickman-lleg {
   height: 4rem;
-  right: 12rem;
-  top: 23.7rem;
+  right: 1rem;
+  bottom: 9rem;
 }
 
 .letterdash {
