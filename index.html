@@ -7,13 +7,26 @@
         <meta name="description"
             content="Hangman game">
         <meta name="keywords" content="Hangman game">
-        <link rel="stylesheet" href="assets/css/style.css">
         <title id="title">Hangman Game</title>
+        <link rel="stylesheet" href="assets/css/style.css">
         <script src="assets/javascript/script.js" defer></script>
     </head>
-    
     <body>
-    
+        <nav>
+            <h1>Hangman</h1>
+            <a class="help">Help</a>
+            <a class="contact">Contact</a>
+        </nav>
+        <section class="game-body">
+
+        </section>
+        <section class="game-controls">
+            <form action="" method="POST">
+                <input title="Check Letter" value="Check Letter" id="check-letter" name="check-letter" type="button" class="check-letter">
+                <input title="Insert letter to be checked here." id="letter-input" type="text" maxlength="1" required>
+            </form>
+            <input value="New Word" type="button" class="new-word">
+        </section>
     </body>
 </html>
 
