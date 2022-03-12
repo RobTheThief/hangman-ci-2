@@ -1,84 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description"
-            content="Hangman game">
-        <meta name="keywords" content="Hangman game">
-        <title id="title">Hangman Game</title>
-        <link rel="stylesheet" href="assets/css/style.css">
-        <script src="assets/javascript/script.js" defer></script>
-    </head>
-    <body>
-        <nav>
-            <h1 class="margin-left-2rem" >Hangman</h1>
-            <image src="./assets/images/whitenoose.png" alt="white noose logo" class="logo"/>
-            <div class="nav-button-container">
-                <a class="help">Help</a>
-                <a class="contact">Contact</a>
-            </div>
-        </nav>
-        <section class="game-body margin-left-2rem">
-            <img src="./assets/images/gallows.png" alt="hangman gallows" class="game-drawings gallows">
-            <img src="./assets/images/gamenoose.png" alt="noose" class="game-drawings noose">
-            <img src="./assets/images/head.png" alt="stickman head" class="game-drawings stickman-head">
-            <img src="./assets/images/body.png" alt="stickman body" class="game-drawings stickman-body">
-            <img src="./assets/images/rightarm.png" alt="stickman right arm" class="game-drawings stickman-rarm">
-            <img src="./assets/images/leftarm.png" alt="stickman left arm" class="game-drawings stickman-larm">
-            <img src="./assets/images/leftleg.png" alt="stickman left leg" class="game-drawings stickman-lleg">
-            <img src="./assets/images/rightleg.png" alt="stickman right leg" class="game-drawings stickman-rleg">
-            <div class="word-container">
-                <div class="letterdash-container display-none" id="letterdash-1">
-                    <span class="letter-span">H</span>
-                    <img src="./assets/images/letterdash.png" alt="letter underscore or dash" class="letterdash">
-                </div>
-                <div class="letterdash-container display-none" id="letterdash-2">
-                    <span class="letter-span">H</span>
-                    <img src="./assets/images/letterdash.png" alt="letter underscore or dash" class="letterdash">
-                </div>
-                <div class="letterdash-container display-none" id="letterdash-3">
-                    <span class="letter-span">H</span>
-                    <img src="./assets/images/letterdash.png" alt="letter underscore or dash" class="letterdash">
-                </div>
-                <div class="letterdash-container display-none" id="letterdash-4">
-                    <span class="letter-span">H</span>
-                    <img src="./assets/images/letterdash.png" alt="letter underscore or dash" class="letterdash">
-                </div>
-                <div class="letterdash-container display-none" id="letterdash-5">
-                    <span class="letter-span">H</span>
-                    <img src="./assets/images/letterdash.png" alt="letter underscore or dash" class="letterdash">
-                </div>
-                <div class="letterdash-container display-none" id="letterdash-6">
-                    <span class="letter-span">H</span>
-                    <img src="./assets/images/letterdash.png" alt="letter underscore or dash" class="letterdash">
-                </div>
-                <div class="letterdash-container display-none" id="letterdash-7">
-                    <span class="letter-span">H</span>
-                    <img src="./assets/images/letterdash.png" alt="letter underscore or dash" class="letterdash">
-                </div>
-                <div class="letterdash-container display-none" id="letterdash-8">
-                    <span class="letter-span">H</span>
-                    <img src="./assets/images/letterdash.png" alt="letter underscore or dash" class="letterdash">
-                </div>
-                <div class="letterdash-container display-none" id="letterdash-9">
-                    <span class="letter-span">H</span>
-                    <img src="./assets/images/letterdash.png" alt="letter underscore or dash" class="letterdash">
-                </div>
-                <div class="letterdash-container display-none" id="letterdash-10">
-                    <span class="letter-span">H</span>
-                    <img src="./assets/images/letterdash.png" alt="letter underscore or dash" class="letterdash">
-                </div>
-            </div>
-        </section>
-        <section class="game-controls margin-left-2rem">
-            <form action="" method="POST">
-                <input title="Check Letter" value="Check Letter" id="check-letter" name="check-letter" type="button" class="check-letter">
-                <input title="Insert letter to be checked here." id="letter-input" type="text" maxlength="1" class="letter-input" required>
-            </form>
-            <input title="Reset game and get new word" value="New Word" type="button" class="new-word">
-        </section>
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Hangman game" />
+    <meta name="keywords" content="Hangman game" />
+    <title id="title">Hangman Game</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <script src="assets/javascript/script.js" defer></script>
+  </head>
+  <body>
+    <nav>
+      <h1 class="margin-left-2rem">Hangman</h1>
+      <image
+        src="./assets/images/whitenoose.png"
+        alt="white noose logo"
+        class="logo"
+      />
+      <div class="nav-button-container">
+        <a class="help">Help</a>
+        <a class="contact">Contact</a>
+      </div>
+    </nav>
+    <section class="game-body margin-left-2rem">
+      <img
+        src="./assets/images/gallows.png"
+        alt="hangman gallows"
+        class="game-drawings gallows"
+      />
+      <img
+        src="./assets/images/gamenoose.png"
+        alt="noose"
+        class="game-drawings noose"
+      />
+      <img
+        src="./assets/images/head.png"
+        alt="stickman head"
+        class="game-drawings stickman-head"
+      />
+      <img
+        src="./assets/images/body.png"
+        alt="stickman body"
+        class="game-drawings stickman-body"
+      />
+      <img
+        src="./assets/images/rightarm.png"
+        alt="stickman right arm"
+        class="game-drawings stickman-rarm"
+      />
+      <img
+        src="./assets/images/leftarm.png"
+        alt="stickman left arm"
+        class="game-drawings stickman-larm"
+      />
+      <img
+        src="./assets/images/leftleg.png"
+        alt="stickman left leg"
+        class="game-drawings stickman-lleg"
+      />
+      <img
+        src="./assets/images/rightleg.png"
+        alt="stickman right leg"
+        class="game-drawings stickman-rleg"
+      />
+      <div class="word-container">
+        <div class="letterdash-container display-none" id="letterdash-1">
+          <span class="letter-span">H</span>
+          <img
+            src="./assets/images/letterdash.png"
+            alt="letter underscore or dash"
+            class="letterdash"
+          />
+        </div>
+        <div class="letterdash-container display-none" id="letterdash-2">
+          <span class="letter-span">H</span>
+          <img
+            src="./assets/images/letterdash.png"
+            alt="letter underscore or dash"
+            class="letterdash"
+          />
+        </div>
+        <div class="letterdash-container display-none" id="letterdash-3">
+          <span class="letter-span">H</span>
+          <img
+            src="./assets/images/letterdash.png"
+            alt="letter underscore or dash"
+            class="letterdash"
+          />
+        </div>
+        <div class="letterdash-container display-none" id="letterdash-4">
+          <span class="letter-span">H</span>
+          <img
+            src="./assets/images/letterdash.png"
+            alt="letter underscore or dash"
+            class="letterdash"
+          />
+        </div>
+        <div class="letterdash-container display-none" id="letterdash-5">
+          <span class="letter-span">H</span>
+          <img
+            src="./assets/images/letterdash.png"
+            alt="letter underscore or dash"
+            class="letterdash"
+          />
+        </div>
+        <div class="letterdash-container display-none" id="letterdash-6">
+          <span class="letter-span">H</span>
+          <img
+            src="./assets/images/letterdash.png"
+            alt="letter underscore or dash"
+            class="letterdash"
+          />
+        </div>
+        <div class="letterdash-container display-none" id="letterdash-7">
+          <span class="letter-span">H</span>
+          <img
+            src="./assets/images/letterdash.png"
+            alt="letter underscore or dash"
+            class="letterdash"
+          />
+        </div>
+        <div class="letterdash-container display-none" id="letterdash-8">
+          <span class="letter-span">H</span>
+          <img
+            src="./assets/images/letterdash.png"
+            alt="letter underscore or dash"
+            class="letterdash"
+          />
+        </div>
+        <div class="letterdash-container display-none" id="letterdash-9">
+          <span class="letter-span">H</span>
+          <img
+            src="./assets/images/letterdash.png"
+            alt="letter underscore or dash"
+            class="letterdash"
+          />
+        </div>
+        <div class="letterdash-container display-none" id="letterdash-10">
+          <span class="letter-span">H</span>
+          <img
+            src="./assets/images/letterdash.png"
+            alt="letter underscore or dash"
+            class="letterdash"
+          />
+        </div>
+      </div>
+    </section>
+    <section class="game-controls margin-left-2rem">
+      <form action="" method="POST">
+        <input
+          title="Check Letter"
+          value="Check Letter"
+          id="check-letter"
+          name="check-letter"
+          type="button"
+          class="check-letter"
+        />
+        <input
+          title="Insert letter to be checked here."
+          id="letter-input"
+          type="text"
+          maxlength="1"
+          class="letter-input"
+          required
+        />
+      </form>
+      <input
+        title="Reset game and get new word"
+        value="New Word"
+        type="button"
+        class="new-word"
+      />
+    </section>
+  </body>
 </html>
-
