@@ -57,8 +57,38 @@ h1 {
   right: 14rem;
 }
 
+.stickman-body {
+  height: 7rem;
+  right: 15.5rem;
+  top: 16.5rem;
+}
+
 .stickman-head {
   height: 6rem;
   right: 12.5rem;
   top: 11rem;
+}
+
+.stickman-rarm {
+  height: 1.2rem;
+  right: 16rem;
+  top: 18rem;
+}
+
+.stickman-larm {
+  height: 1.2rem;
+  right: 11rem;
+  top: 18rem;
+}
+
+.stickman-rleg {
+  height: 4rem;
+  right: 15.7rem;
+  top: 22.3rem;
+}
+
+.stickman-lleg {
+  height: 4rem;
+  right: 12rem;
+  top: 22.3rem;
 }
