@@ -40,13 +40,13 @@ h1 {
 }
 
 .margin-left-2rem {
-  margin: 0 0 0 2rem;
+  margin: 0 0 0 7%;
 }
 
 .nav-button-container {
   float: right;
   position: relative;
-  right: 3.5rem;
+  right: 7%;
   top: -0.4rem;
   font-size: 25px;
 }
