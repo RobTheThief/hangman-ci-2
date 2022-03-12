@@ -56,3 +56,9 @@ h1 {
   height: 10rem;
   right: 14rem;
 }
+
+.stickman-head {
+  height: 6rem;
+  right: 12.5rem;
+  top: 11rem;
+}
