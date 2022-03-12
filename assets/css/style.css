@@ -41,3 +41,18 @@ h1 {
   top: -0.4rem;
   font-size: 25px;
 }
+
+/* STICKMAN GALLOWS ELEMENTS */
+.game-drawings {
+  position: absolute;
+}
+
+.gallows {
+  height: 25rem;
+  right: 3rem;
+}
+
+.noose {
+  height: 10rem;
+  right: 14rem;
+}
