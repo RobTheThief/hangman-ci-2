@@ -42,7 +42,7 @@ h1 {
 .nav-button-container {
   float: right;
   position: relative;
-  right: 2rem;
+  right: 3.5rem;
   top: -0.4rem;
   font-size: 25px;
 }
@@ -55,47 +55,49 @@ h1 {
 .gallows {
   height: 25rem;
   right: 3rem;
+  top: 5rem;
 }
 
 .noose {
   height: 10rem;
   right: 14rem;
-}
-
-.stickman-body {
-  height: 7rem;
-  right: 15.5rem;
-  top: 16.5rem;
+  top: 5rem;
 }
 
 .stickman-head {
   height: 6rem;
   right: 12.5rem;
-  top: 11rem;
+  top: 12.5rem;
+}
+
+.stickman-body {
+  height: 7rem;
+  right: 15.5rem;
+  top: 18rem;
 }
 
 .stickman-rarm {
   height: 1.2rem;
   right: 16rem;
-  top: 18rem;
+  top: 19.5rem;
 }
 
 .stickman-larm {
   height: 1.2rem;
   right: 11rem;
-  top: 18rem;
+  top: 19.5rem;
 }
 
 .stickman-rleg {
   height: 4rem;
   right: 15.7rem;
-  top: 22.3rem;
+  top: 23.7rem;
 }
 
 .stickman-lleg {
   height: 4rem;
   right: 12rem;
-  top: 22.3rem;
+  top: 23.7rem;
 }
 
 .letterdash {
