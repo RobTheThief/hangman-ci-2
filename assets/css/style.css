@@ -46,7 +46,7 @@ h1 {
 .nav-button-container {
   float: right;
   position: relative;
-  right: 7%;
+  right: 8rem;
   top: -0.4rem;
   font-size: 25px;
 }
@@ -143,5 +143,32 @@ h1 {
 @media only screen and (max-width: 1288px) {
   body {
     background-size: auto;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .nav-button-container {
+    right: 3.5rem;
+  }
+  .hangman-gallows-container {
+    right: 2rem;
+  }
+}
+
+@media only screen and (max-width: 385px) {
+  .nav-button-container {
+    right: 1.5rem;
+  }
+  .hangman-gallows-container {
+    right: 0rem;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .nav-button-container {
+    right: 0.5rem;
+  }
+  .hangman-gallows-container {
+    right: -1.5rem;
   }
 }
