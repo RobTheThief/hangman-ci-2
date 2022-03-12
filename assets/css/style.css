@@ -92,3 +92,66 @@ h1 {
   right: 12rem;
   top: 22.3rem;
 }
+
+.letterdash {
+  top: 40rem;
+  width: 90%;
+}
+
+.word-container {
+  position: relative;
+  top: 35rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.letterdash-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 10%;
+  margin: 0 0.5% 0 0.5%;
+}
+
+/* .letterdash-1 {
+  left: 2rem;
+}
+
+.letterdash-2 {
+  left: 8.5rem;
+}
+
+.letterdash-3 {
+  left: 15rem;
+}
+
+.letterdash-4 {
+  left: 21.5rem;
+}
+
+.letterdash-5 {
+  left: 28rem;
+}
+
+.letterdash-6 {
+  left: 34.5rem;
+}
+
+.letterdash-3 {
+  left: 15rem;
+}
+
+.letterdash-3 {
+  left: 15rem;
+}
+
+.letterdash-3 {
+  left: 15rem;
+}
+
+.letterdash-3 {
+  left: 15rem;
+}
+ */
