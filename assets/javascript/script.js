@@ -1,5 +1,6 @@
 let WORD = "";
 let DRAWING_COUNT = 0;
+let HINT_CHECKED = false;
 
 /* MODAL BASED ON https://www.w3schools.com/howto/howto_css_modals.asp */
 
@@ -35,6 +36,9 @@ document.addEventListener('DOMContentLoaded', function(){
             }
             if (buttonType === 'new-word') {
                 newWord();
+            }
+            if (buttonType === 'hint') {
+                giveHint();
             }
         })
     }
@@ -225,6 +229,17 @@ function toggleIsFetching() {
 function newWord () {
     toggleIsFetching();
     runGame();
+}
+
+async function giveHint () {
+    modal.style.display = 'block';
+    let hint = await getWordHint(WORD);
+    document.getElementById('modal-text').textContent = hint.definitions[0].definition;
+    if (HINT_CHECKED === false) {
+        renderStickman();
+        renderStickman();
+        HINT_CHECKED = true;
+    }
 }
 
 async function runGame () {
