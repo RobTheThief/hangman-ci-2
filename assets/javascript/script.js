@@ -32,7 +32,10 @@ document.addEventListener('DOMContentLoaded', function(){
 });
 
 
-
+/**
+ * Get request to WordsApi for a random word
+ * @returns promise with word object
+ */
 function getRandomWord () {
     return new Promise ( async resolve => {
         try {
