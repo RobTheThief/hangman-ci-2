@@ -66,6 +66,21 @@ button {
   font-size: 20px;
 }
 
+.loading-wheel {
+  font-size: 70px;
+}
+
+.loading-wheel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
 /* STICKMAN GALLOWS ELEMENTS */
 .hangman-gallows-wrapper {
   display: flex;
@@ -170,7 +185,7 @@ button {
 
 /* MODAL BASED ON https://www.w3schools.com/howto/howto_css_modals.asp */
 .modal {
-  display: block;
+  display: none;
   position: fixed;
   padding-top: 250px;
   top: 0;

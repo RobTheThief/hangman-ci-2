@@ -209,6 +209,10 @@ function renderStickman () {
     }
 }
 
+function toggleIsFetching() {
+    document.getElementsByClassName('loading-wheel')[0].classList.toggle('invisible');
+}
+
 async function runGame () {
     hideAllDrawings();
     restoreAllCharContainers();
@@ -221,6 +225,7 @@ async function runGame () {
     let indicesToReveal = filterLettersToRender(word);
     renderWord(word, indicesToReveal);
     removeEmptyCharContainers(word);
+    toggleIsFetching();
 
     console.log('Parsed ok: ', isParsedOk, 'Word: ', word, 'Indexes to reveal: ', indicesToReveal);
     console.log(hint.definitions[0].definition)

@@ -8,6 +8,7 @@
     <meta name="keywords" content="Hangman game" />
     <title id="title">Hangman Game</title>
     <script src="https://kit.fontawesome.com/89b2bfbb3e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/style.css" />
     <script src="assets/javascript/apitoken.js" defer></script>
     <script src="assets/javascript/script.js" defer></script>
@@ -25,13 +26,17 @@
         <a class="contact">Contact</a>
       </div>
     </nav>
-<!-- MODAL BASED ON https://www.w3schools.com/howto/howto_css_modals.asp-->
+    <!-- MODAL BASED ON https://www.w3schools.com/howto/howto_css_modals.asp-->
     <div id="myModal" class="modal">
         <div class="modal-content">
           <span class="close">&times;</span>
           <p>Some text in the Modal..</p>
         </div>
-      </div>
+    </div>
+
+    <div class="loading-wheel-container">
+        <i class="fa fa-refresh fa-spin loading-wheel"></i> <!-- Loading wheel -->
+    </div>
 
     <section class="game-body margin-left-2rem">
         <div class="hangman-gallows-wrapper">
