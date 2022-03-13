@@ -130,8 +130,18 @@ function filterLettersToRender (word) {
     return indicesToReveal;
 }
 
-function renderWord (word) {
-
+/**
+ * Renders a list of letters to the chalk board
+ * @param {*} word 
+ * @param {*} indices 
+ */
+function renderWord (word, indices) {
+    letterArray = word.split("");
+    for (let index of indices){
+        console.log(index, letterArray[index]);
+        let charElementContainer = document.getElementById(`letterdash-${parseFloat(index) + 1}`);
+        charElementContainer.children[0].textContent = letterArray[index].toUpperCase();
+    }
 }
 
 function renderStickman () {
@@ -140,13 +150,15 @@ function renderStickman () {
 
 async function runGame () {
     let randomWord = await getRandomWord();
-    let isParsedOk = parseWord(randomWord.word);
+    let word = randomWord.word;
+    let isParsedOk = parseWord(word);
     if (isParsedOk === false) return runGame();
-    let hint = await getWordHint(randomWord.word);
+    let hint = await getWordHint(word);
     if (!hint.definitions[0]) return runGame();
-    let indexsToReveal = filterLettersToRender(randomWord.word);
+    let indicesToReveal = filterLettersToRender(word);
+    renderWord(word, indicesToReveal);
 
-    console.log('Parsed ok: ', isParsedOk, 'Word: ', randomWord.word, 'Indexes to reveal: ', indexsToReveal);
+    console.log('Parsed ok: ', isParsedOk, 'Word: ', word, 'Indexes to reveal: ', indicesToReveal);
     console.log(hint.definitions[0].definition)
 }
 
