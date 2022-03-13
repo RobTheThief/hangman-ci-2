@@ -70,8 +70,30 @@ function parseWord (word) {
     return true
 }
 
+/**
+ * Looks for a definition of the random word in the WordsApi to be used as a hint
+ * @param {*} word 
+ * @returns Promise with a word definition object
+ */
 function getWordHint (word) {
+    return new Promise ( async resolve => {
+        try {
+            const response = await fetch(`https://wordsapiv1.p.rapidapi.com/words/${word}/definitions`, {
+                method: "GET",
+                headers: {
+                    "x-rapidapi-host": "wordsapiv1.p.rapidapi.com",
+                    "x-rapidapi-key": token,
+                }
+            });   
+    
+            const responseJson = await response.json(); //extract JSON from the http response
 
+            resolve(responseJson); 
+            } catch (error) {
+                alert(error);
+                resolve();   
+            }
+    })
 }
 
 function filterLettersToRender (word) {
@@ -90,9 +112,11 @@ async function runGame () {
     let randomWord = await getRandomWord();
     let isParsedOk = parseWord(randomWord.word);
     if (isParsedOk === false) return runGame();
-    
-    console.log('Parsed ok: ', parseWord(randomWord.word), 'Word: ', randomWord.word);
-    console.log(randomWord)
+    let hint = await getWordHint(randomWord.word);
+    if (!hint.definitions[0]) return runGame();
+
+    console.log('Parsed ok: ', isParsedOk, 'Word: ', randomWord.word);
+    console.log(hint.definitions[0].definition)
 }
 
 runGame();
