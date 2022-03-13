@@ -140,6 +140,7 @@ function renderWord (word, indices) {
     for (let index of indices){
         let charElementContainer = document.getElementById(`letterdash-${parseFloat(index) + 1}`);
         charElementContainer.children[0].textContent = letterArray[index].toUpperCase();
+        charElementContainer.classList.add('margin-bottom-increase');
     }
 }
 
@@ -168,6 +169,7 @@ function renderStickman () {
 }
 
 async function runGame () {
+    restoreAllCharContainers();
     let randomWord = await getRandomWord();
     let word = randomWord.word;
     let isParsedOk = parseWord(word);
@@ -176,6 +178,7 @@ async function runGame () {
     if (!hint.definitions[0]) return runGame();
     let indicesToReveal = filterLettersToRender(word);
     renderWord(word, indicesToReveal);
+    removeEmptyCharContainers(word);
 
     console.log('Parsed ok: ', isParsedOk, 'Word: ', word, 'Indexes to reveal: ', indicesToReveal);
     console.log(hint.definitions[0].definition)

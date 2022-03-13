@@ -160,6 +160,10 @@ button {
   display: none;
 }
 
+.margin-bottom-increase {
+  margin-bottom: 3.2rem;
+}
+
 /* MODAL BASED ON https://www.w3schools.com/howto/howto_css_modals.asp */
 .modal {
   display: block;
