@@ -213,9 +213,8 @@ function renderStickman () {
     if (DRAWING_COUNT < 8){
         elements[DRAWING_COUNT].classList.remove('invisible');
         ++DRAWING_COUNT
-    } else {
-       looseGame();
     }
+    DRAWING_COUNT === 8 && looseGame();
 }
 
 /**
