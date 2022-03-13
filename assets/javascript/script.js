@@ -33,6 +33,9 @@ document.addEventListener('DOMContentLoaded', function(){
             if (buttonType === 'check-letter') {
                 checkLetter(WORD)
             }
+            if (buttonType === 'new-word') {
+                newWord();
+            }
         })
     }
 });
@@ -216,9 +219,16 @@ function toggleIsFetching() {
     document.getElementsByClassName('loading-wheel')[0].classList.toggle('invisible');
 }
 
+/**
+ * Rests game with new word and hint
+ */
+function newWord () {
+    toggleIsFetching();
+    runGame();
+}
+
 async function runGame () {
     hideAllDrawings();
-    restoreAllCharContainers();
     let randomWord = await getRandomWord();
     let word = randomWord.word;
     let isParsedOk = parseWord(word);
@@ -226,6 +236,7 @@ async function runGame () {
     let hint = await getWordHint(word);
     if (!hint.definitions[0]) return runGame();
     let indicesToReveal = filterLettersToRender(word);
+    restoreAllCharContainers();
     renderWord(word, indicesToReveal);
     removeEmptyCharContainers(word);
     toggleIsFetching();
