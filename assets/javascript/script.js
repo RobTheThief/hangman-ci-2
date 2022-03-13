@@ -32,8 +32,31 @@ document.addEventListener('DOMContentLoaded', function(){
 });
 
 function getRandomWord () {
+    return new Promise ( async resolve => {
+        try {
+            const response = await fetch("https://wordsapiv1.p.rapidapi.com/words/?random=true", {
+                method: "GET",
+                headers: {
+                    "x-rapidapi-host": "wordsapiv1.p.rapidapi.com",
+                    "x-rapidapi-key": "51ab0f2606mshb2d552426462fe4p136abfjsne76bf417bf32"
+                }
+            });   
     
+            const responseJson = await response.json(); //extract JSON from the http response
+    
+            resolve(responseJson); 
+            } catch (error) {
+                alert(error);
+                resolve();   
+            }
+    })
 }
+
+async function logForDev () {
+    let randomword = await getRandomWord();
+    console.log(randomword.word);
+}
+logForDev();
 
 function checkWordLength (word) {
 
@@ -43,8 +66,8 @@ function getWordHint (word) {
 
 }
 
-function filterLettersToRender () {
-    
+function filterLettersToRender (word) {
+
 }
 
 function renderWord (word) {
