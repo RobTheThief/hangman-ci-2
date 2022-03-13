@@ -77,6 +77,10 @@ button {
   width: 320px;
 }
 
+.invisible {
+  visibility: hidden;
+}
+
 .game-drawings {
   position: relative;
 }

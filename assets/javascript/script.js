@@ -187,11 +187,23 @@ function checkLetter (word) {
     }
 }
 
+/**
+ * Hides all stickman and gallows drawings for the start of the game
+ * and on reset
+ */
+function hideAllDrawings () {
+    let elements = document.getElementsByClassName('game-drawings');
+    for (let element of elements) {
+        element.classList.add('invisible');
+    }
+}
+
 function renderStickman () {
     
 }
 
 async function runGame () {
+    hideAllDrawings();
     restoreAllCharContainers();
     let randomWord = await getRandomWord();
     let word = randomWord.word;
