@@ -1,3 +1,5 @@
+let WORD = "";
+
 /* MODAL BASED ON https://www.w3schools.com/howto/howto_css_modals.asp */
 
 // Get the modal
@@ -27,7 +29,9 @@ document.addEventListener('DOMContentLoaded', function(){
     for (let button of buttons) {
         button.addEventListener('click', function(){
             let buttonType = this.getAttribute('id');
-            alert(`You clicked ${buttonType} button`);
+            if (buttonType === 'check-letter') {
+                checkLetter(WORD)
+            }
         })
     }
 });
@@ -49,7 +53,8 @@ function getRandomWord () {
             });   
     
             const responseJson = await response.json(); //extract JSON from the http response
-    
+            WORD = responseJson.word;
+
             resolve(responseJson); 
             } catch (error) {
                 alert(error);
@@ -163,6 +168,19 @@ function restoreAllCharContainers () {
     }
 }
 
+function checkLetter (word) {
+    let testChar = document.getElementById('letter-input').value;
+    let indices = [];
+    if (word.includes(testChar)) {
+        for (let char in word) {
+            if (word[char] === testChar)
+            indices.push(char);
+        }
+        renderWord(word, indices);
+    } else {
+        renderStickman();
+    }
+}
 
 function renderStickman () {
 
