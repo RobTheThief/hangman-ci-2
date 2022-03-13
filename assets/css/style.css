@@ -173,6 +173,9 @@ input {
   .hangman-gallows-container {
     right: 0rem;
   }
+  input {
+    font-size: 17px;
+  }
 }
 
 @media only screen and (max-width: 350px) {
@@ -181,5 +184,8 @@ input {
   }
   .hangman-gallows-container {
     right: -0.7rem;
+  }
+  .letter-input {
+    margin: 0 2rem 0 0;
   }
 }
