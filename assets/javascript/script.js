@@ -18,3 +18,15 @@ window.onclick = function(event) {
   }
 }
 /* ******************************************************************* */
+
+/* Based on code institute love math project */
+document.addEventListener('DOMContentLoaded', function(){
+    let buttons = document.getElementsByClassName('button');
+    console.log(buttons);
+    for (let button of buttons) {
+        button.addEventListener('click', function(){
+            let buttonType = this.getAttribute('id');
+            alert(`You clicked ${buttonType} button`);
+        })
+    }
+});
