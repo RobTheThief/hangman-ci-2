@@ -218,7 +218,7 @@ function renderStickman () {
 }
 
 /**
- * Displays message 'GAME OVER' and resets the game after 3 seconds
+ * Displays message 'GAME OVER' with word and hint, and resets the game after 3 seconds
  */
 async function looseGame () {
     modal.style.display = 'block';
