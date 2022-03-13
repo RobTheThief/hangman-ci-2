@@ -30,3 +30,27 @@ document.addEventListener('DOMContentLoaded', function(){
         })
     }
 });
+
+function getRandomWord () {
+    
+}
+
+function checkWordLength (word) {
+
+}
+
+function getWordHint (word) {
+
+}
+
+function filterLettersToRender () {
+    
+}
+
+function renderWord (word) {
+
+}
+
+function renderStickman () {
+
+}
