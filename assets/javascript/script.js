@@ -206,14 +206,29 @@ function hideAllDrawings () {
 
 /**
  * Removes "invivible" class from each piece of the drawing until
- * complete
+ * complete, ending the game.
  */
 function renderStickman () {
     let elements = document.getElementsByClassName('game-drawings');
     if (DRAWING_COUNT < 8){
         elements[DRAWING_COUNT].classList.remove('invisible');
         ++DRAWING_COUNT
+    } else {
+       looseGame();
     }
+}
+
+/**
+ * Displays message 'GAME OVER' and resets the game after 3 seconds
+ */
+function looseGame () {
+    modal.style.display = 'block';
+    document.getElementById('modal-text').textContent = 'GAME OVER';
+    setTimeout(() => {
+        DRAWING_COUNT = 0;
+        HINT_CHECKED = false;
+        newWord();
+    }, 3000);
 }
 
 /**
