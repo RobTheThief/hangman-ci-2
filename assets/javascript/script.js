@@ -52,14 +52,15 @@ function getRandomWord () {
     })
 }
 
-async function logForDev () {
-    let randomword = await getRandomWord();
-    console.log(randomword.word);
-}
-logForDev();
-
-function checkWordLength (word) {
-
+function parseWord (word) {
+    console.log(word.length);
+    var term = "sample1-";
+    var re = new RegExp("([\.\ \-])");  /* ("^([a-z0-9]{5,})$"); */
+    if (re.test(term)) {
+        console.log("Valid");
+    } else {
+        console.log("Invalid");
+    }
 }
 
 function getWordHint (word) {
@@ -77,3 +78,10 @@ function renderWord (word) {
 function renderStickman () {
 
 }
+
+async function runGame () {
+    let randomWord = await getRandomWord();
+    parseWord(randomWord.word);
+}
+
+runGame();
