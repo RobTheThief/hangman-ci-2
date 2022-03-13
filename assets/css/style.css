@@ -189,3 +189,16 @@ input {
     margin: 0 2rem 0 0;
   }
 }
+
+@media only screen and (max-height: 720px) {
+  .hangman-gallows-container {
+    top: -0.5rem;
+  }
+  .word-container {
+    top: 28rem;
+  }
+  input {
+    position: relative;
+    bottom: 4rem;
+  }
+}
