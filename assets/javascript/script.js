@@ -19,7 +19,8 @@ window.onclick = function(event) {
 }
 /* ******************************************************************* */
 
-/* Based on code institute love math project */
+/*  Based on code institute love math project
+    Adds event listeners for buttons once DOM is loaded    */
 document.addEventListener('DOMContentLoaded', function(){
     let buttons = document.getElementsByClassName('button');
     console.log(buttons);
@@ -96,8 +97,15 @@ function getWordHint (word) {
     })
 }
 
-function filterLettersToRender (word) {
+function numOfLettersToReveal (word) {
+    let wordLength = word.length;
+    if (wordLength <= 3 ) return 1;
+    if (wordLength <= 6) return 2;
+    if (wordLength <= 11) return 3;
+}
 
+function filterLettersToRender (word) {
+    
 }
 
 function renderWord (word) {
