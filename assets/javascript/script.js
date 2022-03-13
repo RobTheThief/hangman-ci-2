@@ -220,9 +220,12 @@ function renderStickman () {
 /**
  * Displays message 'GAME OVER' and resets the game after 3 seconds
  */
-function looseGame () {
+async function looseGame () {
     modal.style.display = 'block';
-    document.getElementById('modal-text').textContent = 'GAME OVER';
+    const wordHintObject = await getWordHint(WORD);
+    const wordHint = wordHintObject.definitions[0].definition;
+    const capitalised = `${(WORD.charAt(0)).toUpperCase()}${WORD.slice(1)}`;
+    document.getElementById('modal-text').textContent = `GAME OVER! The answer was ${capitalised}: ${wordHint}`;
     setTimeout(() => {
         DRAWING_COUNT = 0;
         HINT_CHECKED = false;
