@@ -168,6 +168,11 @@ function restoreAllCharContainers () {
     }
 }
 
+/**
+ * Checkes the letter entered into the text input and renders any match.
+ * If there is not moatch it runs the renderStickman function
+ * @param {*} word 
+ */
 function checkLetter (word) {
     let testChar = document.getElementById('letter-input').value;
     let indices = [];
@@ -183,7 +188,7 @@ function checkLetter (word) {
 }
 
 function renderStickman () {
-
+    
 }
 
 async function runGame () {
