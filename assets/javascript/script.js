@@ -31,6 +31,8 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 });
 
+
+
 function getRandomWord () {
     return new Promise ( async resolve => {
         try {
@@ -52,15 +54,17 @@ function getRandomWord () {
     })
 }
 
+
+/**
+ * Checks if the random word is greater than 11 characters and if there are any hyphens, dots or spaces.
+ * @param {*} word 
+ * @returns boolean
+ */
 function parseWord (word) {
-    console.log(word.length);
-    var term = "sample1-";
-    var re = new RegExp("([\.\ \-])");  /* ("^([a-z0-9]{5,})$"); */
-    if (re.test(term)) {
-        console.log("Valid");
-    } else {
-        console.log("Invalid");
-    }
+    var re = new RegExp("([\.\ \-])");
+    if (re.test(word)) return false
+    if (word.length > 11) return false
+    return true
 }
 
 function getWordHint (word) {
