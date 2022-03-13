@@ -1,4 +1,5 @@
 let WORD = "";
+let DRAWING_COUNT = 0;
 
 /* MODAL BASED ON https://www.w3schools.com/howto/howto_css_modals.asp */
 
@@ -36,7 +37,6 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 });
 
-
 /**
  * Get request to WordsApi for a random word
  * @returns promise with word object
@@ -62,7 +62,6 @@ function getRandomWord () {
             }
     })
 }
-
 
 /**
  * Checks if the random word is greater than 11 characters and if there are any hyphens, dots or spaces.
@@ -198,8 +197,16 @@ function hideAllDrawings () {
     }
 }
 
+/**
+ * Removes "invivible" class from each piece of the drawing until
+ * complete
+ */
 function renderStickman () {
-    
+    let elements = document.getElementsByClassName('game-drawings');
+    if (DRAWING_COUNT < 8){
+        elements[DRAWING_COUNT].classList.remove('invisible');
+        ++DRAWING_COUNT
+    }
 }
 
 async function runGame () {
