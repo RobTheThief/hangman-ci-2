@@ -88,7 +88,11 @@ function renderStickman () {
 
 async function runGame () {
     let randomWord = await getRandomWord();
-    parseWord(randomWord.word);
+    let isParsedOk = parseWord(randomWord.word);
+    if (isParsedOk === false) return runGame();
+    
+    console.log('Parsed ok: ', parseWord(randomWord.word), 'Word: ', randomWord.word);
+    console.log(randomWord)
 }
 
 runGame();
