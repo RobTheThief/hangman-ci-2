@@ -97,15 +97,37 @@ function getWordHint (word) {
     })
 }
 
-function numOfLettersToReveal (word) {
+/**
+ * Checks how many letters in the word to determine the maximum number
+ * of letters will be revealed at the beginning of the game
+ * @param {*} word 
+ * @returns intergers 1, 2 or 3
+ */
+function maxNumOfLetters (word) {
     let wordLength = word.length;
     if (wordLength <= 3 ) return 1;
     if (wordLength <= 6) return 2;
     if (wordLength <= 11) return 3;
 }
 
+/**
+ * Randomly determines which letters of the word will be revealed at the
+ * beginning of the game
+ * @param {*} word 
+ * @returns Array of indices of letters that will be revealed
+ */
 function filterLettersToRender (word) {
-    
+    let lettersToRevealeCount = maxNumOfLetters (word);
+    let letters = word.split("");
+    let indicesToReveal = [];
+    for (let letter in letters) {
+        let magicNumber = Math.floor(Math.random() * 3);
+        if (magicNumber === 1 && indicesToReveal.length < lettersToRevealeCount) {
+            indicesToReveal.push(letter);
+        }
+    }
+    if (indicesToReveal.length === 0) indicesToReveal.push(1);
+    return indicesToReveal;
 }
 
 function renderWord (word) {
@@ -122,8 +144,9 @@ async function runGame () {
     if (isParsedOk === false) return runGame();
     let hint = await getWordHint(randomWord.word);
     if (!hint.definitions[0]) return runGame();
+    let indexsToReveal = filterLettersToRender(randomWord.word);
 
-    console.log('Parsed ok: ', isParsedOk, 'Word: ', randomWord.word);
+    console.log('Parsed ok: ', isParsedOk, 'Word: ', randomWord.word, 'Indexes to reveal: ', indexsToReveal);
     console.log(hint.definitions[0].definition)
 }
 
