@@ -209,6 +209,9 @@ function renderStickman () {
     }
 }
 
+/**
+ * Toggles "invisible" class for loading wheel
+ */
 function toggleIsFetching() {
     document.getElementsByClassName('loading-wheel')[0].classList.toggle('invisible');
 }
