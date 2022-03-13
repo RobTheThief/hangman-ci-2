@@ -138,11 +138,30 @@ function filterLettersToRender (word) {
 function renderWord (word, indices) {
     letterArray = word.split("");
     for (let index of indices){
-        console.log(index, letterArray[index]);
         let charElementContainer = document.getElementById(`letterdash-${parseFloat(index) + 1}`);
         charElementContainer.children[0].textContent = letterArray[index].toUpperCase();
     }
 }
+
+/**
+ * Removes unused character containers from chalk board
+ * @param {*} word 
+ */
+function removeEmptyCharContainers (word) {
+    for (let id = word.length + 1; id <= 11; id++) {
+       document.getElementById(`letterdash-${id}`).classList.add('display-none');
+    }
+}
+
+/**
+ * Restores all character containers on chalk board
+ */
+function restoreAllCharContainers () {
+    for (let id = 1; id <= 11; id++) {
+       document.getElementById(`letterdash-${id}`).classList.remove('display-none');
+    }
+}
+
 
 function renderStickman () {
 
