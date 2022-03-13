@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Fasthand&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Comic+Neue&family=Fasthand&display=swap");
 
 body {
   background: url("../images/blackboard.webp") no-repeat;
@@ -6,12 +6,18 @@ body {
   height: 100%;
   width: 100%;
   color: white;
-  font-family: "Fasthand", cursive;
+  font-family: "Comic Neue", cursive;
 }
 
 h1 {
   float: left;
-  font-family: "comic sans";
+}
+
+input {
+  font-family: "Comic Neue", cursive;
+  font-size: 20px;
+  color: white;
+  background: none;
 }
 
 .display-none {
@@ -33,6 +39,7 @@ h1 {
 .letter-input {
   width: 2rem;
   margin: 0 3rem 0 0;
+  text-transform: uppercase;
 }
 
 .logo {
@@ -123,6 +130,7 @@ h1 {
 }
 
 .word-container {
+  font-family: "Fasthand", cursive;
   position: relative;
   top: 33rem;
   display: flex;
