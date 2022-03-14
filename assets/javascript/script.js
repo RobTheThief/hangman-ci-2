@@ -156,6 +156,38 @@ function renderWord (word, indices) {
 }
 
 /**
+ * Checks if all the characters have been found
+ */
+function isGameWon () {
+    letterArray = [];
+    let elements = document.getElementsByClassName('letterdash-container');
+    for (let element of elements) {
+        let char = element.children[0].textContent;
+        if (char !== ''){
+            letterArray.push(char);
+        }
+    }
+    if (WORD.length === letterArray.length){
+        gameWon();
+    }
+}
+
+/**
+ * Displays a message congratulating the player, and giving the answer
+ * and hint. The game is then reset after 3 seconds.
+ */
+ async function gameWon () {
+    modal.style.display = 'block';
+    const wordHintObject = await getWordHint(WORD);
+    const wordHint = wordHintObject.definitions[0].definition;
+    const capitalised = `${(WORD.charAt(0)).toUpperCase()}${WORD.slice(1)}`;
+    document.getElementById('modal-text').textContent = `CONGRATULATIONS!! The answer was ${capitalised}: ${wordHint}`;
+    setTimeout(() => {
+        newWord();
+    }, 3000);
+}
+
+/**
  * Removes unused character containers from chalk board
  * @param {*} word 
  */
@@ -175,8 +207,9 @@ function restoreAllCharContainers () {
 }
 
 /**
- * Checkes the letter entered into the text input and renders any match.
- * If there is not moatch it runs the renderStickman function
+ * Checkes the letter entered into the text input and renders any match,
+ * then checks if game is won. If there is not match it runs the
+ * renderStickman function
  * @param {*} word 
  */
 function checkLetter (word) {
@@ -191,6 +224,7 @@ function checkLetter (word) {
     } else {
         renderStickman();
     }
+    isGameWon();
 }
 
 /**
@@ -218,6 +252,18 @@ function renderStickman () {
 }
 
 /**
+ * Replaces textContent and removes "margin-bottom-increase" class of game characters
+ * and containers respectivly
+ */
+function clearChars () {
+    let elements = document.getElementsByClassName('letterdash-container');
+    for (let element of elements) {
+        element.classList.remove('margin-bottom-increase');
+        element.children[0].textContent = '';
+    }
+}
+
+/**
  * Displays message 'GAME OVER' with word and hint, and resets the game after 3 seconds
  */
 async function looseGame () {
@@ -227,8 +273,6 @@ async function looseGame () {
     const capitalised = `${(WORD.charAt(0)).toUpperCase()}${WORD.slice(1)}`;
     document.getElementById('modal-text').textContent = `GAME OVER! The answer was ${capitalised}: ${wordHint}`;
     setTimeout(() => {
-        DRAWING_COUNT = 0;
-        HINT_CHECKED = false;
         newWord();
     }, 3000);
 }
@@ -244,10 +288,16 @@ function toggleIsFetching() {
  * Rests game with new word and hint
  */
 function newWord () {
+    clearChars();
+    DRAWING_COUNT = 0;
+    HINT_CHECKED = false;
     toggleIsFetching();
     runGame();
 }
 
+/**
+ * Displays hint and removes 2 tries from the player
+ */
 async function giveHint () {
     modal.style.display = 'block';
     let hint = await getWordHint(WORD);
