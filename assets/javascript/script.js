@@ -238,9 +238,10 @@ function restoreAllCharContainers () {
 function checkLetter (word) {
     let testChar = document.getElementById('letter-input').value;
     let indices = [];
-    if (word.includes(testChar)) {
+    if (word.includes(testChar.toLowerCase())) {
         for (let char in word) {
-            if (word[char] === testChar)
+            console.log(word[char]);
+            if (word[char] === testChar.toLowerCase())
             indices.push(char);
         }
         renderWord(word, indices);
