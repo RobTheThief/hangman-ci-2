@@ -11,6 +11,7 @@ body {
 
 form {
   display: inline-block;
+  z-index: 100;
 }
 
 h1 {
