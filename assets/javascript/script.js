@@ -147,6 +147,7 @@ function filterLettersToRender (word) {
  * @param {*} indices 
  */
 function renderWord (word, indices) {
+    document.getElementsByClassName('word-container')[0].classList.remove('invisible');
     letterArray = word.split("");
     for (let index of indices){
         let charElementContainer = document.getElementById(`letterdash-${parseFloat(index) + 1}`);
@@ -262,6 +263,8 @@ function clearChars () {
         element.children[0].textContent = '';
     }
 }
+
+
 
 /**
  * Displays message 'GAME OVER' with word and hint, and resets the game after 3 seconds
