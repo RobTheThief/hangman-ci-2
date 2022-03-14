@@ -153,7 +153,7 @@ function filterLettersToRender (word) {
  */
 function renderWord (word, indices) {
     playSound('draw-letter');
-    document.getElementsByClassName('word-container')[0].classList.remove('invisible');
+    wordVisibility(true);
     letterArray = word.split("");
     for (let index of indices){
         let charElementContainer = document.getElementById(`letterdash-${parseFloat(index) + 1}`);
@@ -316,7 +316,7 @@ function toggleIsFetching() {
  * Rests game with new word and hint
  */
 async function newWord () {
-    document.getElementsByClassName('word-container')[0].classList.add('invisible');
+    wordVisibility(false);
     playSound('eraser');
     DRAWING_COUNT = 0;
     HINT_CHECKED = false;
@@ -324,6 +324,13 @@ async function newWord () {
     runGame();
 }
 
+/**
+ * Toggles vivibility of word container on chalk board
+ */
+function wordVisibility (option) {
+    let wordContainer = document.getElementsByClassName('word-container')[0];
+    option ? wordContainer.classList.remove('invisible') : wordContainer.classList.add('invisible');
+}
 
 /**
  * Toggles mute audio icon and toggles boolean state of audio variable
