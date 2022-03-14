@@ -288,7 +288,6 @@ function toggleIsFetching() {
  * Rests game with new word and hint
  */
 function newWord () {
-    clearChars();
     DRAWING_COUNT = 0;
     HINT_CHECKED = false;
     toggleIsFetching();
@@ -317,6 +316,7 @@ async function runGame () {
     if (isParsedOk === false) return runGame();
     let hint = await getWordHint(word);
     if (!hint.definitions[0]) return runGame();
+    clearChars();
     let indicesToReveal = filterLettersToRender(word);
     restoreAllCharContainers();
     renderWord(word, indicesToReveal);
