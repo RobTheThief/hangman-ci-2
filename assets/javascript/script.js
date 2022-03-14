@@ -49,11 +49,14 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 });
 
+/*  Handles enter key event and scrolls the page back to the top and blurs
+    input to hide soft keyboard after 500ms */
 document.getElementById('letter-input').addEventListener("keyup", function(event) {
     if (event.key === 'Enter') {
       event.preventDefault();
       checkLetter(WORD);
       setTimeout(() => {
+        document.getElementById('letter-input').blur();
         window.scrollTo(0,0);
     }, 500);
     }
@@ -172,6 +175,10 @@ function renderWord (word, indices) {
     }
 }
 
+/**
+ * Async function that takes a string for sound type as a parameter and plays the 
+ * @param {*} sound 
+ */
 async function playSound(sound) {
     let soundType = document.getElementById(`${sound}-sound`);
     try {
@@ -386,4 +393,4 @@ async function runGame () {
     console.log('Parsed ok: ', isParsedOk, 'Word: ', word, 'Indexes to reveal: ', indicesToReveal);
 }
 
-/* runGame(); */
+runGame();
