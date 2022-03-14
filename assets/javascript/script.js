@@ -346,6 +346,7 @@ function toggleAudio() {
         '<i class="fa-solid fa-volume-xmark"></i>' :
         '<i class="fa-solid fa-volume-high"></i>'
     element.innerHTML = content;
+    AUDIO_MUTE = AUDIO_MUTE ? false : true;
 }
 
 /**
