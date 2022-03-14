@@ -1,7 +1,9 @@
-let WORD = "";
-let DRAWING_COUNT = 0;
-let HINT_CHECKED = false;
-let AUDIO_MUTE = true;
+/*global document: false */
+
+var WORD = "";
+var DRAWING_COUNT = 0;
+var HINT_CHECKED = false;
+var AUDIO_MUTE = true;
 
 /* MODAL BASED ON https://www.w3schools.com/howto/howto_css_modals.asp */
 
