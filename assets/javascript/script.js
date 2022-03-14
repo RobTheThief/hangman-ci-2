@@ -167,7 +167,7 @@ function filterLettersToRender (word) {
 function renderWord (word, indices) {
     playSound('draw-letter');
     wordVisibility(true);
-    letterArray = word.split("");
+    let letterArray = word.split("");
     for (let index of indices){
         let charElementContainer = document.getElementById(`letterdash-${parseFloat(index) + 1}`);
         charElementContainer.children[0].textContent = letterArray[index].toUpperCase();
@@ -199,7 +199,7 @@ async function playSound(sound) {
  * Checks if all the characters have been found
  */
 function isGameWon () {
-    letterArray = [];
+    let letterArray = [];
     let elements = document.getElementsByClassName('letterdash-container');
     for (let element of elements) {
         let char = element.children[0].textContent;
