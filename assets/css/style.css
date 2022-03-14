@@ -1,12 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Comic+Neue&family=Fasthand&display=swap");
 
 body {
-  background: url("../images/blackboard.webp") no-repeat; /* https://pixabay.com/ */
+  background: url("../images/blackboard.webp") no-repeat; /* Sourced from https://pixabay.com/ */
   background-size: cover;
   height: 100%;
   color: white;
   font-family: "Comic Neue", cursive;
-  /* overflow: hidden; */
 }
 
 form {

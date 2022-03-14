@@ -7,23 +7,23 @@
     <meta name="description" content="Hangman game" />
     <meta name="keywords" content="Hangman game" />
     <title id="title">Hangman Game</title>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
     <script
       src="https://kit.fontawesome.com/89b2bfbb3e.js"
       crossorigin="anonymous"
     ></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <link rel="stylesheet" href="assets/css/style.css" />
     <script src="assets/javascript/apitoken.js" defer></script>
     <script src="assets/javascript/script.js" defer></script>
   </head>
   <body>
     <nav>
       <h1 class="game-margin-left">Hangman</h1>
-      <img
-        src="./assets/images/whitenoose.png"
+      <img 
+        src="./assets/images/whitenoose.png" 
         alt="white noose logo"
         class="logo"
       />
@@ -44,7 +44,7 @@
     <div class="loading-wheel-container">
       <i class="fa fa-refresh fa-spin loading-wheel"></i>
     </div>
-    <!-- Game Sounds -->
+    <!-- Game Sounds from https://freesound.org/ -->
     <audio id="draw-line-sound" preload="none">
       <source src="./assets/audio/line.mp3" type="audio/mpeg" />
       Your browser does not support audio.
@@ -234,8 +234,8 @@
         title="Turn sound on or off"
         id="mute-audio"
         class="audio-mute button"
-      >
-        <i class="fa-solid fa-volume-xmark"></i>
+      > <!-- Icon from https://fontawesome.com/ -->
+        <i class="fa-solid fa-volume-xmark"></i> 
       </button>
     </section>
   </body>
