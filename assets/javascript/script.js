@@ -49,6 +49,16 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 });
 
+document.getElementById('letter-input').addEventListener("keyup", function(event) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      checkLetter(WORD);
+      setTimeout(() => {
+        window.scrollTo(0,0);
+    }, 500);
+    }
+  });
+
 /**
  * Get request to WordsApi for a random word
  * @returns promise with word object
@@ -376,4 +386,4 @@ async function runGame () {
     console.log('Parsed ok: ', isParsedOk, 'Word: ', word, 'Indexes to reveal: ', indicesToReveal);
 }
 
-runGame();
+/* runGame(); */

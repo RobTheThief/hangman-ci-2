@@ -4,9 +4,9 @@ body {
   background: url("../images/blackboard.webp") no-repeat; /* https://pixabay.com/ */
   background-size: cover;
   height: 100%;
-  width: 100%;
   color: white;
   font-family: "Comic Neue", cursive;
+  /* overflow: hidden; */
 }
 
 form {
@@ -51,7 +51,7 @@ button {
   height: 2rem;
 }
 
-.margin-left-2rem {
+.game-margin-left {
   margin: 0 0 0 7%;
 }
 
@@ -255,8 +255,8 @@ button {
   input {
     font-size: 17px;
   }
-  .margin-left-2rem {
-    margin: 0 0 0 2%;
+  .game-margin-left {
+    margin: 0 0 0 1%;
   }
   .letter-input {
     margin: 0 1rem 0 0;
@@ -280,14 +280,16 @@ button {
 
 @media only screen and (max-height: 720px) {
   .hangman-gallows-container {
-    top: -0.5rem;
+    top: -1.5rem;
   }
   .word-container {
-    top: 28rem;
+    top: 26rem;
   }
-  input,
-  button {
+  .game-controls {
     position: relative;
-    bottom: 6rem;
+    bottom: 8rem;
+  }
+  body {
+    height: 720px;
   }
 }

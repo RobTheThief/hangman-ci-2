@@ -15,7 +15,7 @@
   </head>
   <body>
     <nav>
-      <h1 class="margin-left-2rem">Hangman</h1>
+      <h1 class="game-margin-left">Hangman</h1>
       <image
         src="./assets/images/whitenoose.png"
         alt="white noose logo"
@@ -52,7 +52,7 @@
         Your browser does not support audio.
     </audio>
 
-    <section class="game-body margin-left-2rem">
+    <section class="game-body game-margin-left">
         <div class="hangman-gallows-wrapper">
             <div class="hangman-gallows-container">
                 <img
@@ -189,8 +189,8 @@
       </div>
     </div>
     </section>
-    <section class="game-controls margin-left-2rem">
-      <form>
+    <section class="game-controls game-margin-left">
+      <form onkeydown="return event.key != 'Enter';">
         <input
           title="Check Letter"
           value="Check Letter"
