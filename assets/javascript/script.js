@@ -142,7 +142,7 @@ function filterLettersToRender (word) {
 }
 
 /**
- * Renders a list of letters to the chalk board
+ * Removes invisible class of word container and renders a list of letters to the chalk board
  * @param {*} word 
  * @param {*} indices 
  */
@@ -225,6 +225,7 @@ function checkLetter (word) {
     } else {
         renderStickman();
     }
+    document.getElementById('letter-input').value = '';
     isGameWon();
 }
 
