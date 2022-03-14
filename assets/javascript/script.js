@@ -11,13 +11,13 @@ var modal = document.getElementById("myModal");
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks on <span> (x), close the modal
+// When the user clicks on <span> (x), close the modal and clear text
 span.onclick = function() {
     document.getElementById('modal-text').textContent = '';
     modal.style.display = "none";
 }
 
-// When the user clicks anywhere outside of the modal, close it
+// When the user clicks anywhere outside of the modal, close it and clear text
 window.onclick = function(event) {
   if (event.target == modal) {
     document.getElementById('modal-text').textContent = '';
@@ -64,7 +64,7 @@ document.getElementById('letter-input').addEventListener("keyup", function(event
 
 /**
  * Get request to WordsApi for a random word
- * @returns promise with word object
+ * @returns {Promise} - word object
  */
 function getRandomWord () {
     return new Promise ( async resolve => {
@@ -90,8 +90,8 @@ function getRandomWord () {
 
 /**
  * Checks if the random word is greater than 11 characters and if there are any hyphens, dots or spaces.
- * @param {*} word 
- * @returns boolean
+ * @param {string} word - any word
+ * @returns {boolean} - true if passed all test or false if failed any
  */
 function parseWord (word) {
     var re = new RegExp("([\.\ \-])");
@@ -102,8 +102,8 @@ function parseWord (word) {
 
 /**
  * Looks for a definition of the random word in the WordsApi to be used as a hint
- * @param {*} word 
- * @returns Promise with a word definition object
+ * @param {string} word - any word
+ * @returns {Promise} - word definition object
  */
 function getWordHint (word) {
     return new Promise ( async resolve => {
@@ -129,8 +129,8 @@ function getWordHint (word) {
 /**
  * Checks how many letters in the word to determine the maximum number
  * of letters will be revealed at the beginning of the game
- * @param {*} word 
- * @returns intergers 1, 2 or 3
+ * @param {string} word - any word 11 or less chars
+ * @returns {integer} - 1, 2 or 3
  */
 function maxNumOfLetters (word) {
     let wordLength = word.length;
@@ -142,11 +142,11 @@ function maxNumOfLetters (word) {
 /**
  * Randomly determines which letters of the word will be revealed at the
  * beginning of the game
- * @param {*} word 
- * @returns Array of indices of letters that will be revealed
+ * @param {string} word - any word 11 or less chars
+ * @returns {Array} - indices of letters that will be revealed
  */
 function filterLettersToRender (word) {
-    let lettersToRevealeCount = maxNumOfLetters (word);
+    let lettersToRevealeCount = maxNumOfLetters(word);
     let letters = word.split("");
     let indicesToReveal = [];
     for (let letter in letters) {
@@ -161,8 +161,8 @@ function filterLettersToRender (word) {
 
 /**
  * Removes invisible class of word container and renders a list of letters to the chalk board
- * @param {*} word 
- * @param {*} indices 
+ * @param {string} word - any word 11 or less chars
+ * @param {Array} indices - array containing integers
  */
 function renderWord (word, indices) {
     playSound('draw-letter');
@@ -177,7 +177,8 @@ function renderWord (word, indices) {
 
 /**
  * Async function that takes a string for sound type as a parameter and plays the 
- * @param {*} sound 
+ * sound
+ * @param {string} sound - accepts 'draw-letter', 'draw-line', or 'eraser'
  */
 async function playSound(sound) {
     let soundType = document.getElementById(`${sound}-sound`);
@@ -206,7 +207,6 @@ function isGameWon () {
             letterArray.push(char);
         }
     }
-    console.log(WORD.length, letterArray.length);
     if (WORD.length === letterArray.length){
         gameWon();
     }
@@ -229,7 +229,7 @@ function isGameWon () {
 
 /**
  * Removes unused character containers from chalk board
- * @param {*} word 
+ * @param {string} word - any word 11 or less chars
  */
 function removeEmptyCharContainers (word) {
     for (let id = word.length + 1; id <= 11; id++) {
@@ -247,10 +247,10 @@ function restoreAllCharContainers () {
 }
 
 /**
- * Checkes the letter entered into the text input and renders any match,
- * then checks if game is won. If there is not match it runs the
+ * Checks the letter entered into the text input and renders any match,
+ * then checks if game is won. If there is no match it runs the
  * renderStickman function
- * @param {*} word 
+ * @param {string} word - any word
  */
 function checkLetter (word) {
     let testChar = document.getElementById('letter-input').value;
@@ -340,7 +340,8 @@ async function newWord () {
 }
 
 /**
- * Toggles vivibility of word container on chalk board
+ * Turns on or ff vivibility of word container on chalk board 
+ * @param {boolean} option 
  */
 function wordVisibility (option) {
     let wordContainer = document.getElementsByClassName('word-container')[0];
