@@ -237,7 +237,6 @@ function restoreAllCharContainers () {
  */
 function checkLetter (word) {
     let testChar = document.getElementById('letter-input').value;
-    alert(testChar);
     let indices = [];
     if (word.includes(testChar)) {
         for (let char in word) {
