@@ -322,6 +322,7 @@ function toggleIsFetching() {
  * Rests game with new word and hint
  */
 async function newWord () {
+    document.getElementsByClassName('word-container')[0].classList.add('invisible');
     let eraserSound = document.getElementById("eraser-sound");
    try {
        if (AUDIO_MUTE === false){
