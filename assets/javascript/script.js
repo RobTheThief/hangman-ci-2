@@ -1,6 +1,7 @@
 let WORD = "";
 let DRAWING_COUNT = 0;
 let HINT_CHECKED = false;
+let AUDIO_MUTE = true;
 
 /* MODAL BASED ON https://www.w3schools.com/howto/howto_css_modals.asp */
 
@@ -148,7 +149,19 @@ function filterLettersToRender (word) {
  * @param {*} word 
  * @param {*} indices 
  */
-function renderWord (word, indices) {
+async function renderWord (word, indices) {
+    let letterSound = document.getElementById("draw-letter-sound");
+    try {
+        if (AUDIO_MUTE === false){
+            await letterSound.play();
+        }
+    } catch (error) {
+        if (error.name === 'NotAllowedError'){
+            AUDIO_MUTE = true;
+            modal.style.display = 'block';
+            document.getElementById('modal-text').textContent = `AUDIO ERROR: ${error.message}`;
+        };
+    }
     document.getElementsByClassName('word-container')[0].classList.remove('invisible');
     letterArray = word.split("");
     for (let index of indices){
@@ -246,14 +259,26 @@ function hideAllDrawings () {
  * Removes "invivible" class from each piece of the drawing until
  * complete, ending the game.
  */
-function renderStickman () {
+async function renderStickman () {
+    let drawSound = document.getElementById("draw-line-sound");
     let elements = document.getElementsByClassName('game-drawings');
     if (DRAWING_COUNT < 8){
+        try {
+            if (AUDIO_MUTE === false){
+                await drawSound.play();
+            }
+        }   catch (error) {
+            if (error.name === 'NotAllowedError'){
+                AUDIO_MUTE = true;
+                modal.style.display = 'block';
+                document.getElementById('modal-text').textContent = `AUDIO ERROR: ${error.message}`;
+            };
+        }
         elements[DRAWING_COUNT].classList.remove('invisible');
         ++DRAWING_COUNT
     }
     DRAWING_COUNT === 8 && looseGame();
-}
+} 
 
 /**
  * Replaces textContent and removes "margin-bottom-increase" class of game characters
@@ -293,11 +318,31 @@ function toggleIsFetching() {
 /**
  * Rests game with new word and hint
  */
-function newWord () {
+async function newWord () {
+    let eraserSound = document.getElementById("eraser-sound");
+   try {
+       if (AUDIO_MUTE === false){
+           await eraserSound.play();
+       }
+   } catch (error) {
+    if (error.name === 'NotAllowedError'){
+        AUDIO_MUTE = true;
+        modal.style.display = 'block';
+        document.getElementById('modal-text').textContent = `AUDIO ERROR: ${error.message}`;
+    };
+   } 
     DRAWING_COUNT = 0;
     HINT_CHECKED = false;
     toggleIsFetching();
     runGame();
+}
+
+function toggleAudio() {
+    let element = document.getElementById('mute-audio');
+    let content = element.innerHTML === '<i class="fa-solid fa-volume-high"></i>' ?
+        '<i class="fa-solid fa-volume-xmark"></i>' :
+        '<i class="fa-solid fa-volume-high"></i>'
+    element.innerHTML = content;
 }
 
 /**
