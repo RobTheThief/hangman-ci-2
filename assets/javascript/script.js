@@ -1,4 +1,4 @@
-/*global document: false */
+"use strict";
 
 var WORD = "";
 var DRAWING_COUNT = 0;
@@ -15,40 +15,40 @@ var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on <span> (x), close the modal and clear text
 span.onclick = function () {
-  document.getElementById("modal-text").textContent = "";
-  modal.style.display = "none";
+    document.getElementById("modal-text").textContent = "";
+    modal.style.display = "none";
 };
 
 // When the user clicks anywhere outside of the modal, close it and clear text
 window.onclick = function (event) {
-  if (event.target == modal) {
-    document.getElementById("modal-text").textContent = "";
-    modal.style.display = "none";
-  }
+    if (event.target === modal) {
+        document.getElementById("modal-text").textContent = "";
+        modal.style.display = "none";
+    }
 };
 /* ******************************************************************* */
 
 /*  Based on code institute love math project
     Adds event listeners for buttons once DOM is loaded    */
 document.addEventListener("DOMContentLoaded", function () {
-  let buttons = document.getElementsByClassName("button");
-  for (let button of buttons) {
-    button.addEventListener("click", function () {
-      let buttonType = this.getAttribute("id");
-      if (buttonType === "check-letter") {
-        checkLetter(WORD);
-      }
-      if (buttonType === "new-word") {
-        newWord();
-      }
-      if (buttonType === "hint") {
-        giveHint();
-      }
-      if (buttonType === "mute-audio") {
-        toggleAudio();
-      }
-    });
-  }
+    let buttons = document.getElementsByClassName("button");
+    for (let button of buttons) {
+        button.addEventListener("click", function () {
+        let buttonType = this.getAttribute("id");
+        if (buttonType === "check-letter") {
+            checkLetter(WORD);
+        }
+        if (buttonType === "new-word") {
+            newWord();
+        }
+        if (buttonType === "hint") {
+            giveHint();
+        }
+        if (buttonType === "mute-audio") {
+            toggleAudio();
+        }
+        });
+    }
 });
 
 /*  Handles enter key event and scrolls the page back to the top and blurs
@@ -276,7 +276,6 @@ function checkLetter(word) {
   let indices = [];
   if (word.includes(testChar.toLowerCase())) {
     for (let char in word) {
-      console.log(word[char]);
       if (word[char] === testChar.toLowerCase()) indices.push(char);
     }
     renderWord(word, indices);
@@ -367,8 +366,7 @@ async function newWord() {
  */
 function wordVisibility(option) {
   let wordContainer = document.getElementsByClassName("word-container")[0];
-  option
-    ? wordContainer.classList.remove("invisible")
+  option ? wordContainer.classList.remove("invisible")
     : wordContainer.classList.add("invisible");
 }
 
@@ -378,8 +376,7 @@ function wordVisibility(option) {
 function toggleAudio() {
   let element = document.getElementById("mute-audio");
   let content =
-    element.innerHTML === '<i class="fa-solid fa-volume-high"></i>'
-      ? '<i class="fa-solid fa-volume-xmark"></i>'
+    element.innerHTML === '<i class="fa-solid fa-volume-high"></i>' ? '<i class="fa-solid fa-volume-xmark"></i>'
       : '<i class="fa-solid fa-volume-high"></i>';
   element.innerHTML = content;
   AUDIO_MUTE = AUDIO_MUTE ? false : true;
