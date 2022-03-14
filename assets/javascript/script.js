@@ -306,8 +306,6 @@ function clearChars () {
     }
 }
 
-
-
 /**
  * Displays message 'GAME OVER' with word and hint, and resets the game after 3 seconds
  */
