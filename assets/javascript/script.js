@@ -43,6 +43,9 @@ document.addEventListener('DOMContentLoaded', function(){
             if (buttonType === 'hint') {
                 giveHint();
             }
+            if (buttonType === 'mute-audio') {
+                toggleAudio();
+            }
         })
     }
 });
