@@ -18,6 +18,10 @@ h1 {
   float: left;
 }
 
+h2 {
+  display: none;
+}
+
 input,
 button {
   font-family: "Comic Neue", cursive;

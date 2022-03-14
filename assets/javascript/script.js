@@ -398,7 +398,7 @@ async function giveHint() {
 }
 
 /**
- * Main game function with gated clauses and recursion handling random word discovery
+ * Main game function, with gated clauses and recursion handling random word discovery
  * @returns {Promise}
  */
 async function runGame() {

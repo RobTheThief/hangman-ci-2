@@ -7,8 +7,14 @@
     <meta name="description" content="Hangman game" />
     <meta name="keywords" content="Hangman game" />
     <title id="title">Hangman Game</title>
-    <script src="https://kit.fontawesome.com/89b2bfbb3e.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script
+      src="https://kit.fontawesome.com/89b2bfbb3e.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <link rel="stylesheet" href="assets/css/style.css" />
     <script src="assets/javascript/apitoken.js" defer></script>
     <script src="assets/javascript/script.js" defer></script>
@@ -16,7 +22,7 @@
   <body>
     <nav>
       <h1 class="game-margin-left">Hangman</h1>
-      <image
+      <img
         src="./assets/images/whitenoose.png"
         alt="white noose logo"
         class="logo"
@@ -28,75 +34,76 @@
     </nav>
     <!-- MODAL BASED ON https://www.w3schools.com/howto/howto_css_modals.asp-->
     <div id="myModal" class="modal">
-        <div class="modal-content">
-          <span class="close">&times;</span>
-          <p id="modal-text"></p>
-        </div>
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p id="modal-text"></p>
+      </div>
     </div>
 
     <!-- Loading wheel -->
     <div class="loading-wheel-container">
-        <i class="fa fa-refresh fa-spin loading-wheel"></i> 
+      <i class="fa fa-refresh fa-spin loading-wheel"></i>
     </div>
     <!-- Game Sounds -->
-    <audio id="draw-line-sound" autostart="0" autoplay="false" preload ="none">
-        <source src="./assets/audio/line.mp3" type="audio/mpeg">
-        Your browser does not support audio.
+    <audio id="draw-line-sound" preload="none">
+      <source src="./assets/audio/line.mp3" type="audio/mpeg" />
+      Your browser does not support audio.
     </audio>
-    <audio id="draw-letter-sound" autostart="0" autoplay="false" preload ="none">
-        <source src="./assets/audio/letterone.mp3" type="audio/mpeg">
-        Your browser does not support audio.
+    <audio id="draw-letter-sound" preload="none">
+      <source src="./assets/audio/letterone.mp3" type="audio/mpeg" />
+      Your browser does not support audio.
     </audio>
-    <audio id="eraser-sound" autostart="0" autoplay="false" preload ="none">
-        <source src="./assets/audio/eraser.mp3" type="audio/mpeg">
-        Your browser does not support audio.
+    <audio id="eraser-sound" preload="none">
+      <source src="./assets/audio/eraser.mp3" type="audio/mpeg" />
+      Your browser does not support audio.
     </audio>
 
     <section class="game-body game-margin-left">
-        <div class="hangman-gallows-wrapper">
-            <div class="hangman-gallows-container">
-                <img
-                  src="./assets/images/gallows.png"
-                  alt="hangman gallows"
-                  class="game-drawings gallows"
-                />
-                <img
-                  src="./assets/images/gamenoose.png"
-                  alt="noose"
-                  class="game-drawings noose"
-                />
-                <img
-                  src="./assets/images/head.png"
-                  alt="stickman head"
-                  class="game-drawings stickman-head"
-                />
-                <img
-                  src="./assets/images/body.png"
-                  alt="stickman body"
-                  class="game-drawings stickman-body"
-                />
-                <img
-                  src="./assets/images/rightarm.png"
-                  alt="stickman right arm"
-                  class="game-drawings stickman-rarm"
-                />
-                <img
-                  src="./assets/images/leftarm.png"
-                  alt="stickman left arm"
-                  class="game-drawings stickman-larm"
-                />
-                <img
-                  src="./assets/images/leftleg.png"
-                  alt="stickman left leg"
-                  class="game-drawings stickman-lleg"
-                />
-                <img
-                  src="./assets/images/rightleg.png"
-                  alt="stickman right leg"
-                  class="game-drawings stickman-rleg"
-                />
-            </div>
+      <h2>Hangman gallows</h2>
+      <div class="hangman-gallows-wrapper">
+        <div class="hangman-gallows-container">
+          <img
+            src="./assets/images/gallows.png"
+            alt="hangman gallows"
+            class="game-drawings gallows"
+          />
+          <img
+            src="./assets/images/gamenoose.png"
+            alt="noose"
+            class="game-drawings noose"
+          />
+          <img
+            src="./assets/images/head.png"
+            alt="stickman head"
+            class="game-drawings stickman-head"
+          />
+          <img
+            src="./assets/images/body.png"
+            alt="stickman body"
+            class="game-drawings stickman-body"
+          />
+          <img
+            src="./assets/images/rightarm.png"
+            alt="stickman right arm"
+            class="game-drawings stickman-rarm"
+          />
+          <img
+            src="./assets/images/leftarm.png"
+            alt="stickman left arm"
+            class="game-drawings stickman-larm"
+          />
+          <img
+            src="./assets/images/leftleg.png"
+            alt="stickman left leg"
+            class="game-drawings stickman-lleg"
+          />
+          <img
+            src="./assets/images/rightleg.png"
+            alt="stickman right leg"
+            class="game-drawings stickman-rleg"
+          />
         </div>
+      </div>
       <div class="word-container invisible">
         <div class="letterdash-container" id="letterdash-1">
           <span class="letter-span"></span>
@@ -187,9 +194,9 @@
           />
         </div>
       </div>
-    </div>
     </section>
     <section class="game-controls game-margin-left">
+      <h2>Game controls</h2>
       <form onkeydown="return event.key != 'Enter';">
         <input
           title="Check Letter"
@@ -223,7 +230,13 @@
         type="button"
         class="hint button"
       />
-      <button title="Turn sound on or off" id="mute-audio" class="audio-mute button"><i class="fa-solid fa-volume-xmark"></i></button>
+      <button
+        title="Turn sound on or off"
+        id="mute-audio"
+        class="audio-mute button"
+      >
+        <i class="fa-solid fa-volume-xmark"></i>
+      </button>
     </section>
   </body>
 </html>
