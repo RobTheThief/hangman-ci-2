@@ -341,6 +341,10 @@ async function newWord () {
     runGame();
 }
 
+
+/**
+ * Toggles mute audio icon and toggles boolean state of audio variable
+ */
 function toggleAudio() {
     let element = document.getElementById('mute-audio');
     let content = element.innerHTML === '<i class="fa-solid fa-volume-high"></i>' ?
