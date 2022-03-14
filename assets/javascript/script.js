@@ -49,6 +49,12 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 });
 
+var input = document.getElementById("letter-input");
+input.addEventListener("keyup", function(event) {
+   event.preventDefault();
+   document.getElementById("check-letter").click();
+});
+
 /**
  * Get request to WordsApi for a random word
  * @returns promise with word object
