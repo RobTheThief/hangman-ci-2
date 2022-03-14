@@ -30,7 +30,6 @@ window.onclick = function(event) {
     Adds event listeners for buttons once DOM is loaded    */
 document.addEventListener('DOMContentLoaded', function(){
     let buttons = document.getElementsByClassName('button');
-    console.log(buttons);
     for (let button of buttons) {
         button.addEventListener('click', function(){
             let buttonType = this.getAttribute('id');
@@ -152,11 +151,22 @@ function filterLettersToRender (word) {
  * @param {*} word 
  * @param {*} indices 
  */
-async function renderWord (word, indices) {
-    let letterSound = document.getElementById("draw-letter-sound");
+function renderWord (word, indices) {
+    playSound('draw-letter');
+    document.getElementsByClassName('word-container')[0].classList.remove('invisible');
+    letterArray = word.split("");
+    for (let index of indices){
+        let charElementContainer = document.getElementById(`letterdash-${parseFloat(index) + 1}`);
+        charElementContainer.children[0].textContent = letterArray[index].toUpperCase();
+        charElementContainer.classList.add('margin-bottom-increase');
+    }
+}
+
+async function playSound(sound) {
+    let soundType = document.getElementById(`${sound}-sound`);
     try {
         if (AUDIO_MUTE === false){
-            await letterSound.play();
+            await soundType.play();
         }
     } catch (error) {
         if (error.name === 'NotAllowedError'){
@@ -164,13 +174,6 @@ async function renderWord (word, indices) {
             modal.style.display = 'block';
             document.getElementById('modal-text').textContent = `AUDIO ERROR: ${error.message}`;
         };
-    }
-    document.getElementsByClassName('word-container')[0].classList.remove('invisible');
-    letterArray = word.split("");
-    for (let index of indices){
-        let charElementContainer = document.getElementById(`letterdash-${parseFloat(index) + 1}`);
-        charElementContainer.children[0].textContent = letterArray[index].toUpperCase();
-        charElementContainer.classList.add('margin-bottom-increase');
     }
 }
 
@@ -186,6 +189,7 @@ function isGameWon () {
             letterArray.push(char);
         }
     }
+    console.log(WORD.length, letterArray.length);
     if (WORD.length === letterArray.length){
         gameWon();
     }
@@ -263,20 +267,9 @@ function hideAllDrawings () {
  * complete, ending the game.
  */
 async function renderStickman () {
-    let drawSound = document.getElementById("draw-line-sound");
     let elements = document.getElementsByClassName('game-drawings');
     if (DRAWING_COUNT < 8){
-        try {
-            if (AUDIO_MUTE === false){
-                await drawSound.play();
-            }
-        }   catch (error) {
-            if (error.name === 'NotAllowedError'){
-                AUDIO_MUTE = true;
-                modal.style.display = 'block';
-                document.getElementById('modal-text').textContent = `AUDIO ERROR: ${error.message}`;
-            };
-        }
+        playSound('draw-line');
         elements[DRAWING_COUNT].classList.remove('invisible');
         ++DRAWING_COUNT
     }
@@ -323,18 +316,7 @@ function toggleIsFetching() {
  */
 async function newWord () {
     document.getElementsByClassName('word-container')[0].classList.add('invisible');
-    let eraserSound = document.getElementById("eraser-sound");
-   try {
-       if (AUDIO_MUTE === false){
-           await eraserSound.play();
-       }
-   } catch (error) {
-    if (error.name === 'NotAllowedError'){
-        AUDIO_MUTE = true;
-        modal.style.display = 'block';
-        document.getElementById('modal-text').textContent = `AUDIO ERROR: ${error.message}`;
-    };
-   } 
+    playSound('eraser');
     DRAWING_COUNT = 0;
     HINT_CHECKED = false;
     toggleIsFetching();
@@ -384,7 +366,6 @@ async function runGame () {
     toggleIsFetching();
 
     console.log('Parsed ok: ', isParsedOk, 'Word: ', word, 'Indexes to reveal: ', indicesToReveal);
-    console.log(hint.definitions[0].definition)
 }
 
 runGame();
