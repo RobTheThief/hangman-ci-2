@@ -101,10 +101,21 @@ function getRandomWord() {
  * @returns {boolean} - true if passed all test or false if failed any
  */
 function parseWord(word) {
-  var re = new RegExp("([. -])");
+  const re = new RegExp("([. -])");
   if (re.test(word)) return false;
   if (word.length > 11) return false;
   return true;
+}
+
+/**
+ * Takes any string and checks if it is only one character long
+ * and is an upper or lower case letter
+ * @param {string} char - any string
+ * @returns {boolean}
+ */
+function parseLetter (char) {
+  const re = new RegExp("([A-Za-z]{1})");
+  return re.test(char);
 }
 
 /**
@@ -272,14 +283,16 @@ function restoreAllCharContainers() {
  * @param {string} word - any word
  */
 function checkLetter(word) {
-  let testChar = document.getElementById("letter-input").value;
   let indices = [];
-  if (word.includes(testChar.toLowerCase())) {
+  let testChar = document.getElementById("letter-input").value;
+  const isParsedOk = parseLetter(testChar);
+  const isCharInWord = word.includes(testChar.toLowerCase());
+  if ( isCharInWord && isParsedOk ) {
     for (let char in word) {
       if (word[char] === testChar.toLowerCase()) indices.push(char);
     }
     renderWord(word, indices);
-  } else {
+  } else if (isParsedOk) {
     renderStickman();
   }
   document.getElementById("letter-input").value = "";
