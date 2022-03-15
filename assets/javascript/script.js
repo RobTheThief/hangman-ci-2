@@ -15,14 +15,14 @@ var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on <span> (x), close the modal and clear text
 span.onclick = function () {
-    document.getElementById("modal-text").textContent = "";
+    document.getElementById("modal-text-wrapper").innerHTML = `<p id="modal-text"></p>`;
     modal.style.display = "none";
 };
 
 // When the user clicks anywhere outside of the modal, close it and clear text
 window.onclick = function (event) {
     if (event.target === modal) {
-        document.getElementById("modal-text").textContent = "";
+        document.getElementById("modal-text-wrapper").innerHTML = `<p id="modal-text"></p>`;
         modal.style.display = "none";
     }
 };
@@ -46,6 +46,12 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         if (buttonType === "mute-audio") {
             toggleAudio();
+        }
+        if (buttonType === "help") {
+            openHelp();
+        }
+        if (buttonType === "contact") {
+          
         }
         });
     }
@@ -145,6 +151,27 @@ function getWordHint(word) {
       resolve();
     }
   });
+}
+
+function openHelp () {
+  modal.style.display = "block";
+  let element = document.getElementById("modal-text-wrapper");
+  element.innerHTML = `
+    <h3>Help</h3>
+    <p>The game is played by guessing what word the game has chosen. Once the word has
+       been chosen, begin guessing which letters are in the word by entering a letter
+       in the text input and hitting enter or clicking "Check Letter".
+    </p>
+    <p>For example, you might begin by checking, is there an "e" in the word.
+       Generally, start by guessing common letters like vowels, or "s," "t," and "n."
+    </p>
+    <p>Each wrong guess means a piece of the gallows or stickman is drawn. Once the the
+       stickman has all his arms and legs the game is over. You can also use the "Hint"
+       button to get a hint, but you will loose 2 turns if you do!
+    </p>
+    <p>Tip: If you enter letters already revealed at the start you might get more of
+       the same letters and if you don't, you won't loose a turn 🤫
+    </p>` // Emoji from https://emojipedia.org/shushing-face/ 
 }
 
 /**
