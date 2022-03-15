@@ -353,12 +353,12 @@ async function looseGame() {
 }
 
 /**
- * Toggles "invisible" class for loading wheel
+ * Toggles "display-none" class for loading wheel container
  */
 function toggleIsFetching() {
   document
-    .getElementsByClassName("loading-wheel")[0]
-    .classList.toggle("invisible");
+    .getElementsByClassName("loading-wheel-container")[0]
+    .classList.toggle("display-none");
 }
 
 /**
