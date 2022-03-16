@@ -472,6 +472,4 @@ async function runGame() {
   toggleIsFetching();
 }
 
-/* toggleIsFetching(); */
-
 runGame();
