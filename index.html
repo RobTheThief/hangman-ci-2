@@ -28,15 +28,17 @@
         class="logo"
       />
       <div class="nav-button-container">
-        <a class="help">Help</a>
-        <a class="contact">Contact</a>
+        <a aria-label="Opens a modal with help information (Stays on this page)" class="help button" id="help">Help</a>
+        <a aria-label="Opens a modal with contact information (Stays on this page)" class="contact button" id="contact">Contact</a>
       </div>
     </nav>
     <!-- MODAL BASED ON https://www.w3schools.com/howto/howto_css_modals.asp-->
     <div id="myModal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
-        <p id="modal-text"></p>
+        <div id="modal-text-wrapper">
+          <p id="modal-text"></p>
+        </div>
       </div>
     </div>
 
