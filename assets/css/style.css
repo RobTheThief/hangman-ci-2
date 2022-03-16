@@ -29,7 +29,12 @@ button {
   background: none;
   box-shadow: 3px 2px rgb(255, 255, 255);
   border-radius: 5px;
+  margin: 0 0.2rem;
   z-index: 100;
+}
+
+.button {
+  min-height: 35px;
 }
 
 .contact,
@@ -52,12 +57,13 @@ button {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 .letter-input {
-  width: 1rem;
-  margin: 0 2rem 0 0;
+  height: 28px;
+  width: 22px;
+  margin: 0 2rem 0 -0.2rem;
   text-transform: uppercase;
 }
 
@@ -71,7 +77,6 @@ button {
 
 .audio-mute {
   color: white;
-  margin-left: 0.5rem;
 }
 
 .speaker {
@@ -266,18 +271,19 @@ button {
   .hangman-gallows-container {
     right: 0rem;
   }
-  input {
+  input,
+  button {
     font-size: 17px;
   }
   .game-margin-left {
-    margin: 0 0 0 1%;
+    margin-left: 0.3%;
   }
   .letter-input {
-    margin: 0 1rem 0 0;
+    margin: 0 1rem 0 -0.2rem;
   }
 }
 
-@media only screen and (max-width: 350px) {
+@media only screen and (max-width: 368px) {
   .nav-button-container {
     right: 1rem;
   }
@@ -285,9 +291,10 @@ button {
     right: -0.7rem;
   }
   .letter-input {
-    margin: 0 0.5rem 0 0;
+    margin: 0 0.5rem 0 -0.2rem;
   }
-  input {
+  input,
+  button {
     font-size: 15px;
   }
 }
