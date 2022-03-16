@@ -485,4 +485,6 @@ async function runGame() {
   );
 }
 
+/* toggleIsFetching(); */
+
 runGame();

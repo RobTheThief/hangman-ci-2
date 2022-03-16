@@ -35,6 +35,7 @@ button {
 .contact,
 .help {
   color: white;
+  z-index: 100;
 }
 
 .contact:hover,
@@ -122,49 +123,49 @@ button {
 .gallows {
   height: 25rem;
   left: 5rem;
-  top: 5rem;
+  top: 1rem;
 }
 
 .noose {
   height: 10rem;
   right: 12rem;
-  bottom: 10rem;
+  bottom: 14rem;
 }
 
 .stickman-head {
   height: 6rem;
   left: 1rem;
-  bottom: 14rem;
+  bottom: 18rem;
 }
 
 .stickman-body {
   height: 7rem;
   right: 3.5rem;
-  bottom: 7.5rem;
+  bottom: 11.5rem;
 }
 
 .stickman-rarm {
   height: 1.2rem;
   right: 9.5rem;
-  bottom: 12rem;
+  bottom: 16rem;
 }
 
 .stickman-larm {
   height: 1.2rem;
   left: 4.5rem;
-  bottom: 16.7rem;
+  bottom: 20.7rem;
 }
 
 .stickman-rleg {
   height: 4rem;
   right: 8.5rem;
-  bottom: 9rem;
+  bottom: 13rem;
 }
 
 .stickman-lleg {
   height: 4rem;
   right: 1rem;
-  bottom: 9rem;
+  bottom: 13rem;
 }
 
 .letterdash {
@@ -292,9 +293,6 @@ button {
 }
 
 @media only screen and (max-height: 720px) {
-  .hangman-gallows-container {
-    top: -1.5rem;
-  }
   .word-container {
     top: 26rem;
   }
