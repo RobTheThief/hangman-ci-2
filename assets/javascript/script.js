@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
             openHelp();
         }
         if (buttonType === "contact") {
-          
+            openContact();
         }
         });
     }
@@ -172,6 +172,19 @@ function openHelp () {
     <p>Tip: If you enter letters already revealed at the start you might get more of
        the same letters and if you don't, you won't loose a turn 🤫
     </p>` // Emoji from https://emojipedia.org/shushing-face/ 
+}
+
+function openContact () {
+  modal.style.display = "block";
+  let element = document.getElementById("modal-text-wrapper");
+  element.innerHTML = `
+    <h3>Contact</h3>
+    <p>For more information about this game, if there are any issues, or if 
+        you would like to know more about my other projects please visit
+        <a href="http://www.robgannon.com/" about="_blank" aria-label="Link to
+        devolopers portfolio website (opens in new tab)">robgannon.com</a> and
+        go to the contact section.
+    </p>`
 }
 
 /**
