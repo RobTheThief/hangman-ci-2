@@ -107,7 +107,7 @@ function getRandomWord() {
  * @returns {boolean} - true if passed all test or false if failed any
  */
 function parseWord(word) {
-  const re = new RegExp("([. -])");
+  const re = new RegExp("([. -])"); //https://regexr.com/ was used to help make expression
   if (re.test(word)) return false;
   if (word.length > 11) return false;
   return true;
@@ -120,7 +120,7 @@ function parseWord(word) {
  * @returns {boolean}
  */
 function parseLetter (char) {
-  const re = new RegExp("([A-Za-z]{1})");
+  const re = new RegExp("([A-Za-z]{1})"); //https://regexr.com/ was used to help make expression
   return re.test(char);
 }
 
@@ -470,15 +470,6 @@ async function runGame() {
   renderWord(word, indicesToReveal);
   removeEmptyCharContainers(word);
   toggleIsFetching();
-
-  console.log(
-    "Parsed ok: ",
-    isParsedOk,
-    "Word: ",
-    word,
-    "Indexes to reveal: ",
-    indicesToReveal
-  );
 }
 
 /* toggleIsFetching(); */
