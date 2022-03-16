@@ -60,8 +60,8 @@
       Your browser does not support audio.
     </audio>
 
-    <section class="game-body game-margin-left">
-      <h2>Hangman gallows</h2>
+    <section class="game-body game-margin-left" aria-labelledby="hangmans-gallows">
+      <h2 id="hangmans-gallows">Hangmans gallows</h2>
       <div class="hangman-gallows-wrapper">
         <div class="hangman-gallows-container">
           <img
@@ -197,8 +197,8 @@
         </div>
       </div>
     </section>
-    <section class="game-controls game-margin-left">
-      <h2>Game controls</h2>
+    <section class="game-controls game-margin-left" aria-labelledby="game-controls">
+      <h2 id="game-controls">Game controls</h2>
       <form onkeydown="return event.key != 'Enter';">
         <input
           title="Check Letter"
