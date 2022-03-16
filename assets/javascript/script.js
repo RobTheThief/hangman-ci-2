@@ -153,6 +153,9 @@ function getWordHint(word) {
   });
 }
 
+/**
+ * Opens modal and adds elements with information about the game
+ */
 function openHelp () {
   modal.style.display = "block";
   let element = document.getElementById("modal-text-wrapper");
@@ -174,6 +177,9 @@ function openHelp () {
     </p>` // Emoji from https://emojipedia.org/shushing-face/ 
 }
 
+/**
+ * Opens modal and adds elements with contact information
+ */
 function openContact () {
   modal.style.display = "block";
   let element = document.getElementById("modal-text-wrapper");
