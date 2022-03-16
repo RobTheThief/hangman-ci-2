@@ -298,9 +298,6 @@ async function gameWon() {
   document.getElementById(
     "modal-text"
   ).textContent = `CONGRATULATIONS!! The answer was ${capitalised}: ${wordHint}`;
-  setTimeout(() => {
-    newWord();
-  }, 3000);
 }
 
 /**
@@ -395,9 +392,6 @@ async function looseGame() {
   document.getElementById(
     "modal-text"
   ).textContent = `GAME OVER! The answer was ${capitalised}: ${wordHint}`;
-  setTimeout(() => {
-    newWord();
-  }, 3000);
 }
 
 /**
