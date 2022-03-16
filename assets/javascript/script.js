@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (buttonType === "contact") {
             openContact();
         }
-        });
+      });
     }
 });
 
@@ -174,7 +174,8 @@ function openHelp () {
     </p>
     <p>Tip: If you enter letters already revealed at the start you might get more of
        the same letters and if you don't, you won't loose a turn 🤫
-    </p>` // Emoji from https://emojipedia.org/shushing-face/ 
+    </p>`; // Emoji from https://emojipedia.org/shushing-face/ 
+  window.scrollTo(0, 0);
 }
 
 /**
@@ -190,7 +191,8 @@ function openContact () {
         <a href="http://www.robgannon.com/" about="_blank" aria-label="Link to
         devolopers portfolio website (opens in new tab)">robgannon.com</a> and
         go to the contact section.
-    </p>`
+    </p>`;
+  window.scrollTo(0, 0);
 }
 
 /**
