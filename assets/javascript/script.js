@@ -198,18 +198,20 @@ function openContact () {
 /**
  * Opens modal and adds elements to congratulate you on a new best win streak
  */
-function renderNewBest () {
+function renderNewBest (score, capitalised, wordHint) {
   modal.style.display = "block";
   let element = document.getElementById("modal-text-wrapper");
   element.innerHTML = `
     <h3>NEW BEST SCORE!!!</h3>
-    <p>🎈🎊 Well Done. You have achieved a new best win streak 🎊🎈
+    <p>🎈🎊 Well Done. You have achieved a new best win streak of ${score}🎊🎈
+    </p>
+    <p>The answer was ${capitalised}: ${wordHint}
     </p>`;  // Emojis from https://emojipedia.org/
   window.scrollTo(0, 0);
 }
 
 /**
- * Checks and tracks game score and best score.  Sets new score depending on game outcome
+ * Checks and tracks game score and best score.  Sets new score depending on game outcome.
  * @param {boolean} result - true if game won, false if lost, empty returns current and best score 
  * @returns {object} - only returns object if given no parameters
  */
@@ -222,6 +224,15 @@ function checkProgress (result) {
   let newBest = !bestScore ? newScore : (newScore > bestScore) ? newScore : bestScore;
   localStorage.setItem('myScore', newScore );
   localStorage.setItem('bestScore', newBest );
+}
+
+/**
+ * Checks if a new best score is reached
+ * @returns {boolean}
+ */
+function isNewBest () {
+  let score = checkProgress();
+  return score.currentScore === score.bestScore ? true : false;
 }
 
 /**
@@ -331,15 +342,20 @@ function isGameWon() {
  * @returns {Promise}
  */
 async function gameWon() {
+  checkProgress(true);
+  let score = checkProgress();
+  renderScore();
   modal.style.display = "block";
   const wordHintObject = await getWordHint(WORD);
   const wordHint = wordHintObject.definitions[0].definition;
   const capitalised = `${WORD.charAt(0).toUpperCase()}${WORD.slice(1)}`;
-  document.getElementById(
-    "modal-text"
-  ).textContent = `CONGRATULATIONS!! The answer was ${capitalised}: ${wordHint}`;
-  checkProgress(true);
-  renderScore();
+  if (!isNewBest()) {
+    document.getElementById(
+      "modal-text"
+    ).textContent = `CONGRATULATIONS!! The answer was ${capitalised}: ${wordHint}`;
+  } else {
+    renderNewBest (score.currentScore, capitalised, wordHint)
+  }
 }
 
 /**
@@ -521,5 +537,7 @@ async function runGame() {
   renderScore();
 }
 
-/* runGame(); */
-toggleIsFetching();
+runGame();
+/* toggleIsFetching(); */
+/* localStorage.setItem('myScore', 0 );
+localStorage.setItem('bestScore', 0 ); */
