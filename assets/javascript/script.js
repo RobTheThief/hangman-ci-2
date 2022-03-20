@@ -196,6 +196,19 @@ function openContact () {
 }
 
 /**
+ * Opens modal and adds elements to congratulate you on a new best win streak
+ */
+function renderNewBest () {
+  modal.style.display = "block";
+  let element = document.getElementById("modal-text-wrapper");
+  element.innerHTML = `
+    <h3>NEW BEST SCORE!!!</h3>
+    <p>🎈🎊 Well Done. You have achieved a new best win streak 🎊🎈
+    </p>`;  // Emojis from https://emojipedia.org/
+  window.scrollTo(0, 0);
+}
+
+/**
  * Checks and tracks game score and best score.  Sets new score depending on game outcome
  * @param {boolean} result - true if game won, false if lost, empty returns current and best score 
  * @returns {object} - only returns object if given no parameters
