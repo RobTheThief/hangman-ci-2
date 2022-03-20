@@ -198,49 +198,53 @@
         </div>
       </div>
     </section>
-    <p class="best-streak" id="best-streak">Current Streak: 0 Best: 0</p>
     <section class="game-controls" aria-labelledby="game-controls">
       <h2 id="game-controls">Game controls</h2>
-      <form onkeydown="return event.key != 'Enter';">
-        <input
-          title="Check Letter"
-          value="Check Letter"
-          id="check-letter"
-          name="check-letter"
-          type="button"
-          class="check-letter button"
-        />
-        <input
-          title="Insert letter to be checked here."
-          id="letter-input"
-          type="text"
-          maxlength="1"
-          pattern="[A-Z]"
-          class="letter-input"
-          required
-        />
-      </form>
-      <input
-        title="Reset game and get new word"
-        id="new-word"
-        value="New Word"
-        type="button"
-        class="new-word button"
-      />
-      <input
-        title="Gives a hint describing the word but 2 guesses are used up!"
-        id="hint"
-        value="Hint"
-        type="button"
-        class="hint button"
-      />
-      <button
-        title="Turn sound on or off"
-        id="mute-audio"
-        class="audio-mute button"
-      > <!-- Icon from https://fontawesome.com/ -->
-        <i class="fa-solid fa-volume-xmark"></i> 
-      </button>
+      <div>
+        <p class="best-score" id="best-streak">Current Streak: 0 Best: 0</p>
+        <div>
+          <form onkeydown="return event.key != 'Enter';">
+            <input
+              title="Check Letter"
+              value="Check Letter"
+              id="check-letter"
+              name="check-letter"
+              type="button"
+              class="check-letter button"
+            />
+            <input
+              title="Insert letter to be checked here."
+              id="letter-input"
+              type="text"
+              maxlength="1"
+              pattern="[A-Z]"
+              class="letter-input"
+              required
+            />
+          </form>
+          <input
+            title="Reset game and get new word"
+            id="new-word"
+            value="New Word"
+            type="button"
+            class="new-word button"
+          />
+          <input
+            title="Gives a hint describing the word but 2 guesses are used up!"
+            id="hint"
+            value="Hint"
+            type="button"
+            class="hint button"
+          />
+          <button
+            title="Turn sound on or off"
+            id="mute-audio"
+            class="audio-mute button"
+          > <!-- Icon from https://fontawesome.com/ -->
+            <i class="fa-solid fa-volume-xmark"></i> 
+          </button>
+        </div>
+      </div>
     </section>
   </body>
 </html>

@@ -205,7 +205,7 @@ function checkProgress (result) {
   let bestScore = localStorage.getItem('bestScore');
   if (result === undefined) return {currentScore: currentScore, bestScore: bestScore};
 
-  let newScore = (result && currentScore) ? ++currentScore : currentScore ? 0 : 1;
+  let newScore = (result && currentScore) ? ++currentScore : currentScore !== 0 ? 0 : 1;
   let newBest = !bestScore ? newScore : (newScore > bestScore) ? newScore : bestScore;
   localStorage.setItem('myScore', newScore );
   localStorage.setItem('bestScore', newBest );
@@ -214,7 +214,7 @@ function checkProgress (result) {
 function renderScore () {
   let score = checkProgress();
   let scoreElement = document.getElementById('best-streak');
-  scoreElement.textContent = `Current Streak: ${score.currentScore} Best: ${score.bestScore}`;
+  scoreElement.textContent = `Current Streak: ${score.currentScore ? score.currentScore : 0} Best: ${score.bestScore ? score.bestScore : 0}`;
 }
 
 /**
@@ -499,5 +499,5 @@ async function runGame() {
   renderScore();
 }
 
-runGame();
-/* toggleIsFetching(); */
+/* runGame(); */
+toggleIsFetching();
