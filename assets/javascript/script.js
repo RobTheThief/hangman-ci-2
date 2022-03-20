@@ -196,6 +196,22 @@ function openContact () {
 }
 
 /**
+ * Checks game score and best score.  Sets new score depending on game outcome
+ * @param {boolean} result - true if game won, false if lost, empty returns current and best score 
+ * @returns {object} - only returns objest if given no parameters
+ */
+function checkProgress (result) {
+  let currentScore = localStorage.getItem('myScore');
+  let bestScore = localStorage.getItem('bestScore');
+  if (result === undefined) return {currentScore: currentScore, bestScore: bestScore};
+
+  let newScore = (result && currentScore) ? ++currentScore : currentScore ? 0 : 1;
+  let newBest = !bestScore ? newScore : (newScore > bestScore) ? newScore : bestScore;
+  localStorage.setItem('myScore', newScore );
+  localStorage.setItem('bestScore', newBest );
+}
+
+/**
  * Checks how many letters in the word to determine the maximum number
  * of letters will be revealed at the beginning of the game
  * @param {string} word - any word 11 or less chars
@@ -298,6 +314,7 @@ async function gameWon() {
   document.getElementById(
     "modal-text"
   ).textContent = `CONGRATULATIONS!! The answer was ${capitalised}: ${wordHint}`;
+  checkProgress(true);
 }
 
 /**
@@ -392,6 +409,7 @@ async function looseGame() {
   document.getElementById(
     "modal-text"
   ).textContent = `GAME OVER! The answer was ${capitalised}: ${wordHint}`;
+  checkProgress(false);
 }
 
 /**
@@ -473,3 +491,4 @@ async function runGame() {
 }
 
 runGame();
+/* toggleIsFetching(); */
