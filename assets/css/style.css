@@ -79,6 +79,13 @@ button {
   color: white;
 }
 
+.best-streak {
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  top: 39rem;
+}
+
 .speaker {
   color: white;
 }
@@ -309,5 +316,8 @@ button {
   }
   body {
     height: 720px;
+  }
+  .best-streak {
+    top: 32rem;
   }
 }

@@ -196,9 +196,9 @@ function openContact () {
 }
 
 /**
- * Checks game score and best score.  Sets new score depending on game outcome
+ * Checks and tracks game score and best score.  Sets new score depending on game outcome
  * @param {boolean} result - true if game won, false if lost, empty returns current and best score 
- * @returns {object} - only returns objest if given no parameters
+ * @returns {object} - only returns object if given no parameters
  */
 function checkProgress (result) {
   let currentScore = localStorage.getItem('myScore');
@@ -209,6 +209,12 @@ function checkProgress (result) {
   let newBest = !bestScore ? newScore : (newScore > bestScore) ? newScore : bestScore;
   localStorage.setItem('myScore', newScore );
   localStorage.setItem('bestScore', newBest );
+}
+
+function renderScore () {
+  let score = checkProgress();
+  let scoreElement = document.getElementById('best-streak');
+  scoreElement.textContent = `Current Streak: ${score.currentScore} Best: ${score.bestScore}`;
 }
 
 /**
@@ -315,6 +321,7 @@ async function gameWon() {
     "modal-text"
   ).textContent = `CONGRATULATIONS!! The answer was ${capitalised}: ${wordHint}`;
   checkProgress(true);
+  renderScore();
 }
 
 /**
@@ -410,6 +417,7 @@ async function looseGame() {
     "modal-text"
   ).textContent = `GAME OVER! The answer was ${capitalised}: ${wordHint}`;
   checkProgress(false);
+  renderScore();
 }
 
 /**
@@ -488,6 +496,7 @@ async function runGame() {
   renderWord(word, indicesToReveal);
   removeEmptyCharContainers(word);
   toggleIsFetching();
+  renderScore();
 }
 
 runGame();
