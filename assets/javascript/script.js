@@ -203,7 +203,7 @@ function renderNewBest (score, capitalised, wordHint) {
   let element = document.getElementById("modal-text-wrapper");
   element.innerHTML = `
     <h3>NEW BEST SCORE!!!</h3>
-    <p>🎈🎊 Well Done. You have achieved a new best win streak of ${score}🎊🎈
+    <p>🎈🎊 Well Done. You have achieved a new best win streak of ${score} 🎊🎈
     </p>
     <p>The answer was ${capitalised}: ${wordHint}
     </p>`;  // Emojis from https://emojipedia.org/
@@ -321,6 +321,7 @@ async function playSound(sound) {
 
 /**
  * Checks if all the characters have been found
+ * @returns {boolean}
  */
 function isGameWon() {
   let letterArray = [];
@@ -331,9 +332,7 @@ function isGameWon() {
       letterArray.push(char);
     }
   }
-  if (WORD.length === letterArray.length) {
-    gameWon();
-  }
+  return (WORD.length === letterArray.length) ? true : false;
 }
 
 /**
@@ -386,20 +385,23 @@ function restoreAllCharContainers() {
  * @param {string} word - any word
  */
 function checkLetter(word) {
-  let indices = [];
-  let testChar = document.getElementById("letter-input").value;
-  const isParsedOk = parseLetter(testChar);
-  const isCharInWord = word.includes(testChar.toLowerCase());
-  if ( isCharInWord && isParsedOk ) {
-    for (let char in word) {
-      if (word[char] === testChar.toLowerCase()) indices.push(char);
+  if (!isGameWon()) {
+    let indices = [];
+    let testChar = document.getElementById("letter-input").value;
+    const isParsedOk = parseLetter(testChar);
+    const isCharInWord = word.includes(testChar.toLowerCase());
+    if ( isCharInWord && isParsedOk ) {
+      for (let char in word) {
+        if (word[char] === testChar.toLowerCase()) indices.push(char);
+      }
+      renderWord(word, indices);
+    } else if (isParsedOk) {
+      renderStickman();
     }
-    renderWord(word, indices);
-  } else if (isParsedOk) {
-    renderStickman();
+    document.getElementById("letter-input").value = "";
+    ;
+    isGameWon() && gameWon();
   }
-  document.getElementById("letter-input").value = "";
-  isGameWon();
 }
 
 /**
