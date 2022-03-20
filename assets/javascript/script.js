@@ -276,6 +276,7 @@ function renderWord(word, indices) {
  * Async function that takes a string for sound type as a parameter and plays the
  * sound
  * @param {string} sound - accepts 'draw-letter', 'draw-line', or 'eraser'
+ * @returns {Promise}
  */
 async function playSound(sound) {
   let soundType = document.getElementById(`${sound}-sound`);
@@ -314,6 +315,7 @@ function isGameWon() {
 /**
  * Displays a message congratulating the player, and giving the answer
  * and hint. The game is then reset after 3 seconds.
+ * @returns {Promise}
  */
 async function gameWon() {
   modal.style.display = "block";
@@ -385,6 +387,7 @@ function hideAllDrawings() {
 /**
  * Removes "invivible" class from each piece of the drawing until
  * complete, ending the game.
+ * @returns {Promise}
  */
 async function renderStickman() {
   let elements = document.getElementsByClassName("game-drawings");
@@ -410,6 +413,7 @@ function clearChars() {
 
 /**
  * Displays message 'GAME OVER' with word and hint, and resets the game after 3 seconds
+ * @returns {Promise}
  */
 async function looseGame() {
   modal.style.display = "block";
@@ -434,6 +438,7 @@ function toggleIsFetching() {
 
 /**
  * Rests game with new word and hint
+ * @returns {Promise}
  */
 async function newWord() {
   wordVisibility(false);
@@ -468,6 +473,7 @@ function toggleAudio() {
 
 /**
  * Displays hint and removes 2 tries from the player
+ *  @returns {Promise}
  */
 async function giveHint() {
   modal.style.display = "block";
