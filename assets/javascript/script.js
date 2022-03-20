@@ -211,6 +211,9 @@ function checkProgress (result) {
   localStorage.setItem('bestScore', newBest );
 }
 
+/**
+ * Renders current and best score streak
+ */
 function renderScore () {
   let score = checkProgress();
   let scoreElement = document.getElementById('best-streak');
