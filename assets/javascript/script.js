@@ -211,9 +211,9 @@ function renderNewBest (score, capitalised, wordHint) {
 }
 
 /**
- * Checks and tracks game score and best score.  Sets new score depending on game outcome.
- * @param {boolean} result - true if game won, false if lost, empty returns current and best score 
- * @returns {object} - only returns object if given no parameters
+ * Checks and updates game score and best score.  Sets new score depending on game outcome.
+ * @param {boolean} result - true if game won, false if lost, empty just returns current and best score 
+ * @returns {object} - returns object with returns current and best score
  */
 function checkProgress (result) {
   let currentScore = localStorage.getItem('myScore');
@@ -224,15 +224,7 @@ function checkProgress (result) {
   let newBest = !bestScore ? newScore : (newScore > bestScore) ? newScore : bestScore;
   localStorage.setItem('myScore', newScore );
   localStorage.setItem('bestScore', newBest );
-}
-
-/**
- * Checks if a new best score is reached
- * @returns {boolean}
- */
-function isNewBest () {
-  let score = checkProgress();
-  return score.currentScore === score.bestScore ? true : false;
+  return {currentScore: newScore, bestScore: newBest};
 }
 
 /**
@@ -341,19 +333,20 @@ function isGameWon() {
  * @returns {Promise}
  */
 async function gameWon() {
-  checkProgress(true);
   let score = checkProgress();
+  let oldScore = score.currentScore;
+  let newScore = checkProgress(true);
   renderScore();
   modal.style.display = "block";
   const wordHintObject = await getWordHint(WORD);
   const wordHint = wordHintObject.definitions[0].definition;
   const capitalised = `${WORD.charAt(0).toUpperCase()}${WORD.slice(1)}`;
-  if (!isNewBest()) {
+  if (score.bestScore < newScore.bestScore) {
+    renderNewBest (oldScore.currentScore, capitalised, wordHint);
+  } else {
     document.getElementById(
       "modal-text"
     ).textContent = `CONGRATULATIONS!! The answer was ${capitalised}: ${wordHint}`;
-  } else {
-    renderNewBest (score.currentScore, capitalised, wordHint)
   }
 }
 
@@ -397,11 +390,10 @@ function checkLetter(word) {
       renderWord(word, indices);
     } else if (isParsedOk) {
       renderStickman();
-    }
-    document.getElementById("letter-input").value = "";
-    ;
+    } 
     isGameWon() && gameWon();
   }
+  document.getElementById("letter-input").value = "";
 }
 
 /**
