@@ -2,7 +2,8 @@
 
 body {
   background: url("../images/blackboard.webp") no-repeat; /* Sourced from https://pixabay.com/ */
-  background-size: 100vw 100vh;
+  background-size: 115vw 115vh;
+  background-size: -webkit-fill-available;
   height: 300%;
   color: white;
   font-family: "Comic Neue", cursive;
@@ -317,5 +318,25 @@ button {
   }
   body {
     height: 720px;
+  }
+}
+
+@media only screen and (max-height: 480px) {
+  .word-container {
+    top: 23rem;
+  }
+  .game-controls {
+    position: relative;
+    bottom: 13rem;
+  }
+  body {
+    height: 720px;
+  }
+}
+
+@media only screen and (orientation: landscape) {
+  body {
+    background-size: 115vw 115vw;
+    background-size: -webkit-fill-available;
   }
 }
