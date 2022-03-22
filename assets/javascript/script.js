@@ -515,7 +515,6 @@ async function giveHint() {
  * @returns {Promise}
  */
 async function runGame() {
-  hideAllDrawings();
   let randomWord = await getRandomWord();
   let word = randomWord.word;
   let isParsedOk = parseWord(word);
@@ -527,6 +526,7 @@ async function runGame() {
   restoreAllCharContainers();
   renderWord(word, indicesToReveal);
   removeEmptyCharContainers(word);
+  hideAllDrawings();
   toggleIsFetching();
   renderScore();
 }
