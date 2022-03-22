@@ -313,7 +313,7 @@ button {
   }
 }
 
-@media only screen and (max-height: 720px) {
+@media only screen and (max-height: 740px) {
   .word-container {
     top: 26rem;
   }
