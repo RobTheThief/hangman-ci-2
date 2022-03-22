@@ -132,6 +132,7 @@ button {
 }
 
 .gallows {
+  position: relative;
   height: 25rem;
   left: 5rem;
   top: 1rem;
@@ -177,6 +178,12 @@ button {
   height: 4rem;
   right: 1rem;
   bottom: 13rem;
+}
+
+.stickman-face {
+  height: 4rem;
+  left: -11rem;
+  bottom: 23.2rem;
 }
 
 .letterdash {
