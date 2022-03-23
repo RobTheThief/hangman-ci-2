@@ -45,7 +45,9 @@
 
     <!-- Loading wheel -->
     <div class="loading-wheel-container">
-      <i class="fa fa-refresh fa-spin loading-wheel"></i>
+      <div class="loading-wheel-shadow">
+        <i class="fa fa-refresh fa-spin loading-wheel"></i>
+      </div>
     </div>
     <!-- Game Sounds from https://freesound.org/ -->
     <audio id="draw-line-sound" preload="none">
@@ -61,7 +63,7 @@
       Your browser does not support audio.
     </audio>
 
-    <section class="game-body game-margin-left" aria-labelledby="hangmans-gallows">
+    <section class="game-body" aria-labelledby="hangmans-gallows">
       <h2 id="hangmans-gallows">Hangmans gallows</h2>
       <div class="hangman-gallows-wrapper">
         <div class="hangman-gallows-container">

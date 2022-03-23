@@ -1,12 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Comic+Neue&family=Fasthand&display=swap");
-
-body {
+html {
   background: url("../images/blackboard.webp") no-repeat; /* Sourced from https://pixabay.com/ */
   background-size: 115vw 115vh;
   background-size: -webkit-fill-available;
-  height: 300%;
   color: white;
   font-family: "Comic Neue", cursive;
+  display: flex;
+  justify-content: center;
+}
+
+body {
+  margin-top: 2%;
+  width: 1080px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 form {
@@ -52,6 +60,9 @@ button {
 .game-body {
   width: 90%;
   height: 40rem;
+  border: 10px solid transparent;
+  border-image: url("../images/maincontainer.png") 30 round;
+  margin: auto;
 }
 
 .game-controls {
@@ -100,6 +111,19 @@ button {
 
 .loading-wheel {
   font-size: 70px;
+  color: #ffffff;
+  border-radius: 10%;
+  z-index: 100;
+}
+.loading-wheel-shadow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: linear-gradient(#00000000, #00000086);
+  box-shadow: 15px 30px 40px 5px #00000086;
 }
 
 .loading-wheel-container {
@@ -111,6 +135,17 @@ button {
   left: 0;
   height: 100%;
   width: 100%;
+  z-index: 100;
+  animation: fade-in-out 0.7s ease-in-out infinite alternate;
+}
+
+@keyframes fade-in-out {
+  0% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 /* STICKMAN GALLOWS ELEMENTS */
@@ -225,8 +260,10 @@ button {
 /* MODAL BASED ON https://www.w3schools.com/howto/howto_css_modals.asp */
 .modal {
   display: none;
+  align-items: flex-start;
+  justify-content: center;
   position: absolute;
-  padding-top: 250px;
+  padding: 250px 0 250px 0;
   top: -10rem;
   left: 0;
   width: 100%;
@@ -239,10 +276,10 @@ button {
 /* Modal Content */
 .modal-content {
   background-color: black;
-  margin: auto;
+  margin: 0 10%;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
+  max-width: 1080px;
 }
 
 /* The Close Button */
@@ -264,9 +301,6 @@ button {
   .nav-button-container {
     right: 3.5rem;
   }
-  .hangman-gallows-container {
-    right: 2rem;
-  }
   .word-container {
     width: 95%;
   }
@@ -276,15 +310,9 @@ button {
   .nav-button-container {
     right: 1.5rem;
   }
-  .hangman-gallows-container {
-    right: 0rem;
-  }
   input,
   button {
     font-size: 17px;
-  }
-  .game-margin-left {
-    margin-left: 0.3%;
   }
   .letter-input {
     margin: 0 1rem 0 -0.2rem;
@@ -295,9 +323,6 @@ button {
   .nav-button-container {
     right: 1rem;
   }
-  .hangman-gallows-container {
-    right: -0.7rem;
-  }
   .letter-input {
     margin: 0 0.5rem 0 -0.2rem;
   }
@@ -305,6 +330,52 @@ button {
   button {
     font-size: 14px;
     margin: 0 0.01rem;
+  }
+  .gallows {
+    position: relative;
+    height: 23.75rem;
+    left: 6.5rem;
+    top: 1rem;
+  }
+  .noose {
+    height: 9.5rem;
+    right: 9rem;
+    bottom: 13rem;
+  }
+  .stickman-head {
+    height: 5.7rem;
+    left: 4rem;
+    bottom: 18rem;
+  }
+  .stickman-body {
+    height: 6.65rem;
+    right: 0.5rem;
+    bottom: 11.5rem;
+  }
+  .stickman-rarm {
+    height: 1.14rem;
+    right: 5.5rem;
+    bottom: 16rem;
+  }
+  .stickman-larm {
+    height: 1.14rem;
+    left: -7rem;
+    bottom: 16rem;
+  }
+  .stickman-rleg {
+    height: 3.8rem;
+    right: 0rem;
+    bottom: 12.5rem;
+  }
+  .stickman-lleg {
+    height: 3.8rem;
+    right: -7.5rem;
+    bottom: 12.5rem;
+  }
+  .stickman-face {
+    height: 3.8rem;
+    left: -2rem;
+    bottom: 23.2rem;
   }
 }
 
@@ -316,7 +387,7 @@ button {
     position: relative;
     bottom: 8rem;
   }
-  body {
+  html {
     height: 720px;
   }
 }
@@ -329,13 +400,13 @@ button {
     position: relative;
     bottom: 13rem;
   }
-  body {
+  html {
     height: 720px;
   }
 }
 
 @media only screen and (orientation: landscape) {
-  body {
+  html {
     background-size: 115vw 115vw;
     background-size: -webkit-fill-available;
   }

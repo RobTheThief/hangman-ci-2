@@ -157,7 +157,7 @@ function getWordHint(word) {
  * Opens modal and adds elements with information about the game
  */
 function openHelp () {
-  modal.style.display = "block";
+  modal.style.display = "flex";
   let element = document.getElementById("modal-text-wrapper");
   element.innerHTML = `
     <h3>Help</h3>
@@ -182,7 +182,7 @@ function openHelp () {
  * Opens modal and adds elements with contact information
  */
 function openContact () {
-  modal.style.display = "block";
+  modal.style.display = "flex";
   let element = document.getElementById("modal-text-wrapper");
   element.innerHTML = `
     <h3>Contact</h3>
@@ -199,7 +199,7 @@ function openContact () {
  * Opens modal and adds elements to congratulate you on a new best win streak
  */
 function renderNewBest (score, capitalised, wordHint) {
-  modal.style.display = "block";
+  modal.style.display = "flex";
   let element = document.getElementById("modal-text-wrapper");
   element.innerHTML = `
     <h3>NEW BEST SCORE!!!</h3>
@@ -451,7 +451,7 @@ async function looseGame() {
 }
 
 /**
- * Toggles "display-none" class for loading wheel container
+ * Toggles "display-none" class for wheel bar container
  */
 function toggleIsFetching() {
   document
