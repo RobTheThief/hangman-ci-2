@@ -303,7 +303,7 @@ async function playSound(sound) {
   } catch (error) {
     if (error.name === "NotAllowedError") {
       AUDIO_MUTE = true;
-      modal.style.display = "block";
+      modal.style.display = "flex";
       document.getElementById(
         "modal-text"
       ).textContent = `AUDIO ERROR: ${error.message}`;
@@ -337,7 +337,7 @@ async function gameWon() {
   let oldScore = score.currentScore;
   let newScore = checkProgress(true);
   renderScore();
-  modal.style.display = "block";
+  modal.style.display = "flex";
   const wordHintObject = await getWordHint(WORD);
   const wordHint = wordHintObject.definitions[0].definition;
   const capitalised = `${WORD.charAt(0).toUpperCase()}${WORD.slice(1)}`;
@@ -439,7 +439,7 @@ function clearChars() {
  * @returns {Promise}
  */
 async function looseGame() {
-  modal.style.display = "block";
+  modal.style.display = "flex";
   const wordHintObject = await getWordHint(WORD);
   const wordHint = wordHintObject.definitions[0].definition;
   const capitalised = `${WORD.charAt(0).toUpperCase()}${WORD.slice(1)}`;
@@ -499,7 +499,7 @@ function toggleAudio() {
  *  @returns {Promise}
  */
 async function giveHint() {
-  modal.style.display = "block";
+  modal.style.display = "flex";
   let hint = await getWordHint(WORD);
   document.getElementById("modal-text").textContent =
     hint.definitions[0].definition;
@@ -531,7 +531,7 @@ async function runGame() {
   renderScore();
 }
 
-/* runGame(); */
-toggleIsFetching();
+runGame();
+/* toggleIsFetching(); */
 /* localStorage.setItem('myScore', 0 );
 localStorage.setItem('bestScore', 0 ); */
