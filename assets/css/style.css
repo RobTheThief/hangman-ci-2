@@ -11,7 +11,6 @@ html {
 body {
   margin-top: 2%;
   width: 1080px;
-  height: 110vh;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -59,10 +58,10 @@ button {
 
 .game-body {
   width: 90%;
-  height: 80vh;
+  height: 70vh;
   border: 10px solid transparent;
   border-image: url("../images/maincontainer.png") 30 round;
-  margin: auto;
+  margin: 0 auto;
 }
 
 .game-controls-and-letters {
@@ -71,12 +70,10 @@ button {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  position: relative;
-  bottom: 6rem;
 }
 
 .game-controls {
-  margin-top: 2.5rem;
+  margin-top: 1rem;
 }
 
 .game-beginning-msg {
@@ -288,7 +285,6 @@ button {
 .word-container {
   font-family: "Fasthand", cursive;
   width: 90%;
-  min-height: 68.58px;
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
