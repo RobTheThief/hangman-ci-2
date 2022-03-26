@@ -71,6 +71,54 @@ button {
   justify-content: center;
 }
 
+.game-beginning-msg {
+  font-size: 40px;
+  text-shadow: 2px 2px #00000086;
+  font-family: "Fasthand", cursive;
+  font-weight: 600;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+
+.game-msg-one {
+  position: absolute;
+  top: 14rem;
+  opacity: 0;
+  animation: msg-one-fade 1.5s ease-in-out 2 alternate;
+}
+
+.game-msg-two {
+  position: absolute;
+  top: 17rem;
+  opacity: 0;
+  animation: msg-two-fade 1.5s 1.5s ease-in-out 2 alternate;
+}
+
+@keyframes msg-one-fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes msg-two-fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .letter-input {
   height: 28px;
   width: 22px;
@@ -135,10 +183,10 @@ button {
   height: 100%;
   width: 100%;
   z-index: 100;
-  animation: fade-in-out 0.7s ease-in-out infinite alternate;
+  animation: loading-fade 0.7s ease-in-out infinite alternate;
 }
 
-@keyframes fade-in-out {
+@keyframes loading-fade {
   0% {
     opacity: 0.2;
   }
@@ -250,6 +298,10 @@ button {
 
 .display-none {
   display: none;
+}
+
+.display-flex {
+  display: flex;
 }
 
 .margin-bottom-increase {
@@ -375,6 +427,9 @@ button {
     height: 3.8rem;
     left: -2rem;
     bottom: 23.2rem;
+  }
+  .game-beginning-msg {
+    font-size: 32px;
   }
 }
 

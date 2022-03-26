@@ -196,6 +196,21 @@ function openContact () {
 }
 
 /**
+ * Toggles the display between none and for the game message flex at the beginning
+ * of game
+ * 
+ */
+function toggleGameBeginMsg () {
+  if (!WORD)  {
+    let element = document.getElementById('game-beginning-msg');
+    element.classList.toggle('display-flex');
+    setTimeout(() => {
+      element.classList.toggle('display-flex');
+    }, 5000);
+  }
+}
+
+/**
  * Opens modal and adds elements to congratulate you on a new best win streak
  */
 function renderNewBest (score, capitalised, wordHint) {
@@ -515,6 +530,8 @@ async function giveHint() {
  * @returns {Promise}
  */
 async function runGame() {
+  hideAllDrawings();
+  toggleGameBeginMsg();
   let randomWord = await getRandomWord();
   let word = randomWord.word;
   let isParsedOk = parseWord(word);
@@ -526,7 +543,6 @@ async function runGame() {
   restoreAllCharContainers();
   renderWord(word, indicesToReveal);
   removeEmptyCharContainers(word);
-  hideAllDrawings();
   toggleIsFetching();
   renderScore();
 }
