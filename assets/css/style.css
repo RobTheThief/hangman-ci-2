@@ -11,6 +11,7 @@ html {
 body {
   margin-top: 2%;
   width: 1080px;
+  height: 110vh;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -58,17 +59,24 @@ button {
 
 .game-body {
   width: 90%;
-  height: 40rem;
+  height: 80vh;
   border: 10px solid transparent;
   border-image: url("../images/maincontainer.png") 30 round;
   margin: auto;
 }
 
-.game-controls {
+.game-controls-and-letters {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  position: relative;
+  bottom: 6rem;
+}
+
+.game-controls {
+  margin-top: 2.5rem;
 }
 
 .game-beginning-msg {
@@ -279,8 +287,8 @@ button {
 
 .word-container {
   font-family: "Fasthand", cursive;
-  position: relative;
-  top: 33rem;
+  width: 90%;
+  min-height: 68.58px;
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
@@ -351,9 +359,6 @@ button {
 @media only screen and (max-width: 700px) {
   .nav-button-container {
     right: 3.5rem;
-  }
-  .word-container {
-    width: 95%;
   }
 }
 
@@ -430,28 +435,5 @@ button {
   }
   .game-beginning-msg {
     font-size: 32px;
-  }
-}
-
-@media only screen and (max-height: 740px) {
-  .word-container {
-    top: 26rem;
-  }
-  .game-controls {
-    position: relative;
-    bottom: 8rem;
-  }
-  html {
-    background-size: cover;
-  }
-}
-
-@media only screen and (max-height: 480px) {
-  .word-container {
-    top: 23rem;
-  }
-  .game-controls {
-    position: relative;
-    bottom: 13rem;
   }
 }
