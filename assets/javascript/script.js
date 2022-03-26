@@ -284,7 +284,7 @@ function renderWord(word, indices) {
     );
     charElementContainer.children[0].textContent =
       letterArray[index].toUpperCase();
-    charElementContainer.classList.add("margin-bottom-increase");
+    //charElementContainer.classList.add("margin-bottom-increase");
   }
 }
 

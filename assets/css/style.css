@@ -235,7 +235,7 @@ button {
   position: relative;
   top: 33rem;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: flex-start;
 }
 
