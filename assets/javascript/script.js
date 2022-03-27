@@ -387,7 +387,7 @@ async function gameWon() {
   const wordHint = wordHintObject.definitions[0].definition;
   const capitalised = `${WORD.charAt(0).toUpperCase()}${WORD.slice(1)}`;
   if (score.bestScore < newScore.bestScore) {
-    renderNewBest (oldScore.currentScore, capitalised, wordHint);
+    renderNewBest (newScore.currentScore, capitalised, wordHint);
   } else {
     document.getElementById(
       "modal-text"
