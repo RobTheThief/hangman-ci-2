@@ -80,7 +80,7 @@ document
 document
   .getElementById("letter-input")
   .addEventListener("focus", function (event) {
-    if (screen.height <= 800){
+    if (screen.height <= 916){
       document.getElementsByClassName('hangman-gallows-wrapper')[0].classList.add('invisible');
     }
 });
