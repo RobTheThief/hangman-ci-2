@@ -132,7 +132,7 @@ function getRandomWord() {
  * @returns {boolean} - true if passed all test or false if failed any
  */
 function parseWord(word) {
-  const re = new RegExp("([. -])"); //https://regexr.com/ was used to help make expression
+  const re = new RegExp("([. -]|[0-9])"); //https://regexr.com/ was used to help make expression
   if (re.test(word)) return false;
   if (word.length > 11) return false;
   return true;
