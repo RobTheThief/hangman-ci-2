@@ -209,6 +209,7 @@ button {
 .hangman-gallows-container {
   position: absolute;
   width: 320px;
+  z-index: -1;
 }
 
 .invisible {

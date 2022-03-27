@@ -72,6 +72,22 @@ document
     }
   });
 
+document
+  .getElementById("letter-input")
+  .addEventListener("focus", function (event) {
+    if (screen.height <= 800){
+      document.getElementsByClassName('hangman-gallows-wrapper')[0].classList.add('invisible');
+    }
+});
+
+  document
+  .getElementById("letter-input")
+  .addEventListener("blur", function (event) {
+    document.getElementsByClassName('hangman-gallows-wrapper')[0].classList.remove('invisible');
+    window.scrollTo(0, 0);
+});
+
+
 /**
  * Get request to WordsApi for a random word
  * @returns {Promise} - word object
