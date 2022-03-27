@@ -443,15 +443,12 @@ button {
   }
 }
 
-@media only screen and (max-height: 916px) {
-  html {
-    background-size: auto;
-  }
-}
-
-@media only screen and (orientation: landscape) and (max-width: 1366px) {
+@media only screen and (orientation: landscape) and (max-width: 916px) {
   .game-body {
     width: 90%;
     height: 120vh;
+  }
+  html {
+    background-size: 115vw 200vh;
   }
 }
