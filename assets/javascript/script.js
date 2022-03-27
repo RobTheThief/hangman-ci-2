@@ -194,7 +194,7 @@ function openHelp () {
        Generally, start by guessing common letters like vowels, or "s," "t," and "n."
     </p>
     <p>Each wrong guess means a piece of the gallows or stickman is drawn. Once the the
-       stickman has all his arms and legs the game is over. You can also use the "Hint"
+       stickman has their eyes and mouth the game is over. You can also use the "Hint"
        button to get a hint, but you will loose 2 turns if you do!
     </p>
     <p>Tip: If you enter letters already revealed at the start you might get more of
