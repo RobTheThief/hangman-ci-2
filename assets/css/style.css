@@ -433,3 +433,9 @@ button {
     font-size: 32px;
   }
 }
+
+@media only screen and (max-height: 667px) {
+  html {
+    background-size: auto;
+  }
+}
