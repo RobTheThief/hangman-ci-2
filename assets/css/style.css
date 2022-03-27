@@ -437,6 +437,6 @@ button {
 
 @media only screen and (max-height: 667px) {
   html {
-    background-size: auto;
+    background-size: 115vw 200vh;
   }
 }
