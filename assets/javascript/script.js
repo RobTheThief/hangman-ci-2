@@ -28,7 +28,7 @@ window.onclick = function (event) {
 };
 /* ******************************************************************* */
 
-/*  Based on code institute love math project
+/*  Based on code institute love math project.
     Adds event listeners for buttons once DOM is loaded    */
 document.addEventListener("DOMContentLoaded", function () {
     let buttons = document.getElementsByClassName("button");
@@ -72,6 +72,11 @@ document
     }
   });
 
+  /*
+    Adds invisible class to gallows and stickman container on focus,
+    on mobile devices, to prevent it from blocking content when the
+    soft keyboard pops up
+   */
 document
   .getElementById("letter-input")
   .addEventListener("focus", function (event) {
@@ -80,7 +85,11 @@ document
     }
 });
 
-  document
+/*
+  Removes invisible class from gallows and stickman container and scrolls
+  up to the top of the page on blur
+ */
+document
   .getElementById("letter-input")
   .addEventListener("blur", function (event) {
     document.getElementsByClassName('hangman-gallows-wrapper')[0].classList.remove('invisible');
