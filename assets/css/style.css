@@ -1,9 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Comic+Neue&family=Fasthand&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap");
+
 html {
   background: url("../images/blackboard.webp") no-repeat; /* Sourced from https://pixabay.com/ */
   background-size: 115vw 115vh;
   color: white;
-  font-family: "Comic Neue", cursive;
+  font-family: "Amatic SC", cursive;
   display: flex;
   justify-content: center;
 }
@@ -31,8 +32,8 @@ h2 {
 
 input,
 button {
-  font-family: "Comic Neue", cursive;
-  font-size: 20px;
+  font-family: "Amatic SC", cursive;
+  font-size: 30px;
   color: white;
   background: none;
   box-shadow: 3px 2px rgb(255, 255, 255);
@@ -80,8 +81,7 @@ button {
 .game-beginning-msg {
   font-size: 40px;
   text-shadow: 2px 2px #00000086;
-  font-family: "Fasthand", cursive;
-  font-weight: 600;
+  font-weight: 700;
   height: 100%;
   width: 100%;
   position: absolute;
@@ -126,7 +126,6 @@ button {
 }
 
 .letter-input {
-  height: 28px;
   width: 22px;
   margin: 0 2rem 0 -0.2rem;
   text-transform: uppercase;
@@ -155,11 +154,11 @@ button {
 }
 
 .nav-button-container {
+  font-size: 25px;
   float: right;
   position: relative;
   right: 8rem;
   top: 0.1rem;
-  font-size: 20px;
 }
 
 .loading-wheel {
@@ -281,11 +280,11 @@ button {
 }
 
 .letter-span {
-  font-size: 30px;
+  font-size: 39px;
 }
 
 .word-container {
-  font-family: "Fasthand", cursive;
+  font-weight: 700;
   width: 90%;
   display: flex;
   align-items: flex-end;
@@ -368,7 +367,8 @@ button {
   }
   input,
   button {
-    font-size: 17px;
+    font-size: 23px;
+    margin: 0 0.01rem;
   }
   .letter-input {
     margin: 0 1rem 0 -0.2rem;
@@ -381,11 +381,6 @@ button {
   }
   .letter-input {
     margin: 0 0.5rem 0 -0.2rem;
-  }
-  input,
-  button {
-    font-size: 14px;
-    margin: 0 0.01rem;
   }
   .gallows {
     position: relative;
@@ -432,9 +427,6 @@ button {
     height: 3.8rem;
     left: -2rem;
     bottom: 23.2rem;
-  }
-  .game-beginning-msg {
-    font-size: 32px;
   }
 }
 
