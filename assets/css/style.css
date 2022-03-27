@@ -58,7 +58,7 @@ button {
 
 .game-body {
   width: 90%;
-  height: 70vh;
+  height: 65vh;
   border: 10px solid transparent;
   border-image: url("../images/maincontainer.png") 30 round;
   margin: 0 auto;
