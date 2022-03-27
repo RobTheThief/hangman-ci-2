@@ -257,11 +257,16 @@ function renderNewBest (score, capitalised, wordHint) {
  */
 function checkProgress (result) {
   let currentScore = localStorage.getItem('myScore');
+  currentScore = currentScore === null ? 0 : currentScore;
+  localStorage.setItem('myScore', currentScore);
+
   let bestScore = localStorage.getItem('bestScore');
+  bestScore = bestScore === null ? 0 : bestScore;
+  localStorage.setItem('bestScore', bestScore);
   if (result === undefined) return {currentScore: currentScore, bestScore: bestScore};
 
   let newScore = (result && currentScore) ? ++currentScore : currentScore !== 0 ? 0 : 1;
-  let newBest = !bestScore ? newScore : (newScore > bestScore) ? newScore : bestScore;
+  let newBest = newScore > bestScore ? newScore : bestScore;
   localStorage.setItem('myScore', newScore );
   localStorage.setItem('bestScore', newBest );
   return {currentScore: newScore, bestScore: newBest};

@@ -58,7 +58,7 @@ button {
 
 .game-body {
   width: 90%;
-  height: 65vh;
+  height: 62vh;
   border: 10px solid transparent;
   border-image: url("../images/maincontainer.png") 30 round;
   margin: 0 auto;
@@ -70,6 +70,7 @@ button {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin-bottom: 55px;
 }
 
 .game-controls {
@@ -435,8 +436,8 @@ button {
   }
 }
 
-@media only screen and (max-height: 667px) {
+@media only screen and (max-height: 800px) {
   html {
-    background-size: 115vw 200vh;
+    background-size: auto;
   }
 }
