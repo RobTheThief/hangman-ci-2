@@ -96,6 +96,11 @@ document
     window.scrollTo(0, 0);
 });
 
+
+window.onresize = () => {
+  window.scrollTo(0, 0);
+}
+
 /**
  * Get request to WordsApi for a random word
  * @returns {Promise} - word object
