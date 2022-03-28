@@ -74,13 +74,13 @@ document
 
   /*
     Adds invisible class to gallows and stickman container on focus,
-    on mobile devices, to prevent it from blocking content when the
+    on mobile devices in landscape mode, to prevent it from blocking content when the
     soft keyboard pops up
    */
 document
   .getElementById("letter-input")
   .addEventListener("focus", function (event) {
-    if (screen.height <= 916){
+    if(window.innerHeight < window.innerWidth){
       document.getElementsByClassName('hangman-gallows-wrapper')[0].classList.add('invisible');
     }
 });
@@ -95,7 +95,6 @@ document
     document.getElementsByClassName('hangman-gallows-wrapper')[0].classList.remove('invisible');
     window.scrollTo(0, 0);
 });
-
 
 /**
  * Get request to WordsApi for a random word
@@ -577,7 +576,7 @@ async function runGame() {
   renderScore();
 }
 
-runGame();
-/* toggleIsFetching(); */
+/* runGame(); */
+toggleIsFetching();
 /* localStorage.setItem('myScore', 0 );
 localStorage.setItem('bestScore', 0 ); */
