@@ -386,20 +386,25 @@ function isGameWon() {
  * @returns {Promise}
  */
 async function gameWon() {
-  let score = checkProgress();
-  let oldScore = score.currentScore;
-  let newScore = checkProgress(true);
-  renderScore();
   modal.style.display = "flex";
   const wordHintObject = await getWordHint(WORD);
   const wordHint = wordHintObject.definitions[0].definition;
   const capitalised = `${WORD.charAt(0).toUpperCase()}${WORD.slice(1)}`;
-  if (score.bestScore < newScore.bestScore) {
-    renderNewBest (newScore.currentScore, capitalised, wordHint);
+  if (DRAWING_COUNT !== 8) {
+    let score = checkProgress();
+    let newScore = checkProgress(true);
+    renderScore();
+    if (score.bestScore < newScore.bestScore) {
+      renderNewBest (newScore.currentScore, capitalised, wordHint);
+    } else {
+      document.getElementById(
+        "modal-text"
+      ).textContent = `CONGRATULATIONS!! The answer was ${capitalised}: ${wordHint}`;
+    }
   } else {
     document.getElementById(
       "modal-text"
-    ).textContent = `CONGRATULATIONS!! The answer was ${capitalised}: ${wordHint}`;
+    ).textContent = `Sorry but the game was already is over. The answer was ${capitalised}: ${wordHint}`;
   }
 }
 
