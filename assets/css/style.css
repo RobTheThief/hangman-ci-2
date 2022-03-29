@@ -95,36 +95,12 @@ button {
   z-index: 200;
 }
 
-.game-msg-one {
-  position: absolute;
-  top: 14rem;
+.game-msg {
+  font-size: 40px;
+  text-shadow: 2px 2px #00000086;
+  font-weight: 700;
   opacity: 0;
-  animation: msg-one-fade 1.5s ease-in-out 2 alternate;
-}
-
-.game-msg-two {
-  position: absolute;
-  top: 17rem;
-  opacity: 0;
-  animation: msg-two-fade 1.5s 1.5s ease-in-out 2 alternate;
-}
-
-@keyframes msg-one-fade {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes msg-two-fade {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+  transition: all 400ms;
 }
 
 .letter-input {
@@ -169,10 +145,8 @@ button {
   border-radius: 10%;
   z-index: 100;
 }
+
 .loading-wheel-shadow {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 70px;
   height: 70px;
   border-radius: 50%;
@@ -184,22 +158,13 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
   z-index: 100;
-  animation: loading-fade 0.7s ease-in-out infinite alternate;
-}
-
-@keyframes loading-fade {
-  0% {
-    opacity: 0.2;
-  }
-  100% {
-    opacity: 1;
-  }
 }
 
 /* STICKMAN GALLOWS ELEMENTS */
@@ -307,8 +272,8 @@ button {
   display: none;
 }
 
-.display-flex {
-  display: flex;
+.opacity-one {
+  opacity: 1;
 }
 
 .margin-bottom-increase {
@@ -396,6 +361,9 @@ button {
   }
   .letter-input {
     margin: 0 0.5rem 0 0;
+  }
+  .game-msg {
+    font-size: 30px;
   }
   .gallows {
     position: relative;

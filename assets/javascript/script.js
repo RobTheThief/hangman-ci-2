@@ -225,17 +225,21 @@ function openContact () {
 }
 
 /**
- * Toggles the display between none and for the game message flex at the beginning
+ * Toggles the opacity between 1 and 0 at the beginning
  * of game
  * 
  */
 function toggleGameBeginMsg () {
   if (!WORD)  {
-    let element = document.getElementById('game-beginning-msg');
-    element.classList.toggle('display-flex');
+    let elements = document.getElementsByClassName('game-msg');
+    elements = Object.values(elements);
+    function toggleClasses (e) {
+      e.classList.toggle('opacity-one');
+    }
+    elements.forEach(toggleClasses);
     setTimeout(() => {
-      element.classList.toggle('display-flex');
-    }, 5000);
+      elements.forEach(toggleClasses);
+    }, 2000);
   }
 }
 
