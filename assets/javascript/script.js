@@ -96,7 +96,7 @@ document
     window.scrollTo(0, 0);
 });
 
-
+/* Scrolls up to top when screen is resized */
 window.onresize = () => {
   window.scrollTo(0, 0);
 }
@@ -581,7 +581,7 @@ async function runGame() {
   renderScore();
 }
 
-/* runGame(); */
-toggleIsFetching();
+runGame();
+/* toggleIsFetching(); */
 /* localStorage.setItem('myScore', 0 );
 localStorage.setItem('bestScore', 0 ); */

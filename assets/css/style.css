@@ -24,6 +24,8 @@ form {
 
 h1 {
   float: left;
+  font-size: 40px;
+  line-height: 25px;
 }
 
 h2 {
@@ -136,7 +138,7 @@ button {
 }
 
 .game-margin-left {
-  margin: 0 0 0 7%;
+  margin: 0 0 0 5%;
 }
 
 .audio-mute {
@@ -155,11 +157,10 @@ button {
 }
 
 .nav-button-container {
-  font-size: 25px;
+  font-size: 35px;
+  line-height: 25px;
   float: right;
-  position: relative;
-  right: 8rem;
-  top: 0.1rem;
+  margin-right: 5%;
 }
 
 .loading-wheel {
