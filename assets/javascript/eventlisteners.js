@@ -1,4 +1,6 @@
 import { gameMessageWindow } from './script.js';
+import { handleHitEnter, checkLetter, newWord, giveHint, toggleAudio, openHelp, openContact} from './eventhandlers.js';
+import { openHelp, openContact } from './gamemessages.js';
 
 // When the user clicks anywhere outside of the modal, close it and clear text
 // When the user clicks on <span> (x), close the modal and clear text
@@ -14,27 +16,13 @@ function bindExitModalListeners () {
         document.getElementById("modal-text-wrapper").innerHTML = `<p id="modal-text"></p>`;
         gameMessageWindow.style.display = "none";
     };
-    return [gameMessageWindow, span];
-}
-
-/*  Handles enter key event and scrolls the page back to the top and blurs
-    input to hide soft keyboard after 500ms */
-function handleHitEnter (event) {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      checkLetter(WORD);
-      setTimeout(() => {
-        document.getElementById("letter-input").blur();
-        window.scrollTo(0, 0);
-      }, 500);
-    }
 }
 
 function universalAddListener(element, type, listener) {
     element.addEventListener(type, listener);
 }
 
-function bindButtons(gameMessageWindow, WORD) {
+function bindButtons(WORD) {
     let buttons = document.getElementsByClassName("button");
     for (let button of buttons) {
         button.addEventListener("click", function () {

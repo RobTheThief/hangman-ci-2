@@ -15,38 +15,6 @@ document.addEventListener("DOMContentLoaded", function () {
   OnDOMload(WORD)
 });
 
-
-/*  Based on code institute love math project.
-    Adds event listeners for buttons once DOM is loaded    */
-/* document.addEventListener("DOMContentLoaded", function () {
-    let buttons = document.getElementsByClassName("button");
-    for (let button of buttons) {
-        button.addEventListener("click", function () {
-        let buttonType = this.getAttribute("id");
-        if (buttonType === "check-letter") {
-            checkLetter(WORD);
-        }
-        if (buttonType === "new-word") {
-            newWord();
-        }
-        if (buttonType === "hint") {
-            giveHint();
-        }
-        if (buttonType === "mute-audio") {
-            toggleAudio();
-        }
-        if (buttonType === "help") {
-            openHelp();
-        }
-        if (buttonType === "contact") {
-            openContact();
-        }
-      });
-    }
-}); */
-
-
-
 /*
   Adds invisible class to gallows and stickman container on focus,
   on mobile devices in landscape mode, to prevent it from blocking content when the
@@ -352,31 +320,6 @@ function restoreAllCharContainers() {
 }
 
 /**
- * Checks the letter entered into the text input and renders any match,
- * then checks if game is won. If there is no match it runs the
- * renderStickman function
- * @param {string} word - any word
- */
-function checkLetter(word) {
-  if (!isGameWon()) {
-    let indices = [];
-    let testChar = document.getElementById("letter-input").value;
-    const isParsedOk = parseLetter(testChar);
-    const isCharInWord = word.includes(testChar.toLowerCase());
-    if ( isCharInWord && isParsedOk ) {
-      for (let char in word) {
-        if (word[char] === testChar.toLowerCase()) indices.push(char);
-      }
-      renderWord(word, indices);
-    } else if (isParsedOk) {
-      renderStickman();
-    } 
-    isGameWon() && gameWon();
-  }
-  document.getElementById("letter-input").value = "";
-}
-
-/**
  * Hides all stickman and gallows drawings for the start of the game
  * and on reset
  */
@@ -440,19 +383,6 @@ function toggleIsFetching() {
 }
 
 /**
- * Rests game with new word and hint
- * @returns {Promise}
- */
-async function newWord() {
-  wordVisibility(false);
-  playSound("eraser");
-  DRAWING_COUNT = 0;
-  HINT_CHECKED = false;
-  toggleIsFetching();
-  runGame();
-}
-
-/**
  * Turns on or ff vivibility of word container on chalk board
  * @param {boolean} option
  */
@@ -460,34 +390,6 @@ function wordVisibility(option) {
   let wordContainer = document.getElementsByClassName("word-container")[0];
   option ? wordContainer.classList.remove("invisible")
     : wordContainer.classList.add("invisible");
-}
-
-/**
- * Toggles mute audio icon and toggles boolean state of audio variable
- */
-function toggleAudio() {
-  let element = document.getElementById("mute-audio");
-  let content =
-    element.innerHTML === '<i class="fa-solid fa-volume-high"></i>' ? '<i class="fa-solid fa-volume-xmark"></i>'
-      : '<i class="fa-solid fa-volume-high"></i>';
-  element.innerHTML = content;
-  AUDIO_MUTE = AUDIO_MUTE ? false : true;
-}
-
-/**
- * Displays hint and removes 2 tries from the player
- *  @returns {Promise}
- */
-async function giveHint() {
-  gameMessageWindow.style.display = "flex";
-  let hint = await getWordHint(WORD);
-  document.getElementById("modal-text").textContent =
-    hint.definitions[0].definition;
-  if (HINT_CHECKED === false) {
-    renderStickman();
-    renderStickman();
-    HINT_CHECKED = true;
-  }
 }
 
 /**
