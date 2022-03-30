@@ -52,7 +52,9 @@ export function getWordHint() {
         );
   
         const responseJson = await response.json(); //extract JSON from the http response
-        HINT = responseJson.definitions[0].definition;
+        if (responseJson.definitions[0]) {
+            HINT = responseJson.definitions[0].definition;
+        }
 
         resolve(responseJson);
       } catch (error) {
