@@ -1,12 +1,13 @@
 import { token } from './apitoken.js';
 
 let WORD = '';
+let HINT = '';
 
 /**
  * Get request to WordsApi for a random word
  * @returns {Promise} - word object
  */
- export function getRandomWord() {
+export function getRandomWord() {
     return new Promise(async (resolve) => {
       try {
         const response = await fetch(
@@ -29,7 +30,7 @@ let WORD = '';
         resolve();
       }
     });
-  }
+}
 
 /**
  * Looks for a definition of the random word in the WordsApi to be used as a hint
@@ -51,15 +52,20 @@ export function getWordHint() {
         );
   
         const responseJson = await response.json(); //extract JSON from the http response
-  
+        HINT = responseJson.definitions[0].definition;
+
         resolve(responseJson);
       } catch (error) {
         alert(error);
         resolve();
       }
     });
-  }
+}
 
-  export function getCurrentWord() {
-      return WORD;
-  }
+export function getCurrentWord() {
+    return WORD;
+}
+
+  export function getCurrentHint() {
+    return HINT;
+}

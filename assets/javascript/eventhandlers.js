@@ -1,5 +1,5 @@
 import { renderScore, runGame, toggleIsFetching } from './script.js';
-import { getCurrentWord, getWordHint } from './apirequests.js';
+import { getCurrentHint, getCurrentWord } from './apirequests.js';
 import { checkProgress, isGameWon, parseLetter, wordVisibility } from './helpers.js';
 import { renderNewBest } from './gamemessages.js';
 
@@ -66,10 +66,9 @@ export async function newWord() {
  */
  export async function giveHint() {
     gameMessageWindow.style.display = "flex";
-    let currentWord = getCurrentWord();
-    let hint = await getWordHint(currentWord);
+    let hint = getCurrentHint();
     document.getElementById("modal-text").textContent =
-      hint.definitions[0].definition;
+      hint;
     if (HINT_CHECKED === false) {
       renderStickman();
       renderStickman();
@@ -117,8 +116,7 @@ export function handleOnblurInput (event) {
  async function gameWon() {
   let currentWord = getCurrentWord();
   gameMessageWindow.style.display = "flex";
-  const wordHintObject = await getWordHint();
-  const wordHint = wordHintObject.definitions[0].definition;
+  const wordHint = getCurrentHint();
   const capitalised = `${currentWord.charAt(0).toUpperCase()}${currentWord.slice(1)}`;
   if (DRAWING_COUNT !== 8) {
     let score = checkProgress();
@@ -198,11 +196,10 @@ export function handleOnblurInput (event) {
  * Displays message 'GAME OVER' with word and hint, and resets the game after 3 seconds
  * @returns {Promise}
  */
- async function looseGame() {
+function looseGame() {
   let currentWord = getCurrentWord();
   gameMessageWindow.style.display = "flex";
-  const wordHintObject = await getWordHint();
-  const wordHint = wordHintObject.definitions[0].definition;
+  const wordHint = getCurrentHint();
   const capitalised = `${currentWord.charAt(0).toUpperCase()}${currentWord.slice(1)}`;
   document.getElementById(
     "modal-text"
