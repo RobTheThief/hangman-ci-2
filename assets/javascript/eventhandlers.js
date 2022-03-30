@@ -1,14 +1,20 @@
-import { gameMessageWindow } from './script.js';
+import { renderScore, runGame, toggleIsFetching } from './script.js';
 import { getCurrentWord, getWordHint } from './apirequests.js';
+import { checkProgress, isGameWon, parseLetter, wordVisibility } from './helpers.js';
+import { renderNewBest } from './gamemessages.js';
 
 var HINT_CHECKED = false;
+var DRAWING_COUNT = 0;
+var AUDIO_MUTE = true;
+const gameMessageWindow = document.getElementById("myModal");
 
 /*  Handles enter key event and scrolls the page back to the top and blurs
     input to hide soft keyboard after 500ms */
 export function handleHitEnter (event) {
     if (event.key === "Enter") {
         event.preventDefault();
-        checkLetter(WORD);
+        let currentWord = getCurrentWord();
+        checkLetter(currentWord);
         setTimeout(() => {
         document.getElementById("letter-input").blur();
         window.scrollTo(0, 0);
@@ -101,4 +107,106 @@ export function handleLandscapeWithFocus () {
 export function handleOnblurInput (event) {
     document.getElementsByClassName('hangman-gallows-wrapper')[0].classList.remove('invisible');
     window.scrollTo(0, 0);
+}
+
+/**
+ * Displays a message congratulating the player, and giving the answer
+ * and hint. The game is then reset after 3 seconds.
+ * @returns {Promise}
+ */
+ async function gameWon() {
+  let currentWord = getCurrentWord();
+  gameMessageWindow.style.display = "flex";
+  const wordHintObject = await getWordHint();
+  const wordHint = wordHintObject.definitions[0].definition;
+  const capitalised = `${currentWord.charAt(0).toUpperCase()}${currentWord.slice(1)}`;
+  if (DRAWING_COUNT !== 8) {
+    let score = checkProgress();
+    let newScore = checkProgress(true);
+    renderScore();
+    if (score.bestScore < newScore.bestScore) {
+      renderNewBest (newScore.currentScore, capitalised, wordHint);
+    } else {
+      document.getElementById(
+        "modal-text"
+      ).textContent = `CONGRATULATIONS!! The answer was ${capitalised}: ${wordHint}`;
+    }
+  } else {
+    document.getElementById(
+      "modal-text"
+    ).textContent = `Sorry but the game was already is over. The answer was ${capitalised}: ${wordHint}`;
+  }
+}
+
+/**
+ * Removes "invivible" class from each piece of the drawing until
+ * complete, ending the game.
+ * @returns {Promise}
+ */
+ async function renderStickman() {
+  let elements = document.getElementsByClassName("game-drawings");
+  if (DRAWING_COUNT < 8) {
+    playSound("draw-line");
+    elements[DRAWING_COUNT].classList.remove("invisible");
+    ++DRAWING_COUNT;
+  }
+  DRAWING_COUNT === 8 && looseGame();
+}
+
+/**
+ * Removes invisible class of word container and renders a list of letters to the chalk board
+ * @param {string} word - any word 11 or less chars
+ * @param {Array} indices - array containing integers
+ */
+ export function renderWord(word, indices) {
+  playSound("draw-letter");
+  wordVisibility(true);
+  let letterArray = word.split("");
+  for (let index of indices) {
+    let charElementContainer = document.getElementById(
+      `letterdash-${parseFloat(index) + 1}`
+    );
+    charElementContainer.children[0].textContent =
+      letterArray[index].toUpperCase();
+  }
+}
+
+/**
+ * Async function that takes a string for sound type as a parameter and plays the
+ * sound
+ * @param {string} sound - accepts 'draw-letter', 'draw-line', or 'eraser'
+ * @returns {Promise}
+ */
+ async function playSound(sound) {
+  let soundType = document.getElementById(`${sound}-sound`);
+  try {
+    if (AUDIO_MUTE === false) {
+      await soundType.play();
+    }
+  } catch (error) {
+    if (error.name === "NotAllowedError") {
+      AUDIO_MUTE = true;
+      gameMessageWindow.style.display = "flex";
+      document.getElementById(
+        "modal-text"
+      ).textContent = `AUDIO ERROR: ${error.message}`;
+    }
+  }
+}
+
+/**
+ * Displays message 'GAME OVER' with word and hint, and resets the game after 3 seconds
+ * @returns {Promise}
+ */
+ async function looseGame() {
+  let currentWord = getCurrentWord();
+  gameMessageWindow.style.display = "flex";
+  const wordHintObject = await getWordHint();
+  const wordHint = wordHintObject.definitions[0].definition;
+  const capitalised = `${currentWord.charAt(0).toUpperCase()}${currentWord.slice(1)}`;
+  document.getElementById(
+    "modal-text"
+  ).textContent = `GAME OVER! The answer was ${capitalised}: ${wordHint}`;
+  checkProgress(false);
+  renderScore();
 }

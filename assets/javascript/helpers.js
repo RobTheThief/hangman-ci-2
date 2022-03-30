@@ -1,3 +1,5 @@
+import { getCurrentWord } from "./apirequests.js";
+
 /**
  * Randomly determines which letters of the word will be revealed at the
  * beginning of the game
@@ -74,5 +76,32 @@ export function parseWord(word) {
 export function parseLetter (char) {
     const re = new RegExp("([A-Za-z]{1})"); //https://regexr.com/ was used to help make expression
     return re.test(char);
+}
+
+/**
+ * Checks if all the characters have been found
+ * @returns {boolean}
+ */
+ export function isGameWon() {
+    let letterArray = [];
+    let elements = document.getElementsByClassName("letterdash-container");
+    for (let element of elements) {
+      let char = element.children[0].textContent;
+      if (char !== "") {
+        letterArray.push(char);
+      }
+    }
+    let currentWord = getCurrentWord();
+    return (currentWord.length === letterArray.length) ? true : false;
+  }
+  
+/**
+ * Turns on or off vivibility of word container on chalk board
+ * @param {boolean} option
+ */
+export function wordVisibility(option) {
+    let wordContainer = document.getElementsByClassName("word-container")[0];
+    option ? wordContainer.classList.remove("invisible")
+      : wordContainer.classList.add("invisible");
 }
   
