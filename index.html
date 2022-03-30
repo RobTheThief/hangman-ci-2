@@ -24,6 +24,21 @@
     <script type="module" src="assets/javascript/apitoken.js" defer></script>
     <script type="module" src="assets/javascript/helpers.js" defer></script>
   </head>
+
+  <!-- Game Sounds from https://freesound.org/ -->
+  <audio id="draw-line-sound" preload="none">
+    <source src="./assets/audio/line.mp3" type="audio/mpeg" />
+    Your browser does not support audio.
+  </audio>
+  <audio id="draw-letter-sound" preload="none">
+    <source src="./assets/audio/letterone.mp3" type="audio/mpeg" />
+    Your browser does not support audio.
+  </audio>
+  <audio id="eraser-sound" preload="none">
+    <source src="./assets/audio/eraser.mp3" type="audio/mpeg" />
+    Your browser does not support audio.
+  </audio>
+
   <body>
     <nav>
       <h1 class="game-margin-left">Hangman</h1>
@@ -48,12 +63,6 @@
       </div>
     </div>
 
-    <!-- Game Begining Message -->
-    <!-- <div class="game-beginning-msg" id="game-beginning-msg">
-      <p class="game-msg-one">Try to guess the letters....</p>
-      <p class="game-msg-two">before you get hung!</p>
-    </div> -->
-
     <!-- Loading wheel -->
     <div class="loading-wheel-container">
       <p class="game-msg">Try to guess the letters....</p>
@@ -62,164 +71,16 @@
       </div>
       <p class="game-msg">before you get hung!</p>
     </div>
-    <!-- Game Sounds from https://freesound.org/ -->
-    <audio id="draw-line-sound" preload="none">
-      <source src="./assets/audio/line.mp3" type="audio/mpeg" />
-      Your browser does not support audio.
-    </audio>
-    <audio id="draw-letter-sound" preload="none">
-      <source src="./assets/audio/letterone.mp3" type="audio/mpeg" />
-      Your browser does not support audio.
-    </audio>
-    <audio id="eraser-sound" preload="none">
-      <source src="./assets/audio/eraser.mp3" type="audio/mpeg" />
-      Your browser does not support audio.
-    </audio>
 
     <section class="game-body" aria-labelledby="hangmans-gallows">
       <h2 id="hangmans-gallows">Hangmans gallows</h2>
       <div class="hangman-gallows-wrapper">
-        <div class="hangman-gallows-container">
-          <img
-            src="./assets/images/gallows.png"
-            alt="hangman gallows"
-            class="gallows"
-          />
-          <img
-            src="./assets/images/gamenoose.png"
-            alt="noose"
-            class="game-drawings noose"
-          />
-          <img
-            src="./assets/images/head.png"
-            alt="stickman head"
-            class="game-drawings stickman-head"
-          />
-          <img
-            src="./assets/images/body.png"
-            alt="stickman body"
-            class="game-drawings stickman-body"
-          />
-          <img
-            src="./assets/images/rightarm.png"
-            alt="stickman right arm"
-            class="game-drawings stickman-rarm"
-          />
-          <img
-            src="./assets/images/leftarm.png"
-            alt="stickman left arm"
-            class="game-drawings stickman-larm"
-          />
-          <img
-            src="./assets/images/leftleg.png"
-            alt="stickman left leg"
-            class="game-drawings stickman-lleg"
-          />
-          <img
-            src="./assets/images/rightleg.png"
-            alt="stickman right leg"
-            class="game-drawings stickman-rleg"
-          />
-          <img
-          src="./assets/images/face.png"
-          alt="stickman face"
-          class="game-drawings stickman-face"
-          />
-        </div>
+        <div class="hangman-gallows-container" id="hangman-gallows-container"></div>
       </div>
     </section>
     <section class="game-controls-and-letters" aria-labelledby="game-controls-and-letters">
       <h2 id="game-controls-and-letters">Game controls and letters</h2>
-      <div class="word-container invisible">
-        <div class="letterdash-container" id="letterdash-1">
-          <span class="letter-span"></span>
-          <img
-            src="./assets/images/letterdash.png"
-            alt="letter underscore or dash"
-            class="letterdash"
-          />
-        </div>
-        <div class="letterdash-container" id="letterdash-2">
-          <span class="letter-span"></span>
-          <img
-            src="./assets/images/letterdash.png"
-            alt="letter underscore or dash"
-            class="letterdash"
-          />
-        </div>
-        <div class="letterdash-container" id="letterdash-3">
-          <span class="letter-span"></span>
-          <img
-            src="./assets/images/letterdash.png"
-            alt="letter underscore or dash"
-            class="letterdash"
-          />
-        </div>
-        <div class="letterdash-container" id="letterdash-4">
-          <span class="letter-span"></span>
-          <img
-            src="./assets/images/letterdash.png"
-            alt="letter underscore or dash"
-            class="letterdash"
-          />
-        </div>
-        <div class="letterdash-container" id="letterdash-5">
-          <span class="letter-span"></span>
-          <img
-            src="./assets/images/letterdash.png"
-            alt="letter underscore or dash"
-            class="letterdash"
-          />
-        </div>
-        <div class="letterdash-container" id="letterdash-6">
-          <span class="letter-span"></span>
-          <img
-            src="./assets/images/letterdash.png"
-            alt="letter underscore or dash"
-            class="letterdash"
-          />
-        </div>
-        <div class="letterdash-container" id="letterdash-7">
-          <span class="letter-span"></span>
-          <img
-            src="./assets/images/letterdash.png"
-            alt="letter underscore or dash"
-            class="letterdash"
-          />
-        </div>
-        <div class="letterdash-container" id="letterdash-8">
-          <span class="letter-span"></span>
-          <img
-            src="./assets/images/letterdash.png"
-            alt="letter underscore or dash"
-            class="letterdash"
-          />
-        </div>
-        <div class="letterdash-container" id="letterdash-9">
-          <span class="letter-span"></span>
-          <img
-            src="./assets/images/letterdash.png"
-            alt="letter underscore or dash"
-            class="letterdash"
-          />
-        </div>
-        <div class="letterdash-container" id="letterdash-10">
-          <span class="letter-span"></span>
-          <img
-            src="./assets/images/letterdash.png"
-            alt="letter underscore or dash"
-            class="letterdash"
-          />
-        </div>
-        <div class="letterdash-container" id="letterdash-11">
-          <span class="letter-span"></span>
-          <img
-            src="./assets/images/letterdash.png"
-            alt="letter underscore or dash"
-            class="letterdash"
-          />
-        </div>
-      </div>
+      <div class="word-container invisible" id="word-container"></div>
       <div class="game-controls">
         <p class="best-score" id="best-streak">Current Streak: 0 Best: 0</p>
         <div>
