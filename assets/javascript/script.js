@@ -1,6 +1,7 @@
 "use strict";
 
 import { OnDOMload } from './eventlisteners.js';
+import { getRandomWord, getWordHint } from './apirequests.js';
 
 var WORD = "";
 var DRAWING_COUNT = 0;
@@ -14,35 +15,6 @@ export const gameMessageWindow = document.getElementById("myModal");
 document.addEventListener("DOMContentLoaded", function () {
   OnDOMload(WORD)
 });
-
-/**
- * Get request to WordsApi for a random word
- * @returns {Promise} - word object
- */
-function getRandomWord() {
-  return new Promise(async (resolve) => {
-    try {
-      const response = await fetch(
-        "https://wordsapiv1.p.rapidapi.com/words/?random=true",
-        {
-          method: "GET",
-          headers: {
-            "x-rapidapi-host": "wordsapiv1.p.rapidapi.com",
-            "x-rapidapi-key": token,
-          },
-        }
-      );
-
-      const responseJson = await response.json(); //extract JSON from the http response
-      WORD = responseJson.word;
-
-      resolve(responseJson);
-    } catch (error) {
-      alert(error);
-      resolve();
-    }
-  });
-}
 
 /**
  * Checks if the random word is greater than 11 characters and if there are any hyphens, dots or spaces.
@@ -66,37 +38,6 @@ function parseLetter (char) {
   const re = new RegExp("([A-Za-z]{1})"); //https://regexr.com/ was used to help make expression
   return re.test(char);
 }
-
-/**
- * Looks for a definition of the random word in the WordsApi to be used as a hint
- * @param {string} word - any word
- * @returns {Promise} - word definition object
- */
-function getWordHint(word) {
-  return new Promise(async (resolve) => {
-    try {
-      const response = await fetch(
-        `https://wordsapiv1.p.rapidapi.com/words/${word}/definitions`,
-        {
-          method: "GET",
-          headers: {
-            "x-rapidapi-host": "wordsapiv1.p.rapidapi.com",
-            "x-rapidapi-key": token,
-          },
-        }
-      );
-
-      const responseJson = await response.json(); //extract JSON from the http response
-
-      resolve(responseJson);
-    } catch (error) {
-      alert(error);
-      resolve();
-    }
-  });
-}
-
-
 
 /**
  * Toggles the opacity between 1 and 0 at the beginning
@@ -371,6 +312,7 @@ async function runGame() {
   hideAllDrawings();
   toggleGameBeginMsg();
   let randomWord = await getRandomWord();
+  WORD = randomWord;
   let word = randomWord.word;
   let isParsedOk = parseWord(word);
   if (isParsedOk === false) return runGame();
