@@ -1,21 +1,24 @@
 "use strict";
 
+import { OnDOMload } from './eventlisteners.js';
+
 var WORD = "";
 var DRAWING_COUNT = 0;
 var HINT_CHECKED = false;
 var AUDIO_MUTE = true;
 
-import { eventListenerBinding, bindExitModalListeners } from './eventlisteners.js';
+export const gameMessageWindow = document.getElementById("myModal");
 
 /* MODAL BASED ON https://www.w3schools.com/howto/howto_css_modals.asp */
 
-const [gameMessageWindow, span] = bindExitModalListeners();
-
+document.addEventListener("DOMContentLoaded", function () {
+  OnDOMload(WORD)
+});
 
 
 /*  Based on code institute love math project.
     Adds event listeners for buttons once DOM is loaded    */
-document.addEventListener("DOMContentLoaded", function () {
+/* document.addEventListener("DOMContentLoaded", function () {
     let buttons = document.getElementsByClassName("button");
     for (let button of buttons) {
         button.addEventListener("click", function () {
@@ -40,22 +43,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
     }
-});
+}); */
 
-/*  Handles enter key event and scrolls the page back to the top and blurs
-    input to hide soft keyboard after 500ms */
-document
-  .getElementById("letter-input")
-  .addEventListener("keyup", function (event) {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      checkLetter(WORD);
-      setTimeout(() => {
-        document.getElementById("letter-input").blur();
-        window.scrollTo(0, 0);
-      }, 500);
-    }
-  });
+
 
 /*
   Adds invisible class to gallows and stickman container on focus,
@@ -167,47 +157,7 @@ function getWordHint(word) {
   });
 }
 
-/**
- * Opens modal and adds elements with information about the game
- */
-function openHelp () {
-  gameMessageWindow.style.display = "flex";
-  let element = document.getElementById("modal-text-wrapper");
-  element.innerHTML = `
-    <h3>Help</h3>
-    <p>The game is played by guessing what word the game has chosen. Once the word has
-       been chosen, begin guessing which letters are in the word by entering a letter
-       in the text input and hitting enter or clicking "Check Letter".
-    </p>
-    <p>For example, you might begin by checking, is there an "e" in the word.
-       Generally, start by guessing common letters like vowels, or "s," "t," and "n."
-    </p>
-    <p>Each wrong guess means a piece of the gallows or stickman is drawn. Once the the
-       stickman has their eyes and mouth the game is over. You can also use the "Hint"
-       button to get a hint, but you will loose 2 turns if you do!
-    </p>
-    <p>Tip: If you enter letters already revealed at the start you might get more of
-       the same letters and if you don't, you won't loose a turn 🤫
-    </p>`; // Emoji from https://emojipedia.org/shushing-face/ 
-  window.scrollTo(0, 0);
-}
 
-/**
- * Opens modal and adds elements with contact information
- */
-function openContact () {
-  gameMessageWindow.style.display = "flex";
-  let element = document.getElementById("modal-text-wrapper");
-  element.innerHTML = `
-    <h3>Contact</h3>
-    <p>For more information about this game, if there are any issues, or if 
-        you would like to know more about my other projects please visit
-        <a href="http://www.robgannon.com/" about="_blank" aria-label="Link to
-        devolopers portfolio website (opens in new tab)">robgannon.com</a> and
-        go to the contact section.
-    </p>`;
-  window.scrollTo(0, 0);
-}
 
 /**
  * Toggles the opacity between 1 and 0 at the beginning
@@ -228,20 +178,7 @@ function toggleGameBeginMsg () {
   }
 }
 
-/**
- * Opens modal and adds elements to congratulate you on a new best win streak
- */
-function renderNewBest (score, capitalised, wordHint) {
-  gameMessageWindow.style.display = "flex";
-  let element = document.getElementById("modal-text-wrapper");
-  element.innerHTML = `
-    <h3>NEW BEST SCORE!!!</h3>
-    <p>🎈🎊 Well Done. You have achieved a new best win streak of ${score} 🎊🎈
-    </p>
-    <p>The answer was ${capitalised}: ${wordHint}
-    </p>`;  // Emojis from https://emojipedia.org/
-  window.scrollTo(0, 0);
-}
+
 
 /**
  * Checks and updates game score and best score.  Sets new score depending on game outcome.
