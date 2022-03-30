@@ -1,5 +1,5 @@
 import { gameMessageWindow } from './script.js';
-import { handleHitEnter, checkLetter, newWord, giveHint, toggleAudio, openHelp, openContact} from './eventhandlers.js';
+import { handleHitEnter, checkLetter, newWord, giveHint, toggleAudio, handleLandscapeWithFocus, handleOnblurInput } from './eventhandlers.js';
 import { openHelp, openContact } from './gamemessages.js';
 
 // When the user clicks anywhere outside of the modal, close it and clear text
@@ -49,9 +49,16 @@ function bindButtons(WORD) {
     }
 };
 
+/* Scrolls up to top when screen is resized */
+window.onresize = () => {
+  window.scrollTo(0, 0);
+}
+
 export function OnDOMload(WORD) {
     bindExitModalListeners();
     bindButtons(WORD);
     let letterInput = document.getElementById("letter-input");
     universalAddListener(letterInput, "keyup", handleHitEnter);
+    universalAddListener(letterInput, "focus", handleLandscapeWithFocus);
+    universalAddListener(letterInput, "blur", handleOnblurInput);
 }

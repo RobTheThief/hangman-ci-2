@@ -1,3 +1,5 @@
+import { gameMessageWindow } from './script.js';
+
 /*  Handles enter key event and scrolls the page back to the top and blurs
     input to hide soft keyboard after 500ms */
 export function handleHitEnter (event) {
@@ -76,4 +78,23 @@ export async function newWord() {
     element.innerHTML = content;
     AUDIO_MUTE = AUDIO_MUTE ? false : true;
 }
-  
+
+/*
+Adds invisible class to gallows and stickman container on focus,
+on mobile devices in landscape mode, to prevent it from blocking content when the
+soft keyboard pops up
+*/
+export function handleLandscapeWithFocus () {
+    if(window.innerHeight < window.innerWidth){
+      document.getElementsByClassName('hangman-gallows-wrapper')[0].classList.add('invisible');
+    }
+}
+
+/*
+  Removes invisible class from gallows and stickman container and scrolls
+  up to the top of the page on blur
+*/
+export function handleOnblurInput (event) {
+    document.getElementsByClassName('hangman-gallows-wrapper')[0].classList.remove('invisible');
+    window.scrollTo(0, 0);
+}
