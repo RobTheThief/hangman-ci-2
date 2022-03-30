@@ -1,7 +1,7 @@
 /**
  * Opens modal and adds elements with information about the game
  */
-export function openHelp (gameMessageWindow) {
+export function openHelp(gameMessageWindow) {
   gameMessageWindow.style.display = "flex";
   let element = document.getElementById("modal-text-wrapper");
   element.innerHTML = `
@@ -19,14 +19,14 @@ export function openHelp (gameMessageWindow) {
     </p>
     <p>Tip: If you enter letters already revealed at the start you might get more of
         the same letters and if you don't, you won't loose a turn 🤫
-    </p>`; // Emoji from https://emojipedia.org/shushing-face/ 
+    </p>`; // Emoji from https://emojipedia.org/shushing-face/
   window.scrollTo(0, 0);
 }
-  
+
 /**
  * Opens modal and adds elements with contact information
  */
-export function openContact (gameMessageWindow) {
+export function openContact(gameMessageWindow) {
   gameMessageWindow.style.display = "flex";
   let element = document.getElementById("modal-text-wrapper");
   element.innerHTML = `
@@ -43,14 +43,19 @@ export function openContact (gameMessageWindow) {
 /**
  * Opens modal and adds elements to congratulate you on a new best win streak
  */
-export function newBestScoreMessage (score, capitalised, wordHint, gameMessageWindow) {
-    gameMessageWindow.style.display = "flex";
-    let element = document.getElementById("modal-text-wrapper");
-    element.innerHTML = `
+export function newBestScoreMessage(
+  score,
+  capitalised,
+  wordHint,
+  gameMessageWindow
+) {
+  gameMessageWindow.style.display = "flex";
+  let element = document.getElementById("modal-text-wrapper");
+  element.innerHTML = `
       <h3>NEW BEST SCORE!!!</h3>
       <p>🎈🎊 Well Done. You have achieved a new best win streak of ${score} 🎊🎈
       </p>
       <p>The answer was ${capitalised}: ${wordHint}
-      </p>`;  // Emojis from https://emojipedia.org/
-    window.scrollTo(0, 0);
+      </p>`; // Emojis from https://emojipedia.org/
+  window.scrollTo(0, 0);
 }

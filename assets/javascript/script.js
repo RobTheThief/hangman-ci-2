@@ -1,109 +1,114 @@
 "use strict";
 
-import { getCurrentWord, getRandomWord, getWordHint } from './apirequests.js';
-import { checkProgress, selectLettersToReveal, isValidWord } from './helpers.js';
-import { renderWord } from './eventhandlers.js';
+import { getCurrentWord, getRandomWord, getWordHint } from "./apirequests.js";
+import {
+  checkProgress,
+  selectLettersToReveal,
+  isValidWord,
+} from "./helpers.js";
+import { renderWord } from "./eventhandlers.js";
 
 const gameMessageWindow = document.getElementById("myModal");
 
 /* MODAL BASED ON https://www.w3schools.com/howto/howto_css_modals.asp */
 
-
 const gallowsAttributeValues = [
-    {
-      image: 'gallows',
-      alt: 'hangman gallows',
-      class: 'gallows'
-    },
-    {
-      image: 'gamenoose',
-      alt: 'stickman head',
-      class: 'game-drawings noose'
-    },
-    {
-      image: 'head',
-      alt: 'stickman head',
-      class: 'game-drawings stickman-head'
-    },
-    {
-      image: 'body',
-      alt: 'stickman body',
-      class: 'game-drawings stickman-body'
-    },
-    {
-      image: 'rightarm',
-      alt: 'stickman right arm',
-      class: 'game-drawings stickman-rarm'
-    },
-    {
-      image: 'leftarm',
-      alt: 'stickman left arm',
-      class: 'game-drawings stickman-larm'
-    },
-    {
-      image: 'leftleg',
-      alt: 'stickman left leg',
-      class: 'game-drawings stickman-lleg'
-    },
-    {
-      image: 'rightleg',
-      alt: 'stickman right leg',
-      class: 'game-drawings stickman-rleg'
-    },
-    {
-      image: 'face',
-      alt: 'stickman face',
-      class: 'game-drawings stickman-face'
-    },
-]
+  {
+    image: "gallows",
+    alt: "hangman gallows",
+    class: "gallows",
+  },
+  {
+    image: "gamenoose",
+    alt: "stickman head",
+    class: "game-drawings noose",
+  },
+  {
+    image: "head",
+    alt: "stickman head",
+    class: "game-drawings stickman-head",
+  },
+  {
+    image: "body",
+    alt: "stickman body",
+    class: "game-drawings stickman-body",
+  },
+  {
+    image: "rightarm",
+    alt: "stickman right arm",
+    class: "game-drawings stickman-rarm",
+  },
+  {
+    image: "leftarm",
+    alt: "stickman left arm",
+    class: "game-drawings stickman-larm",
+  },
+  {
+    image: "leftleg",
+    alt: "stickman left leg",
+    class: "game-drawings stickman-lleg",
+  },
+  {
+    image: "rightleg",
+    alt: "stickman right leg",
+    class: "game-drawings stickman-rleg",
+  },
+  {
+    image: "face",
+    alt: "stickman face",
+    class: "game-drawings stickman-face",
+  },
+];
 
 /**
- * Interates through an array of objects with data on attributes to insert 
+ * Interates through an array of objects with data on attributes to insert
  * image elements into a divs innerHTML using template literals
  */
-function renderHangmanGallows () {
-  let element = document.getElementById('hangman-gallows-container');
-  element.innerHTML = '';
+function renderHangmanGallows() {
+  let element = document.getElementById("hangman-gallows-container");
+  element.innerHTML = "";
   for (let i in gallowsAttributeValues) {
     element.innerHTML += ` <img
                             src="./assets/images/${gallowsAttributeValues[i].image}.png"
                             alt="${gallowsAttributeValues[i].alt}"
                             class="${gallowsAttributeValues[i].class}"
-                            />`
+                            />`;
   }
 }
 
 /**
- * Interates through 0 to 11 to insert 
+ * Interates through 0 to 11 to insert
  * image elements into a divs innerHTML using template literals
  */
-function renderLetterDashes () {
-  let element = document.getElementById('word-container');
-  element.innerHTML = '';
+function renderLetterDashes() {
+  let element = document.getElementById("word-container");
+  element.innerHTML = "";
   for (let i = 0; i < 11; i++) {
-    element.innerHTML += `<div class="letterdash-container" id="letterdash-${i+1}">
+    element.innerHTML += `<div class="letterdash-container" id="letterdash-${
+      i + 1
+    }">
                             <span class="letter-span"></span>
                             <img
                               src="./assets/images/letterdash.png"
                               alt="letter underscore or dash"
                               class="letterdash"
                             />
-                          </div>`
+                          </div>`;
   }
 }
 
 /**
  * Toggles the opacity between 1 and 0 at the beginning
  * of game
- * 
+ *
  */
-function toggleGameBeginMsg () {
+function toggleGameBeginMsg() {
   let currentWord = getCurrentWord();
-  if (!currentWord)  {
-    let elements = document.getElementsByClassName('game-msg');
+  if (!currentWord) {
+    let elements = document.getElementsByClassName("game-msg");
     elements = Object.values(elements);
-    function toggleClasses (e) {
-      e.classList.toggle('opacity-one');
+    function toggleClasses(e) {
+      e.classList.toggle("opacity-one");
     }
     elements.forEach(toggleClasses);
     setTimeout(() => {
@@ -115,10 +120,12 @@ function toggleGameBeginMsg () {
 /**
  * Renders current and best score streak
  */
-export function renderScore () {
+export function renderScore() {
   let score = checkProgress();
-  let scoreElement = document.getElementById('best-streak');
-  scoreElement.textContent = `Current Streak: ${score.currentScore ? score.currentScore : 0} Best: ${score.bestScore ? score.bestScore : 0}`;
+  let scoreElement = document.getElementById("best-streak");
+  scoreElement.textContent = `Current Streak: ${
+    score.currentScore ? score.currentScore : 0
+  } Best: ${score.bestScore ? score.bestScore : 0}`;
 }
 
 /**

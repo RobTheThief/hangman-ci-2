@@ -1,7 +1,12 @@
-import { renderScore, runGame, toggleIsFetching } from './script.js';
-import { getCurrentHint, getCurrentWord } from './apirequests.js';
-import { checkProgress, isGameOver, isValidLetter, wordVisibility } from './helpers.js';
-import { newBestScoreMessage } from './gamemessages.js';
+import { renderScore, runGame, toggleIsFetching } from "./script.js";
+import { getCurrentHint, getCurrentWord } from "./apirequests.js";
+import {
+  checkProgress,
+  isGameOver,
+  isValidLetter,
+  wordVisibility,
+} from "./helpers.js";
+import { newBestScoreMessage } from "./gamemessages.js";
 
 var HINT_CHECKED = false;
 var DRAWING_COUNT = 0;
@@ -10,16 +15,16 @@ const gameMessageWindow = document.getElementById("myModal");
 
 /*  Handles enter key event and scrolls the page back to the top and blurs
     input to hide soft keyboard after 500ms */
-export function handleHitEnter (event) {
-    if (event.key === "Enter") {
-        event.preventDefault();
-        let currentWord = getCurrentWord();
-        checkLetter(currentWord);
-        setTimeout(() => {
-        document.getElementById("letter-input").blur();
-        window.scrollTo(0, 0);
-        }, 500);
-    }
+export function handleHitEnter(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    let currentWord = getCurrentWord();
+    checkLetter(currentWord);
+    setTimeout(() => {
+      document.getElementById("letter-input").blur();
+      window.scrollTo(0, 0);
+    }, 500);
+  }
 }
 
 /**
@@ -33,7 +38,7 @@ export function checkLetter(word) {
   let testChar = document.getElementById("letter-input").value;
   const isValid = isValidLetter(testChar);
   const isCharInWord = word.includes(testChar.toLowerCase());
-  if ( isCharInWord && isValid ) {
+  if (isCharInWord && isValid) {
     for (let char in word) {
       if (word[char] === testChar.toLowerCase()) indices.push(char);
     }
@@ -52,40 +57,40 @@ export function checkLetter(word) {
  * @returns {Promise}
  */
 export async function newWord() {
-    wordVisibility(false);
-    playSound("eraser");
-    DRAWING_COUNT = 0;
-    HINT_CHECKED = false;
-    toggleIsFetching();
-    runGame();
+  wordVisibility(false);
+  playSound("eraser");
+  DRAWING_COUNT = 0;
+  HINT_CHECKED = false;
+  toggleIsFetching();
+  runGame();
 }
 
 /**
  * Displays hint and removes 2 tries from the player
  *  @returns {Promise}
  */
- export async function giveHint() {
-    gameMessageWindow.style.display = "flex";
-    let hint = getCurrentHint();
-    document.getElementById("modal-text").textContent =
-      hint;
-    if (HINT_CHECKED === false) {
-      renderStickman();
-      renderStickman();
-      HINT_CHECKED = true;
-    }
+export async function giveHint() {
+  gameMessageWindow.style.display = "flex";
+  let hint = getCurrentHint();
+  document.getElementById("modal-text").textContent = hint;
+  if (HINT_CHECKED === false) {
+    renderStickman();
+    renderStickman();
+    HINT_CHECKED = true;
+  }
 }
 
 /**
  * Toggles mute audio icon and toggles boolean state of audio variable
  */
- export function toggleAudio() {
-    let element = document.getElementById("mute-audio");
-    let content =
-      element.innerHTML === '<i class="fa-solid fa-volume-high"></i>' ? '<i class="fa-solid fa-volume-xmark"></i>'
-        : '<i class="fa-solid fa-volume-high"></i>';
-    element.innerHTML = content;
-    AUDIO_MUTE = AUDIO_MUTE ? false : true;
+export function toggleAudio() {
+  let element = document.getElementById("mute-audio");
+  let content =
+    element.innerHTML === '<i class="fa-solid fa-volume-high"></i>'
+      ? '<i class="fa-solid fa-volume-xmark"></i>'
+      : '<i class="fa-solid fa-volume-high"></i>';
+  element.innerHTML = content;
+  AUDIO_MUTE = AUDIO_MUTE ? false : true;
 }
 
 /*
@@ -93,19 +98,23 @@ Adds invisible class to gallows and stickman container on focus,
 on mobile devices in landscape mode, to prevent it from blocking content when the
 soft keyboard pops up
 */
-export function handleLandscapeWithFocus () {
-    if(window.innerHeight < window.innerWidth){
-      document.getElementsByClassName('hangman-gallows-wrapper')[0].classList.add('invisible');
-    }
+export function handleLandscapeWithFocus() {
+  if (window.innerHeight < window.innerWidth) {
+    document
+      .getElementsByClassName("hangman-gallows-wrapper")[0]
+      .classList.add("invisible");
+  }
 }
 
 /*
   Removes invisible class from gallows and stickman container and scrolls
   up to the top of the page on blur
 */
-export function handleOnblurInput (event) {
-    document.getElementsByClassName('hangman-gallows-wrapper')[0].classList.remove('invisible');
-    window.scrollTo(0, 0);
+export function handleOnblurInput(event) {
+  document
+    .getElementsByClassName("hangman-gallows-wrapper")[0]
+    .classList.remove("invisible");
+  window.scrollTo(0, 0);
 }
 
 /**
@@ -113,17 +122,24 @@ export function handleOnblurInput (event) {
  * and hint. The game is then reset after 3 seconds.
  * @returns {Promise}
  */
- function gameWon() {
+function gameWon() {
   let currentWord = getCurrentWord();
   gameMessageWindow.style.display = "flex";
   const wordHint = getCurrentHint();
-  const capitalised = `${currentWord.charAt(0).toUpperCase()}${currentWord.slice(1)}`;
+  const capitalised = `${currentWord
+    .charAt(0)
+    .toUpperCase()}${currentWord.slice(1)}`;
   if (DRAWING_COUNT !== 8) {
     let score = checkProgress();
     let newScore = checkProgress(true);
     renderScore();
     if (score.bestScore < newScore.bestScore) {
-      newBestScoreMessage (newScore.currentScore, capitalised, wordHint, gameMessageWindow);
+      newBestScoreMessage(
+        newScore.currentScore,
+        capitalised,
+        wordHint,
+        gameMessageWindow
+      );
     } else {
       document.getElementById(
         "modal-text"
@@ -141,7 +157,7 @@ export function handleOnblurInput (event) {
  * complete, ending the game.
  * @returns {Promise}
  */
- async function renderStickman() {
+async function renderStickman() {
   let elements = document.getElementsByClassName("game-drawings");
   if (DRAWING_COUNT < 8) {
     playSound("draw-line");
@@ -156,7 +172,7 @@ export function handleOnblurInput (event) {
  * @param {string} word - any word 11 or less chars
  * @param {Array} indices - array containing integers
  */
- export function renderWord(word, indices) {
+export function renderWord(word, indices) {
   playSound("draw-letter");
   wordVisibility(true);
   let letterArray = word.split("");
@@ -175,7 +191,7 @@ export function handleOnblurInput (event) {
  * @param {string} sound - accepts 'draw-letter', 'draw-line', or 'eraser'
  * @returns {Promise}
  */
- async function playSound(sound) {
+async function playSound(sound) {
   let soundType = document.getElementById(`${sound}-sound`);
   try {
     if (AUDIO_MUTE === false) {
@@ -200,7 +216,9 @@ function looseGame() {
   let currentWord = getCurrentWord();
   gameMessageWindow.style.display = "flex";
   const wordHint = getCurrentHint();
-  const capitalised = `${currentWord.charAt(0).toUpperCase()}${currentWord.slice(1)}`;
+  const capitalised = `${currentWord
+    .charAt(0)
+    .toUpperCase()}${currentWord.slice(1)}`;
   document.getElementById(
     "modal-text"
   ).textContent = `GAME OVER! The answer was ${capitalised}: ${wordHint}`;
