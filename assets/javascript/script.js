@@ -1,11 +1,9 @@
 "use strict";
 
 import { OnDOMload } from './eventlisteners.js';
-import { getRandomWord, getWordHint } from './apirequests.js';
+import { getCurrentWord, getRandomWord, getWordHint } from './apirequests.js';
 
-var WORD = "";
 var DRAWING_COUNT = 0;
-var HINT_CHECKED = false;
 var AUDIO_MUTE = true;
 
 export const gameMessageWindow = document.getElementById("myModal");
@@ -13,7 +11,7 @@ export const gameMessageWindow = document.getElementById("myModal");
 /* MODAL BASED ON https://www.w3schools.com/howto/howto_css_modals.asp */
 
 document.addEventListener("DOMContentLoaded", function () {
-  OnDOMload(WORD)
+  OnDOMload()
 });
 
 /**
@@ -45,7 +43,8 @@ function parseLetter (char) {
  * 
  */
 function toggleGameBeginMsg () {
-  if (!WORD)  {
+  let currentWord = getCurrentWord();
+  if (!currentWord)  {
     let elements = document.getElementsByClassName('game-msg');
     elements = Object.values(elements);
     function toggleClasses (e) {
@@ -179,7 +178,8 @@ function isGameWon() {
       letterArray.push(char);
     }
   }
-  return (WORD.length === letterArray.length) ? true : false;
+  let currentWord = getCurrentWord();
+  return (currentWord.length === letterArray.length) ? true : false;
 }
 
 /**
@@ -188,10 +188,11 @@ function isGameWon() {
  * @returns {Promise}
  */
 async function gameWon() {
+  let currentWord = getCurrentWord();
   gameMessageWindow.style.display = "flex";
-  const wordHintObject = await getWordHint(WORD);
+  const wordHintObject = await getWordHint();
   const wordHint = wordHintObject.definitions[0].definition;
-  const capitalised = `${WORD.charAt(0).toUpperCase()}${WORD.slice(1)}`;
+  const capitalised = `${currentWord.charAt(0).toUpperCase()}${currentWord.slice(1)}`;
   if (DRAWING_COUNT !== 8) {
     let score = checkProgress();
     let newScore = checkProgress(true);
@@ -274,10 +275,11 @@ function clearChars() {
  * @returns {Promise}
  */
 async function looseGame() {
+  let currentWord = getCurrentWord();
   gameMessageWindow.style.display = "flex";
-  const wordHintObject = await getWordHint(WORD);
+  const wordHintObject = await getWordHint();
   const wordHint = wordHintObject.definitions[0].definition;
-  const capitalised = `${WORD.charAt(0).toUpperCase()}${WORD.slice(1)}`;
+  const capitalised = `${currentWord.charAt(0).toUpperCase()}${currentWord.slice(1)}`;
   document.getElementById(
     "modal-text"
   ).textContent = `GAME OVER! The answer was ${capitalised}: ${wordHint}`;
@@ -312,11 +314,10 @@ async function runGame() {
   hideAllDrawings();
   toggleGameBeginMsg();
   let randomWord = await getRandomWord();
-  WORD = randomWord;
   let word = randomWord.word;
   let isParsedOk = parseWord(word);
   if (isParsedOk === false) return runGame();
-  let hint = await getWordHint(word);
+  let hint = await getWordHint();
   if (!hint.definitions[0]) return runGame();
   clearChars();
   let indicesToReveal = filterLettersToRender(word);

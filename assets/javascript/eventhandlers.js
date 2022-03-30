@@ -1,4 +1,7 @@
 import { gameMessageWindow } from './script.js';
+import { getCurrentWord, getWordHint } from './apirequests.js';
+
+var HINT_CHECKED = false;
 
 /*  Handles enter key event and scrolls the page back to the top and blurs
     input to hide soft keyboard after 500ms */
@@ -57,7 +60,8 @@ export async function newWord() {
  */
  export async function giveHint() {
     gameMessageWindow.style.display = "flex";
-    let hint = await getWordHint(WORD);
+    let currentWord = getCurrentWord();
+    let hint = await getWordHint(currentWord);
     document.getElementById("modal-text").textContent =
       hint.definitions[0].definition;
     if (HINT_CHECKED === false) {

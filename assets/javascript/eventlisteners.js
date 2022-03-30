@@ -1,6 +1,7 @@
 import { gameMessageWindow } from './script.js';
 import { handleHitEnter, checkLetter, newWord, giveHint, toggleAudio, handleLandscapeWithFocus, handleOnblurInput } from './eventhandlers.js';
 import { openHelp, openContact } from './gamemessages.js';
+import { getCurrentWord } from './apirequests.js';
 
 // When the user clicks anywhere outside of the modal, close it and clear text
 // When the user clicks on <span> (x), close the modal and clear text
@@ -28,7 +29,8 @@ function bindButtons(WORD) {
         button.addEventListener("click", function () {
         let buttonType = this.getAttribute("id");
         if (buttonType === "check-letter") {
-            checkLetter(WORD);
+            let currentWord = getCurrentWord();
+            checkLetter(currentWord);
         }
         if (buttonType === "new-word") {
             newWord();
@@ -54,9 +56,9 @@ window.onresize = () => {
   window.scrollTo(0, 0);
 }
 
-export function OnDOMload(WORD) {
+export function OnDOMload() {
     bindExitModalListeners();
-    bindButtons(WORD);
+    bindButtons();
     let letterInput = document.getElementById("letter-input");
     universalAddListener(letterInput, "keyup", handleHitEnter);
     universalAddListener(letterInput, "focus", handleLandscapeWithFocus);
