@@ -1,17 +1,12 @@
 "use strict";
 
-import { OnDOMload } from './eventlisteners.js';
 import { getCurrentWord, getRandomWord, getWordHint } from './apirequests.js';
 import { checkProgress, filterLettersToRender, parseWord } from './helpers.js';
 import { renderWord } from './eventhandlers.js';
 
 const gameMessageWindow = document.getElementById("myModal");
 
-/* MODAL BASED ON https://www.w3schools.com/howto/howto_css_modals.asp */
-
-document.addEventListener("DOMContentLoaded", function () {
-  OnDOMload();
-});
+/* MODAL BASED ON https://www.w3schools.com/howto/howto_css_modals.asp *
 
 /**
  * Toggles the opacity between 1 and 0 at the beginning
@@ -117,7 +112,6 @@ export async function runGame() {
   renderScore();
 }
 
-runGame();
 /* toggleIsFetching(); */
 /* localStorage.setItem('myScore', 0 );
 localStorage.setItem('bestScore', 0 ); */

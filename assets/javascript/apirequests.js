@@ -31,11 +31,11 @@ let WORD = '';
     });
   }
 
-  /**
+/**
  * Looks for a definition of the random word in the WordsApi to be used as a hint
  * @param {string} word - any word
  * @returns {Promise} - word definition object
- */
+*/
 export function getWordHint() {
     return new Promise(async (resolve) => {
       try {
