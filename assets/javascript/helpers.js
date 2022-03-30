@@ -6,7 +6,7 @@ import { getCurrentWord } from "./apirequests.js";
  * @param {string} word - any word 11 or less chars
  * @returns {Array} - indices of letters that will be revealed
  */
-export function filterLettersToRender(word) {
+export function selectLettersToReveal(word) {
     let lettersToRevealeCount = maxNumOfLetters(word);
     let letters = word.split("");
     let indicesToReveal = [];
@@ -60,7 +60,7 @@ export function checkProgress (result) {
  * @param {string} word - any word
  * @returns {boolean} - true if passed all test or false if failed any
  */
-export function parseWord(word) {
+export function isValidWord(word) {
     const re = new RegExp("([. -]|[0-9])"); //https://regexr.com/ was used to help make expression
     if (re.test(word)) return false;
     if (word.length > 11) return false;
@@ -73,7 +73,7 @@ export function parseWord(word) {
  * @param {string} char - any string
  * @returns {boolean}
  */
-export function parseLetter (char) {
+export function isValidLetter (char) {
     const re = new RegExp("([A-Za-z]{1})"); //https://regexr.com/ was used to help make expression
     return re.test(char);
 }
@@ -82,7 +82,7 @@ export function parseLetter (char) {
  * Checks if all the characters have been found
  * @returns {boolean}
  */
- export function isGameWon() {
+ export function isGameOver() {
     let letterArray = [];
     let elements = document.getElementsByClassName("letterdash-container");
     for (let element of elements) {

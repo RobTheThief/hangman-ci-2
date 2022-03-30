@@ -1,7 +1,7 @@
 "use strict";
 
 import { getCurrentWord, getRandomWord, getWordHint } from './apirequests.js';
-import { checkProgress, filterLettersToRender, parseWord } from './helpers.js';
+import { checkProgress, selectLettersToReveal, isValidWord } from './helpers.js';
 import { renderWord } from './eventhandlers.js';
 
 const gameMessageWindow = document.getElementById("myModal");
@@ -99,12 +99,12 @@ export async function runGame() {
   toggleGameBeginMsg();
   let randomWord = await getRandomWord();
   let word = randomWord.word;
-  let isParsedOk = parseWord(word);
-  if (isParsedOk === false) return runGame();
+  let isValid = isValidWord(word);
+  if (isValid === false) return runGame();
   let hint = await getWordHint();
   if (!hint.definitions[0]) return runGame();
   clearChars();
-  let indicesToReveal = filterLettersToRender(word);
+  let indicesToReveal = selectLettersToReveal(word);
   restoreAllCharContainers();
   renderWord(word, indicesToReveal);
   removeEmptyCharContainers(word);

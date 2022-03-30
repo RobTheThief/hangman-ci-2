@@ -43,7 +43,7 @@ export function openContact (gameMessageWindow) {
 /**
  * Opens modal and adds elements to congratulate you on a new best win streak
  */
-export function renderNewBest (score, capitalised, wordHint, gameMessageWindow) {
+export function newBestScoreMessage (score, capitalised, wordHint, gameMessageWindow) {
     gameMessageWindow.style.display = "flex";
     let element = document.getElementById("modal-text-wrapper");
     element.innerHTML = `

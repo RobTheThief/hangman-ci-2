@@ -1,7 +1,7 @@
 import { renderScore, runGame, toggleIsFetching } from './script.js';
 import { getCurrentHint, getCurrentWord } from './apirequests.js';
-import { checkProgress, isGameWon, parseLetter, wordVisibility } from './helpers.js';
-import { renderNewBest } from './gamemessages.js';
+import { checkProgress, isGameOver, isValidLetter, wordVisibility } from './helpers.js';
+import { newBestScoreMessage } from './gamemessages.js';
 
 var HINT_CHECKED = false;
 var DRAWING_COUNT = 0;
@@ -28,23 +28,23 @@ export function handleHitEnter (event) {
  * renderStickman function
  * @param {string} word - any word
  */
- export function checkLetter(word) {
-    if (!isGameWon()) {
-      let indices = [];
-      let testChar = document.getElementById("letter-input").value;
-      const isParsedOk = parseLetter(testChar);
-      const isCharInWord = word.includes(testChar.toLowerCase());
-      if ( isCharInWord && isParsedOk ) {
-        for (let char in word) {
-          if (word[char] === testChar.toLowerCase()) indices.push(char);
-        }
-        renderWord(word, indices);
-      } else if (isParsedOk) {
-        renderStickman();
-      } 
-      isGameWon() && gameWon();
+export function checkLetter(word) {
+  let indices = [];
+  let testChar = document.getElementById("letter-input").value;
+  const isValid = isValidLetter(testChar);
+  const isCharInWord = word.includes(testChar.toLowerCase());
+  if ( isCharInWord && isValid ) {
+    for (let char in word) {
+      if (word[char] === testChar.toLowerCase()) indices.push(char);
     }
-    document.getElementById("letter-input").value = "";
+    renderWord(word, indices);
+  } else if (isValid) {
+    renderStickman();
+  }
+  if (isGameOver()) {
+    gameWon();
+  }
+  document.getElementById("letter-input").value = "";
 }
 
 /**
@@ -113,7 +113,7 @@ export function handleOnblurInput (event) {
  * and hint. The game is then reset after 3 seconds.
  * @returns {Promise}
  */
- async function gameWon() {
+ function gameWon() {
   let currentWord = getCurrentWord();
   gameMessageWindow.style.display = "flex";
   const wordHint = getCurrentHint();
@@ -123,7 +123,7 @@ export function handleOnblurInput (event) {
     let newScore = checkProgress(true);
     renderScore();
     if (score.bestScore < newScore.bestScore) {
-      renderNewBest (newScore.currentScore, capitalised, wordHint);
+      newBestScoreMessage (newScore.currentScore, capitalised, wordHint, gameMessageWindow);
     } else {
       document.getElementById(
         "modal-text"
