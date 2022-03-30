@@ -5,28 +5,13 @@ var DRAWING_COUNT = 0;
 var HINT_CHECKED = false;
 var AUDIO_MUTE = true;
 
+import { eventListenerBinding, bindExitModalListeners } from './eventlisteners.js';
+
 /* MODAL BASED ON https://www.w3schools.com/howto/howto_css_modals.asp */
 
-// Get the modal
-var modal = document.getElementById("myModal");
+const [gameMessageWindow, span] = bindExitModalListeners();
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks on <span> (x), close the modal and clear text
-span.onclick = function () {
-    document.getElementById("modal-text-wrapper").innerHTML = `<p id="modal-text"></p>`;
-    modal.style.display = "none";
-};
-
-// When the user clicks anywhere outside of the modal, close it and clear text
-window.onclick = function (event) {
-    if (event.target === modal) {
-        document.getElementById("modal-text-wrapper").innerHTML = `<p id="modal-text"></p>`;
-        modal.style.display = "none";
-    }
-};
-/* ******************************************************************* */
 
 /*  Based on code institute love math project.
     Adds event listeners for buttons once DOM is loaded    */
@@ -72,11 +57,11 @@ document
     }
   });
 
-  /*
-    Adds invisible class to gallows and stickman container on focus,
-    on mobile devices in landscape mode, to prevent it from blocking content when the
-    soft keyboard pops up
-   */
+/*
+  Adds invisible class to gallows and stickman container on focus,
+  on mobile devices in landscape mode, to prevent it from blocking content when the
+  soft keyboard pops up
+  */
 document
   .getElementById("letter-input")
   .addEventListener("focus", function (event) {
@@ -88,7 +73,7 @@ document
 /*
   Removes invisible class from gallows and stickman container and scrolls
   up to the top of the page on blur
- */
+*/
 document
   .getElementById("letter-input")
   .addEventListener("blur", function (event) {
@@ -186,7 +171,7 @@ function getWordHint(word) {
  * Opens modal and adds elements with information about the game
  */
 function openHelp () {
-  modal.style.display = "flex";
+  gameMessageWindow.style.display = "flex";
   let element = document.getElementById("modal-text-wrapper");
   element.innerHTML = `
     <h3>Help</h3>
@@ -211,7 +196,7 @@ function openHelp () {
  * Opens modal and adds elements with contact information
  */
 function openContact () {
-  modal.style.display = "flex";
+  gameMessageWindow.style.display = "flex";
   let element = document.getElementById("modal-text-wrapper");
   element.innerHTML = `
     <h3>Contact</h3>
@@ -247,7 +232,7 @@ function toggleGameBeginMsg () {
  * Opens modal and adds elements to congratulate you on a new best win streak
  */
 function renderNewBest (score, capitalised, wordHint) {
-  modal.style.display = "flex";
+  gameMessageWindow.style.display = "flex";
   let element = document.getElementById("modal-text-wrapper");
   element.innerHTML = `
     <h3>NEW BEST SCORE!!!</h3>
@@ -356,7 +341,7 @@ async function playSound(sound) {
   } catch (error) {
     if (error.name === "NotAllowedError") {
       AUDIO_MUTE = true;
-      modal.style.display = "flex";
+      gameMessageWindow.style.display = "flex";
       document.getElementById(
         "modal-text"
       ).textContent = `AUDIO ERROR: ${error.message}`;
@@ -386,7 +371,7 @@ function isGameWon() {
  * @returns {Promise}
  */
 async function gameWon() {
-  modal.style.display = "flex";
+  gameMessageWindow.style.display = "flex";
   const wordHintObject = await getWordHint(WORD);
   const wordHint = wordHintObject.definitions[0].definition;
   const capitalised = `${WORD.charAt(0).toUpperCase()}${WORD.slice(1)}`;
@@ -497,7 +482,7 @@ function clearChars() {
  * @returns {Promise}
  */
 async function looseGame() {
-  modal.style.display = "flex";
+  gameMessageWindow.style.display = "flex";
   const wordHintObject = await getWordHint(WORD);
   const wordHint = wordHintObject.definitions[0].definition;
   const capitalised = `${WORD.charAt(0).toUpperCase()}${WORD.slice(1)}`;
@@ -557,7 +542,7 @@ function toggleAudio() {
  *  @returns {Promise}
  */
 async function giveHint() {
-  modal.style.display = "flex";
+  gameMessageWindow.style.display = "flex";
   let hint = await getWordHint(WORD);
   document.getElementById("modal-text").textContent =
     hint.definitions[0].definition;
