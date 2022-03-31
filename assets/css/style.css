@@ -65,6 +65,7 @@ button {
   border: 10px solid transparent;
   border-image: url("../images/maincontainer.png") 30 round;
   margin: 0 auto;
+  overflow: hidden;
 }
 
 .game-controls-and-letters {
@@ -176,6 +177,7 @@ button {
 .hangman-gallows-wrapper {
   display: flex;
   justify-content: flex-end;
+  overflow: hidden;
 }
 
 .hangman-gallows-container {
