@@ -85,7 +85,7 @@ Hangman Interactive Chalkboard game is an online version of the pen and paper ga
 
   - Above the controls is a score tracker that shows how many rounds have been won in a row and what is the players best win streak.
 
-  ![Score Tracker](https://github.com/RobTheThief/hangman-ci-2/blob/master/assets/media/scoretraker.png)
+  ![Score Tracker](https://github.com/RobTheThief/hangman-ci-2/blob/master/assets/media/scoretracker.png)
 
 ## Technologies Used
 
