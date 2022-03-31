@@ -20,7 +20,7 @@
   </head>
   
   <body>
-    <!-- Game Sounds from https://freesound.org/ -->
+    <!-- Sound Files -->
     <audio id="draw-line-sound" preload="none">
       <source src="./assets/audio/line.mp3" type="audio/mpeg" />
       Your browser does not support audio.
@@ -34,6 +34,7 @@
       Your browser does not support audio.
     </audio>
 
+    <!-- Navigation -->
     <nav>
       <h1 class="game-margin-left">Hangman</h1>
       <img 
@@ -46,7 +47,7 @@
             title="Turn sound on or off"
             id="mute-audio"
             class="audio-mute button"
-          > <!-- Icon from https://fontawesome.com/ -->
+          >
             <i class="fa-solid fa-volume-xmark"></i> 
         </button>
         <a aria-label="Opens a modal with help information (Stays on this page)" class="help button" id="help">Help</a>
@@ -54,7 +55,7 @@
       </div>
     </nav>
 
-    <!-- MODAL BASED ON https://www.w3schools.com/howto/howto_css_modals.asp-->
+    <!--Game Messages  -->
     <div id="game-messages-modal" class="game-messages-modal">
       <div class="modal-content">
         <span class="close">&times;</span>
@@ -73,12 +74,15 @@
       <p class="game-msg">before you get hung!</p>
     </div>
 
+    <!-- Hangman and Gallows -->
     <section class="game-body" aria-labelledby="hangmans-gallows">
       <h2 id="hangmans-gallows">Hangmans gallows</h2>
       <div class="hangman-gallows-wrapper">
         <div class="hangman-gallows-container" id="hangman-gallows-container"></div>
       </div>
     </section>
+    
+    <!-- Letters and controls -->
     <section class="game-controls-and-letters" aria-labelledby="game-controls-and-letters">
       <h2 id="game-controls-and-letters">Game controls and letters</h2>
       <div class="word-container invisible" id="word-container"></div>

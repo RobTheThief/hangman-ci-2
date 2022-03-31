@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap");
 
 html {
-  background: url("../images/blackboard.webp") no-repeat; /* Sourced from https://pixabay.com/ */
+  background: url("../images/blackboard.webp") no-repeat;
   background-size: 115vw 115vh;
   color: white;
   font-family: "Amatic SC", cursive;
@@ -287,7 +287,6 @@ button {
   margin-bottom: 3.2rem;
 }
 
-/* MODAL BASED ON https://www.w3schools.com/howto/howto_css_modals.asp */
 .game-messages-modal {
   display: none;
   align-items: flex-start;
