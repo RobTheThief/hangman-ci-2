@@ -11,7 +11,7 @@ import { openHelp, openContact } from "./gamemessages.js";
 import { getCurrentWord } from "./apirequests.js";
 import { runGame } from "./script.js";
 
-const gameMessageWindow = document.getElementById("myModal");
+const gameMessageWindow = document.getElementById("game-messages-modal");
 
 /* Runs onDOMload() when the DOM loads */
 document.addEventListener("DOMContentLoaded", function () {

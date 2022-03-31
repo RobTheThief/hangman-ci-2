@@ -281,7 +281,7 @@ button {
 }
 
 /* MODAL BASED ON https://www.w3schools.com/howto/howto_css_modals.asp */
-.modal {
+.game-messages-modal {
   display: none;
   align-items: flex-start;
   justify-content: center;
@@ -421,7 +421,7 @@ button {
   html {
     background-size: 115vw 600vh;
   }
-  .modal {
+  .game-messages-modal {
     height: 110vh;
     width: 110vw;
   }

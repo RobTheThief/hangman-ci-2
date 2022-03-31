@@ -11,7 +11,7 @@ import { newBestScoreMessage } from "./gamemessages.js";
 var HINT_CHECKED = false;
 var DRAWING_COUNT = 0;
 var AUDIO_MUTE = true;
-const gameMessageWindow = document.getElementById("myModal");
+const gameMessageWindow = document.getElementById("game-messages-modal");
 
 /*  Handles enter key event and scrolls the page back to the top and blurs
     input to hide soft keyboard after 500ms */
@@ -58,7 +58,7 @@ export function checkLetter(word) {
  */
 export async function newWord() {
   wordVisibility(false);
-  playSound("eraser");
+  await playSound("eraser");
   DRAWING_COUNT = 0;
   HINT_CHECKED = false;
   toggleIsFetching();
@@ -67,9 +67,9 @@ export async function newWord() {
 
 /**
  * Displays hint and removes 2 tries from the player
- *  @returns {Promise}
+ *
  */
-export async function giveHint() {
+export function giveHint() {
   gameMessageWindow.style.display = "flex";
   let hint = getCurrentHint();
   document.getElementById("modal-text").textContent = hint;
@@ -99,7 +99,7 @@ on mobile devices in landscape mode, to prevent it from blocking content when th
 soft keyboard pops up
 */
 export function handleLandscapeWithFocus() {
-  if (window.innerHeight < window.innerWidth) {
+  if (window.innerHeight < window.innerWidth && window.innerWidth < 1280) {
     document
       .getElementsByClassName("hangman-gallows-wrapper")[0]
       .classList.add("invisible");
@@ -160,7 +160,7 @@ function gameWon() {
 async function renderStickman() {
   let elements = document.getElementsByClassName("game-drawings");
   if (DRAWING_COUNT < 8) {
-    playSound("draw-line");
+    await playSound("draw-line");
     elements[DRAWING_COUNT].classList.remove("invisible");
     ++DRAWING_COUNT;
   }

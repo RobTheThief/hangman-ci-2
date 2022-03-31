@@ -8,7 +8,7 @@ import {
 } from "./helpers.js";
 import { renderWord } from "./eventhandlers.js";
 
-const gameMessageWindow = document.getElementById("myModal");
+const gameMessageWindow = document.getElementById("game-messages-modal");
 
 /* MODAL BASED ON https://www.w3schools.com/howto/howto_css_modals.asp */
 
