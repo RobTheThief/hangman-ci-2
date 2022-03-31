@@ -143,7 +143,7 @@ Hangman Interactive Chalkboard game is an online version of the pen and paper ga
 
 - In screens with a height smaller than 625px the gallows begins to overlap and obstruct other parts of the game.
   - This is only an issue on smaller phones and it was determined that:
-  1. Phone of the sie are less common.
+  1. Phones of this size are less common.
   2. The game would be very difficult to play on a very small screen as reducing down the sizes of the elements to accomodate the screen would impare visibility and ability to interact with the controls.
 
 ### Further Testing
