@@ -175,6 +175,11 @@ Hangman Interactive Chalkboard game is an online version of the pen and paper ga
 
 The live link can be found here - https://robthethief.github.io/hangman-ci-2/
 
+- Local deployment was achieved with with Python from the console. The game was developed on a Ubuntu OS and so was already installed. Steps are as follows:
+  - Run `python3 -m http.server` in the terminal with root directory of the project.
+  - hold ctrl and click on the link provided in the terminal.
+  - getting the ip adderss of the PC I was able to also access this server from my mobiles device.
+
 ## Credits
 
 ### Content
