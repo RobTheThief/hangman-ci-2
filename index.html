@@ -17,29 +17,23 @@
       src="https://kit.fontawesome.com/89b2bfbb3e.js"
       crossorigin="anonymous"
     ></script>
-    <script type="module" src="assets/javascript/script.js" defer></script>
-    <script type="module" src="assets/javascript/eventlisteners.js" defer></script>
-    <script type="module" src="assets/javascript/gamemessages.js" defer></script>
-    <script type="module" src="assets/javascript/apirequests.js" defer></script>
-    <script type="module" src="assets/javascript/apitoken.js" defer></script>
-    <script type="module" src="assets/javascript/helpers.js" defer></script>
   </head>
-
-  <!-- Game Sounds from https://freesound.org/ -->
-  <audio id="draw-line-sound" preload="none">
-    <source src="./assets/audio/line.mp3" type="audio/mpeg" />
-    Your browser does not support audio.
-  </audio>
-  <audio id="draw-letter-sound" preload="none">
-    <source src="./assets/audio/letterone.mp3" type="audio/mpeg" />
-    Your browser does not support audio.
-  </audio>
-  <audio id="eraser-sound" preload="none">
-    <source src="./assets/audio/eraser.mp3" type="audio/mpeg" />
-    Your browser does not support audio.
-  </audio>
-
+  
   <body>
+    <!-- Game Sounds from https://freesound.org/ -->
+    <audio id="draw-line-sound" preload="none">
+      <source src="./assets/audio/line.mp3" type="audio/mpeg" />
+      Your browser does not support audio.
+    </audio>
+    <audio id="draw-letter-sound" preload="none">
+      <source src="./assets/audio/letterone.mp3" type="audio/mpeg" />
+      Your browser does not support audio.
+    </audio>
+    <audio id="eraser-sound" preload="none">
+      <source src="./assets/audio/eraser.mp3" type="audio/mpeg" />
+      Your browser does not support audio.
+    </audio>
+
     <nav>
       <h1 class="game-margin-left">Hangman</h1>
       <img 
@@ -48,6 +42,13 @@
         class="logo"
       />
       <div class="nav-button-container">
+        <button
+            title="Turn sound on or off"
+            id="mute-audio"
+            class="audio-mute button"
+          > <!-- Icon from https://fontawesome.com/ -->
+            <i class="fa-solid fa-volume-xmark"></i> 
+        </button>
         <a aria-label="Opens a modal with help information (Stays on this page)" class="help button" id="help">Help</a>
         <a aria-label="Opens a modal with contact information (Stays on this page)" class="contact button" id="contact">Contact</a>
       </div>
@@ -117,15 +118,14 @@
             type="button"
             class="hint button"
           />
-          <button
-            title="Turn sound on or off"
-            id="mute-audio"
-            class="audio-mute button"
-          > <!-- Icon from https://fontawesome.com/ -->
-            <i class="fa-solid fa-volume-xmark"></i> 
-          </button>
         </div>
       </div>
     </section>
+    <script type="module" src="assets/javascript/script.js" ></script>
+    <script type="module" src="assets/javascript/eventlisteners.js" ></script>
+    <script type="module" src="assets/javascript/gamemessages.js" ></script>
+    <script type="module" src="assets/javascript/apirequests.js" ></script>
+    <script type="module" src="assets/javascript/apitoken.js" ></script>
+    <script type="module" src="assets/javascript/helpers.js" ></script>
   </body>
 </html>

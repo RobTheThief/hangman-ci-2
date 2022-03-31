@@ -119,6 +119,9 @@ button {
 
 .audio-mute {
   color: white;
+  border: none;
+  padding: 0;
+  box-shadow: none;
 }
 
 .best-score {
@@ -137,6 +140,8 @@ button {
   line-height: 25px;
   float: right;
   margin-right: 5%;
+  position: relative;
+  top: -2px;
 }
 
 .loading-wheel {
@@ -335,16 +340,7 @@ button {
   cursor: pointer;
 }
 
-@media only screen and (max-width: 700px) {
-  .nav-button-container {
-    right: 3.5rem;
-  }
-}
-
 @media only screen and (max-width: 444px) {
-  .nav-button-container {
-    right: 1.5rem;
-  }
   input,
   button {
     font-size: 24px;
@@ -356,8 +352,11 @@ button {
 }
 
 @media only screen and (max-width: 385px) {
+  h1 {
+    font-size: 30px;
+  }
   .nav-button-container {
-    right: 1rem;
+    font-size: 25px;
   }
   .letter-input {
     margin: 0 0.5rem 0 0;
